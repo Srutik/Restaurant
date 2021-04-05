@@ -1,0 +1,38 @@
+img {
+    height: 250px;
+    width: 250px;
+   
+}
+
+.card {
+    display: flex;
+    padding: 80px;
+    flex-direction: row;
+    flex-wrap:wrap;
+    flex-flow: row wrap;
+    justify-content: space-between;  
+    margin-top: 10px;
+    margin-bottom: 20px;  
+}
+
+.card .cardItem {
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid;
+    margin-bottom: 20px;
+    border-color: rgb(119, 119, 119);
+    box-shadow: 0 0 25px 10px rgba(25, 25, 25, .1);
+}
+
+.content {
+    text-align: center;
+    font-style: normal;
+    color: black;
+    font-weight: 100;
+    margin-bottom: 15px;
+    margin-top: 15px;
+ 
+} 
+
+
+

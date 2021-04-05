@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans', sans-serif;
+  }
+  
+  .homepage {
+    display: flex;
+    height: 90vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+  }
+  
+  @media screen and (max-width: 960px) {
+    .sign-up {
+    height: 70vh;
+    font-size: 2rem;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .sign-up {
+      height: 50vh;
+      font-size: 1rem;
+      }
+    }
