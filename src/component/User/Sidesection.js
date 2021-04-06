@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { SidebarData } from './Datafile';
-import './Sidebar.css';
+import { SidebarData } from './items';
+import './Sidesections.css';
 import { IconContext } from 'react-icons';
 
-function Sidebar() {
+function Sidesection() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -14,15 +14,16 @@ function Sidebar() {
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
-        <div className='navbar'>
-          <Link to='#' className='menu-bars'>
+        <div className='navbar2'>
+          <Link to='#' className='menu-bar'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
+          <div className="font">Category</div>
         </div>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+        <nav className={sidebar ? 'nav-menus active' : 'nav-menus'}>
           <ul className='nav-menu-items' onClick={showSidebar}>
             <li className='navbar-toggle'>
-              <Link to='#' className='menu-bars'>
+              <Link to='#' className='menu-bar'>
                 <AiIcons.AiOutlineClose />
               </Link>
             </li>
@@ -43,4 +44,4 @@ function Sidebar() {
   );
 }
 
-export default Sidebar;
+export default Sidesection; 
