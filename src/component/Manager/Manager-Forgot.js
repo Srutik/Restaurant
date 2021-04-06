@@ -22,7 +22,7 @@ import "../Login.scss";
     }
     
     try {
-    let result = await fetch("http://192.168.29.61:8020/home/forgotP" , {
+    let result = await fetch("http://192.168.29.61:8020/manager/managerforgotP" , {
       method:'PUT',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 
