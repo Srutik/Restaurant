@@ -18,7 +18,7 @@ function Sidesection() {
           <Link to='#' className='menu-bar'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <div className="font">Category</div>
+          <div className="Fonts">Category</div>
         </div>
         <nav className={sidebar ? 'nav-menus active' : 'nav-menus'}>
           <ul className='nav-menu-items' onClick={showSidebar}>

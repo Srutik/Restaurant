@@ -79,3 +79,44 @@
   span {
     margin-left: 16px;
   } 
+
+  .containers {
+    display: flex;
+    padding: 80px;
+    flex-direction: row;
+    flex-wrap:wrap;
+    flex-flow: row wrap;
+    justify-content: space-between;  
+    margin-bottom: 20px; 
+  }
+
+  img {
+    border-bottom: solid 2px rgb(255, 255, 255);
+  }
+
+  .items {
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    border: solid 2px black;
+    border-radius: 5px;
+    background: rgb(157, 178, 185);
+  }
+
+
+  .Title {
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .image-category {
+    display: block;
+    object-fit: cover;
+    transition: all 0.2s linear;
+    
+
+  }
+
+  

@@ -1,5 +1,6 @@
 import React from "react";
 import './Menu.css';
+import Subcategory from './Subcategory';
 import { Link } from 'react-router-dom';
 
 class Menu extends React.Component {
@@ -10,14 +11,14 @@ class Menu extends React.Component {
 
 
   async componentDidMount() {
-    const url = "http://192.168.0.63:8020/categorypost/categories";
+    const url = "http://192.168.0.125:8020/categorypost/categories";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ people: data.categoryposts, loading: false });
   }
 
-  handleClick() {
-    alert("You have just Clicked !")
+ handleClick(_id) {
+
   }
 
 
@@ -33,28 +34,28 @@ class Menu extends React.Component {
 
     
     return (
-      
+      <div>
+        <h1>Category List</h1>
+     
       <div className="card">
-        
         {this.state.people.map(person => (
           <div key={person._id}>
+             <Link to={`/subcategory/${person._id}`}>
             <div className="cardItem">
              <div classname="image" >
-             <Link to='/subcategory-indian'>
-               <img src={person.imageUrl}  /></Link>
-            </div>
+               <img src={person.imageUrl}  />
+            </div> 
               <div className="content">
               <div className="font">{person.categoryName}</div>
               <div className="font">{person.name}</div>
               <div className="font">{person.description}</div>
-              <div>
-                <button onClick={this.handleClick} className="btn">Add to Cart</button>
-              </div>
               </div>
               
             </div>
+            </Link> 
           </div>
         ))}       
+        </div>
         </div>
     );
   }

@@ -19,13 +19,14 @@ import ManagerForgot from './component/Manager/Manager-Forgot';
 import ManagerReset from './component/Manager/Manager-reset';
 import Cook from './component/Cook/Cook-login';
 import CookForgot from './component/Cook/Cook-forgot';
-
-import Indian from './component/User/Indian';
+import Menu from './component/User/Menu';
+import Subcategory from './component/User/Subcategory';
+ import Indian from './component/User/Indian';
 import Italian from './component/User/Italian'
 import Chinese from './component/User/Chinese';
 import SouthIndian from './component/User/South-indian';
 import Dessert from './component/User/Dessert';
-import ColdDrink from './component/User/Cold-Drink';
+import ColdDrink from './component/User/Cold-Drink'; 
 
 import UserSection from './component/User/User-section';
 import CookReset from './component/Cook/Cook-reset';
@@ -40,24 +41,22 @@ function App() {
       
       <Router>
       <Switch>
-        <Route path='/Edit' component={Edit} />
         <Route path='/' exact component={Homepage} />
         <Route path='/card' component={Card} />
         <Route path='/about' component={Footer} />
         <Route path='/Login' component={Login} />
         <Route path='/sign-up' component={Register} />
         <Route path='/admin-login' component={Admin} />
-        <Route path='/menu' component={Indian} />
+        <Route path='/indian' component={Indian} />
         <Route path='/italian' component={Italian} />
         <Route path='/Desserts' component={Dessert} />
         <Route path='/Cold-Drinks' component={ColdDrink} />
         <Route path='/Chinese' component={Chinese} />
         <Route path='/South-Indian' component={SouthIndian} />
-
         <Route path='/manager-login' component={Manager} />
         <Route path='/cook-login' component={Cook} />
         <Route path='/waiter-login' component={Weiter} />
-        <Route path='/menu' component={Menupage} />
+        <Route path='/menu' component={Menu} /> 
         <Route path='/forgot' component={Forgot} />
         <Route path='/admin-forgot' component={AdminForgot} />
         <Route path='/admin-reset' component={AdminReset} />

@@ -3,8 +3,13 @@ import React from 'react';
 
 export const SidebarData = [
   {
-    title: 'Indian',
+    title: 'Home',
     path: '/menu',
+    cName: 'nav-text'
+  },
+  {
+    title: 'Indian',
+    path: '/indian',
     cName: 'nav-text'
   },
   {

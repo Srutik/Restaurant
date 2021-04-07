@@ -4,7 +4,9 @@ function Edit() {
   const [users, setUser] = useState([])
   const [categoryName, setcategoryName] = useState("");
   const [imageUrl, setimageUrl] = useState("");
-  const [_id,set_id]=useState("")
+  const [_id,set_id]=useState("");
+  const [file,setFile]=useState("");
+  const [userId,setUserId]=useState(null)
 
   useEffect(() => {
     getUsers();
@@ -16,9 +18,10 @@ function Edit() {
       result.json().then((resp) => {
         // console.warn(resp)
         setUser(resp.categoryposts)
-        set_id(resp._id)
-        setimageUrl(resp.imageUrl)
-        setcategoryName(resp.categoryName)
+        set_id(resp.categoryposts[0]._id)
+        setimageUrl(resp.categoryposts[0].imageUrl)
+        setcategoryName(resp.categoryposts[0].categoryName)
+        setUserId(resp.categoryposts[0]._id)
       })
     })
   } 
@@ -28,8 +31,8 @@ function Edit() {
 
 
 
-  function deleteUser(_id) {
-    fetch(`http:/192.168.0.63:8020/categorypost/delete/${_id}`, {
+ /* function deleteUser(_id) {
+    fetch(`http://192.168.0.63:8020/categorypost/delete/${_id}`, {
       method: 'DELETE'
     }).then((result) => {
       result.json().then((resp) => {
@@ -38,20 +41,20 @@ function Edit() {
       })
     })
   }
-  /*
-  function selectUser(id)
+
+  function selectUser(_id)
   {
-    let item=users[id-1];
-    setName(item.name)
-        setEmail(item.email)
-        setMobile(item.mobile);
-        setUserId(item.id)
+    let item=users[_id-1];
+        setcategoryName(item.categoryName);
+        setUserId(item._id)
   }
+
   function updateUser()
   {
-    let item={name,mobile,email}
+
+    let item={imageUrl,categoryName}
     console.warn("item",item)
-    fetch(`http://localhost:4000/todo/${userId}`, {
+    fetch(`http://192.168.0.63:8020/categorypost/update/${userId}`, {
       method: 'PUT',
       headers:{
         'Accept':'application/json',
@@ -79,9 +82,13 @@ function Edit() {
               <div className="font">{person.categoryName}</div>
               <div className="font">{person.name}</div>
               <div className="font">{person.description}</div>
+              <div className="font">{person._id}</div>
               <div>
-                <button onClick={() => deleteUser(person._id)} className="btn">Delete</button>
-              </div>
+                <button  className="btn">Delete</button> </div>
+                <div>
+                <button  className="btn">Update</button>
+                </div>
+             
               </div>
               
             </div>
@@ -91,7 +98,18 @@ function Edit() {
 
 <div>
 </div>
+<div>
+  <input type="file" value={file} onChange={(e) => {setFile(e.target.value)}} />
 </div>
+<div>
+  <input type="text" value={categoryName} onChange={(e) => {setcategoryName(e.target.value)}} />
+</div>
+<div>
+<button  >Update User</button>  
+</div>
+</div>
+
+
   );
 
 }
