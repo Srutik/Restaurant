@@ -18,7 +18,7 @@ import "../Login.scss";
   
     
     try {
-    let result = await fetch("http://192.168.0.63:8020/home/login" , {
+    let result = await fetch("http://192.168.0.61:8020/home/login" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 

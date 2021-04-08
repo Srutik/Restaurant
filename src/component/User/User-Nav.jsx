@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../Button';
+import PopUp from './Pop-up';
 import { HashLink as Link } from 'react-router-hash-link';
 import './User-Nav.scss';
 
@@ -9,6 +10,11 @@ function Navbar() {
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -57,12 +63,15 @@ function Navbar() {
 
             <li className='nav-item'>
               <Link
-                to='/Booktable'
                 className='nav-links'
-                onClick={closeMobileMenu}>
+                onClick={togglePopup}>
                   Book Table
               </Link>
             </li>
+
+            {isOpen && <PopUp
+              handleClose={togglePopup}
+            />}
 
             <li className='nav-item'>
             <li className='nav-links'>

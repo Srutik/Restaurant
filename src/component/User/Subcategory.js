@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import './Subcategory.css';
 
 export class Subcategory extends Component {
     render() {
         return (
             <div>
-                <h1>Subcategory</h1>
+                <h1 className="Fonts">Subcategory</h1>
             </div>
         )
     }

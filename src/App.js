@@ -20,7 +20,7 @@ import ManagerReset from './component/Manager/Manager-reset';
 import Cook from './component/Cook/Cook-login';
 import CookForgot from './component/Cook/Cook-forgot';
 import Menu from './component/User/Menu';
-import Subcategory from './component/User/Subcategory';
+import subcategory from './component/User/Subcategory';
  import Indian from './component/User/Indian';
 import Italian from './component/User/Italian'
 import Chinese from './component/User/Chinese';
@@ -67,6 +67,7 @@ function App() {
         <Route path='/waiter-forgot' component={WaiterForgot} />
         <Route path='/waiter-reset' component={WaiterReset} />
         <Route path='/reset' component={Reset} />
+        <Route path='/subcategory/:_id' component={subcategory} />
         <Route path='/UserHome' component={UserHome} />
         <Route path='/UserSection' component={UserSection} />
       </Switch>
