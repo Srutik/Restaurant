@@ -17,7 +17,7 @@ import "../Login.scss";
     console.log(data)
     
     try {
-    let result = await fetch("http://192.168.29.61:8020/cook/cooklogin" , {
+    let result = await fetch("http://192.168.0.61:8020/cook/cooklogin" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 

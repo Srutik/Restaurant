@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Sidesection from './Sidesection'; 
 import Indian from './Images/indian.jpg';
 import Italian from './Images/Italian.jpg';
 import Chinese from './Images/chinese.jpg';
@@ -12,7 +11,6 @@ import './Menupage.css';
 function Menupage() {
   return (
   <div>
-        <Sidesection />
           <div className='containers'>
             <Link to='/indian'>
           <div className="items">

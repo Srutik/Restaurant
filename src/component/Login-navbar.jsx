@@ -65,7 +65,7 @@ function LoginNavbar() {
                 to='/waiter-login'
                 className='nav-links'
                 onClick={closeMobileMenu}>
-                  Weiter
+                  Waiter
               </Link>
             </li>
           </ul>

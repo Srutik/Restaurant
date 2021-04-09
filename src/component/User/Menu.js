@@ -44,9 +44,9 @@ class Menu extends React.Component {
                <img src={person.imageUrl}/>
             </div> 
               <div className="content">
-              <div className="font">{person.categoryName}</div>
-              <div className="font">{person.name}</div>
-              <div className="font">{person.description}</div>
+              <div className="FoNt">{person.categoryName}</div>
+              <div className="FoNt">{person.name}</div>
+              <div className="FoNt">{person.description}</div>
               </div>
               
             </div>
