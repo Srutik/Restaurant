@@ -34,6 +34,11 @@ img {
     font-family: monospace;
 }
 
+.btton {
+    height: 20px;
+    width: 100px;
+}
+
 .content {
     text-align: center;
     font-style: normal;

@@ -33,8 +33,8 @@ import Cook from './component/Cook/Cook-login';
 import CookForgot from './component/Cook/Cook-forgot';
 import CookReset from './component/Cook/Cook-reset';
 
-import Test from  './Test';
 import Edit from './Edit';
+import Test from './Test';
 
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 import './App.css';
@@ -77,6 +77,8 @@ function App() {
         <Route path='/subcategory/:_id' component={subcategory} />
         <Route path='/UserHome' component={UserHome} />
         <Route path='/UserSection' component={UserSection} />
+
+
 
       </Switch>
       </Router>

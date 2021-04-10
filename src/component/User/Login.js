@@ -18,7 +18,7 @@ import "../Login.scss";
   
     
     try {
-    let result = await fetch("http://192.168.0.61:8020/home/login" , {
+    let result = await fetch("http://192.168.0.3:8080/auth/login" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 
@@ -27,7 +27,10 @@ import "../Login.scss";
       body:JSON.stringify(data),
     })
    result = await result.json()
-   localStorage.setItem("user-info", JSON.stringify(result)) 
+   localStorage.setItem("token", JSON.stringify(
+     {store:result.accessToken}
+   )) 
+
    history.push("/UserHome")
   }catch (error) {
     alert("Your Email and Password Doesn't match !")

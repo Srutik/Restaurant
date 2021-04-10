@@ -2,6 +2,7 @@ import Header from './component/Header';
 import Main from './component/Main';
 import Basket from './component/Basket';
 import data from './data';
+import './cart.css';
 import { useState } from 'react';
 function Test() {
   const { products } = data;
