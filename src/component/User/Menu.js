@@ -6,20 +6,20 @@ class Menu extends React.Component {
   state = {
     loading: true,
     people: [],
-    store:''
   };
 
 
   async componentDidMount() {
-    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicGhvbmUiOiIxMjM0NTY3ODkwIiwidXNlcklkIjoiNjA2NTJkMjg0NjM1YjcxNTYwMDA5NTE3IiwiaWF0IjoxNjE4MDQ3OTUwLCJleHAiOjE2MTgwNDgxNTB9.nw8KaxEQaPf_K3OCXRjVvDBj3E5Iq56VOlYPrR0a3-Y'
+
     const url = "http://192.168.0.3:8080/feed/getposts";
     const response = await fetch(url,{
       headers: {
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `Bearer ` + localStorage.getItem("token")
       },
     });
     const data = await response.json();
     this.setState({ people: data.products, loading: false });
+    localStorage.setItem("data", JSON.stringify(data))
   }
 
  handleClick(_id) {
@@ -43,12 +43,12 @@ class Menu extends React.Component {
           <div key={person._id}>
              <Link to={`/subcategory/${person._id}`}>
             <div className="cardItem">
-             <div classname="image" >
+             <div classname="image">
                <img src={person.imageUrl}/>
             </div> 
               <div className="content">
-              <div className="FoNt">{person.categoryName}</div>
               <div className="FoNt">{person.name}</div>
+              <div className="FoNt">{person.price}</div>
               <div className="FoNt">{person.description}</div>
               <div className="btton">
               </div>

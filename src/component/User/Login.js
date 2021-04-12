@@ -27,9 +27,7 @@ import "../Login.scss";
       body:JSON.stringify(data),
     })
    result = await result.json()
-   localStorage.setItem("token", JSON.stringify(
-     {store:result.accessToken}
-   )) 
+   localStorage.setItem("token", result.accessToken)
 
    history.push("/UserHome")
   }catch (error) {
