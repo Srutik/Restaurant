@@ -1,5 +1,4 @@
 import React from 'react';
-import '../cart.css';
 
 class Product extends React.Component {
   state = {
@@ -8,10 +7,29 @@ class Product extends React.Component {
 };
 
   async componentDidMount() {
-    const url = "http://192.168.0.61:8020/categorypost/categories";
+    const url = "http://192.168.0.61:8020/menu/menues";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ product: data.categoryposts, loading: false });
+    this.setState({ product: data.products, loading: false });
+  }
+
+  async addToCart(_id, qty) {
+    try {
+      const response = await fetch("http://192.168.0.61:8020/cart/addtocart/" + _id, {
+        method: "POST",
+        body: JSON.stringify({
+          email:"srutik.borda@gmail.com",
+          qty: qty,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+      let data = await response.json()
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -24,10 +42,8 @@ class Product extends React.Component {
       return <div>didn't get Menu</div>;
     }
 
-
     return (
       <div>
-      <h1 className="List">Category List</h1>
       <div className="card">
         {this.state.product.map(product => (
           <div key={product._id}>
@@ -36,11 +52,11 @@ class Product extends React.Component {
                <img src={product.imageUrl}/>
             </div> 
               <div className="content">
-              <div className="FoNt">{product.categoryName}</div>
               <div className="FoNt">{product.name}</div>
               <div className="FoNt">{product.description}</div>
+              <div className="FoNt">{product.price}</div>
               <div className="btton">
-                <button>Add to Cart</button>
+                <button onClick={(e) => this.addToCart(product._id, 1)}>Add to Cart</button>
               </div>
               </div>
               

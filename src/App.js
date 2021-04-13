@@ -11,7 +11,6 @@ import UserHome from './component/User/User-Home';
 import Menu from './component/User/Menu';
 import subcategory from './component/User/Subcategory';
 import UserSection from './component/User/User-section';
-import Menupage from './component/User/Menupage';
 import MenuItem from './component/User/Menu';
 
 import Admin from './component/Admin/Admin-login';
@@ -33,8 +32,8 @@ import Cook from './component/Cook/Cook-login';
 import CookForgot from './component/Cook/Cook-forgot';
 import CookReset from './component/Cook/Cook-reset';
 
-import Edit from './Edit';
-import Test from './Test';
+import Product from './component/Product';
+import Cart from './component/User/Cart';
 
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 import './App.css';
@@ -78,6 +77,8 @@ function App() {
         <Route path='/UserHome' component={UserHome} />
         <Route path='/UserSection' component={UserSection} />
 
+        <Route path='/product' component={Product} />
+        <Route path='/cart' component={Cart} />
 
 
       </Switch>

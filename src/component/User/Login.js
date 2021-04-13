@@ -18,7 +18,7 @@ import "../Login.scss";
   
     
     try {
-    let result = await fetch("http://192.168.0.3:8080/auth/login" , {
+    let result = await fetch("http://192.168.0.2:8080/all/login" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 
@@ -27,7 +27,7 @@ import "../Login.scss";
       body:JSON.stringify(data),
     })
    result = await result.json()
-   localStorage.setItem("token", result.accessToken)
+   localStorage.setItem("token", result.your_accessToken)
 
    history.push("/UserHome")
   }catch (error) {
