@@ -1,20 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../Button';
 import PopUp from './Pop-up';
+import PopUpcart from './PopUP-Cart';
 import { HashLink as Link } from 'react-router-hash-link';
 import './User-Nav.scss';
-class Popup extends React.Component {
-  render() {
-    return (
-      <div className='popup'>
-        <div className='popup_inner'>
-          <h1>{this.props.text}</h1>
-        <button onClick={this.props.closePopup}>close me</button>
-        </div>
-      </div>
-    );
-  }
-}
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -23,9 +12,15 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
+
  
   const togglePopup = () => {
     setIsOpen(!isOpen);
+  }
+
+  const togglePopups = () => {
+    setIsOpenPopup(!isOpenPopup);
   }
   
  
@@ -96,7 +91,6 @@ function Navbar() {
                  <i class="fas fa-shopping-cart"></i>
               </Link>
             </li>
-
             <li>
               <Link
                 to='/'

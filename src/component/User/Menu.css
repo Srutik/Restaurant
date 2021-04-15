@@ -1,7 +1,7 @@
 img {
     height: 200px;
     width: 200px;
-   
+justify-content: center;   
 }
 .Allpage {
     display: flex;
@@ -21,10 +21,6 @@ img {
     margin: 5px;
 }
 
-.flex3{
-    flex: 1;
-    margin: 5px;
-}
 
 
 .card {
@@ -63,8 +59,11 @@ img {
     margin-bottom: 20px;
 }
 
+
+
 .card1 .cardItem1{
     box-sizing: border-box;
+    box-sizing: initial;
     border-radius: 5px;
     border: 2px solid;
     margin: 20px;
@@ -129,14 +128,18 @@ img {
 
 }
 
-.List {
+.titles {
     color: black;
-    font-size: 30px;
-    width: 100%;
-    justify-content: center;
     font-weight: bold;
-    background: dimgray;
+    padding: 5px;
+}
+
+.List {
+    width: 100%;
+    background: rgb(233, 205, 188);
     height: 50px;
+    text-align: center;
+
 }
 
 .addbutton{

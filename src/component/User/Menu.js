@@ -1,7 +1,6 @@
 
 import React from "react";
 import './Menu.css';
-import Cart from './Cart';
 import UserNav from './User-Nav';
 
 class Menu extends React.Component {
@@ -34,7 +33,6 @@ handlepriority = (event) =>   {
   this.setState({priority: event.target.value});
 }
 
-
 async addCart(_id, qty, priority) {
   try {
     const response = await fetch("http://192.168.0.61:8020/cart/addtocart/" + _id, {
@@ -50,6 +48,7 @@ async addCart(_id, qty, priority) {
     })
     let data = await response.json()
     console.log(data)
+    window.location.reload(false)
   } catch (err) {
     console.log(err)
   }
@@ -73,13 +72,17 @@ async addCart(_id, qty, priority) {
       return <div className="state">didn't get Menu</div>;
     }
 
+ 
+
     
     return (
       <div >
         <UserNav />
         <div className="Allpage">
           <div className="flex1">
-      <h1 className="List">Category List</h1>
+       <div className="List">
+              <h1 className="titles">Category List</h1>
+      </div>
       <div className="card">
         {this.state.people.map(person => (
           <div key={person._id}>
@@ -97,8 +100,10 @@ async addCart(_id, qty, priority) {
         </div>
 
 <div className="flex2">
-        <h1 className="List">Menu List</h1>
-        <div className="card1">
+  <div className="List">
+        <h1 className="titles">Menu List</h1>
+  </div>
+        <div className="card1" >
         {this.state.carts.map(person => (
           <div key={person._id}>
             <div className="CategoryName">{person.categoryName}</div>
@@ -108,7 +113,9 @@ async addCart(_id, qty, priority) {
             </div> 
               <div className="content">
               <div className="Font1">Name:- {person.name}</div>
-              <div className="Font1">price:- {person.price}</div>
+              <div className="price">
+                <div className="Font1">price:- {person.price} ₹ </div>
+              </div>
               <div className="Font1">Description:- {person.description}</div>
               <div >
                 <input className="priority" type="number" name="priority"  placeholder="priority" onChange={this.handlepriority} />
@@ -121,9 +128,7 @@ async addCart(_id, qty, priority) {
         ))}       
        </div>
        </div>
-       <div className="flex3" >
-         <Cart />
-       </div>
+       
         </div>  
         </div>  );
   }
