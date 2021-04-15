@@ -1,41 +1,49 @@
-import Item from 'antd/lib/list/Item';
 import React, { Component } from 'react'
+import './Cart.css';
 
 export class Cart extends Component {
     state = {
         loading: true,
-        cart: [],
+        cartItem: [],
       };
     
     
       async componentDidMount() {
-    
-        const url = "http://192.168.0.2:8080/cart/getcart";
+    try{
+        const url = "http://192.168.0.61:8020/cart/getcart";
         const response = await fetch(url,{
             headers: {
                 Authorization: `Bearer ` + localStorage.getItem("token")
               },
         });
         const data = await response.json();
-        this.setState({ cart: data.Your_Cart.items });
+        this.setState({ cartItem: data.Your_Cart.items });
         this.searchArray = data
+
+        return(
+          this.componentDidMount()
+        )}
+        catch(err){
+        }
       }
     render() {
         
 
         return (
             <div>
-      <div className="card">
-        {this.state.cart.map(item => (
+              <h1 className="List">Cart</h1>
+      <div className="cart">
+        
+        {this.state.cartItem.map(item => (
           <div key={item._id}>
-           
-              <div className="FoNt">Quantity:{item.qty}</div>
-              <div className="FoNt">Price:{item.price}</div>
-              <div className="FoNt">Total:{item.total}</div>
-              </div>
-              
-        ))}
-             
+            <div className="cartItems">
+              <div className="font">Quantity:{item.qty}</div>
+              <a>Price:{item.price}</a>
+              <div className="font">Total:{item.total}</div>
+              </div> 
+              </div>      
+        ))}  
+        <button>Make Order</button>       
         </div> 
             </div>
         )

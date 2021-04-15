@@ -87,11 +87,14 @@ function Navbar() {
               handleClose={togglePopup}
             />}
 
-            <li className='nav-item'>
-            <li className='nav-links'>
-
-            <i class="far fa-user"></i>
-            </li>
+              <li className='nav-item'>
+              <Link
+                to='/cart'
+                className='nav-links'
+                onClick={closeMobileMenu}>
+                 Cart
+                 <i class="fas fa-shopping-cart"></i>
+              </Link>
             </li>
 
             <li>
