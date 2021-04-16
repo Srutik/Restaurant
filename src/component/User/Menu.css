@@ -11,6 +11,18 @@ justify-content: center;
 
 }
 
+.cart-counter{
+    justify-content: right;
+}
+.counter {
+    background: rgb(7, 7, 7);
+    margin: auto;
+    text-align: center;
+    color: white;
+    height: 20px;
+    width: 20px;
+}
+
 .flex1{
     flex: 1;
     margin: 5px;

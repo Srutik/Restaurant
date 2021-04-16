@@ -10,7 +10,9 @@ class Menu extends React.Component {
     loading: true,
     people: [],
     carts:[],
-    priority: '1'
+    counter:0,
+    priority:1,
+    quantity:1
   };
   }
   async componentDidMount() {
@@ -25,30 +27,36 @@ class Menu extends React.Component {
   const url = "http://192.168.0.61:8020/menu/menu/" + _id;
   const response = await fetch(url);
   const data = await response.json();
-  this.setState({ carts: data.products, loading:false });
+  this.setState({ carts: data.products,});
   this.searchArray = data
 }
 
-handlepriority = (event) =>   {
-  this.setState({priority: event.target.value});
+handlepriority (event)  {
+  let priority = event.target.value
+  this.setState({priority: priority});
 }
 
-async addCart(_id, qty, priority) {
+handlequantity (event)  {
+  let quantity = event.target.value
+  this.setState({quantity: quantity});
+}
+
+async addCart(_id, priority, quantity) {
   try {
     const response = await fetch("http://192.168.0.61:8020/cart/addtocart/" + _id, {
       method: "POST",
       body: JSON.stringify({
         priority:priority,
-        qty: qty,
+        qty: quantity,
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
         Authorization: `Bearer ` + localStorage.getItem("token")
       },
     })
+    this.setState({counter:this.state.counter + 1})
     let data = await response.json()
     console.log(data)
-    window.location.reload(false)
   } catch (err) {
     console.log(err)
   }
@@ -57,7 +65,7 @@ async addCart(_id, qty, priority) {
 
 
   render() {
-    const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
+    /*const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
 
     if (this.state.loading) {
       return <div>
@@ -70,7 +78,7 @@ async addCart(_id, qty, priority) {
 
     if (!this.state.people.length) {
       return <div className="state">didn't get Menu</div>;
-    }
+    } */
 
  
 
@@ -78,6 +86,9 @@ async addCart(_id, qty, priority) {
     return (
       <div >
         <UserNav />
+        <div className="cart-counter">
+        <span className="counter">{this.state.counter}</span>
+        </div>
         <div className="Allpage">
           <div className="flex1">
        <div className="List">
@@ -118,9 +129,10 @@ async addCart(_id, qty, priority) {
               </div>
               <div className="Font1">Description:- {person.description}</div>
               <div >
-                <input className="priority" type="number" name="priority"  placeholder="priority" onChange={this.handlepriority} />
+                <input className="priority" type="number" priority="priority"  placeholder="priority" onChange={(e) => this.handlepriority(e)} />
+                <input className="priority" type="number" quantity="quantity"  placeholder="quantity" onChange={(e) => this.handlequantity(e)} />
               </div>
-              <button className="addCart" value ={this.priority} onClick={() => this.addCart(person._id , 1, 2)}>Add to Cart</button>
+              <button className="addCart" onClick={() => this.addCart(person._id , this.state.priority, this.state.quantity)}>Add to Cart</button>
               </div>
               
             </div>

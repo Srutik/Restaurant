@@ -18,7 +18,7 @@ import "../Login.scss";
   
     
     try {
-    let result = await fetch("http://192.168.0.61:8020/all/login" , {
+    let result = await fetch("http://192.168.0.2:8080/all/login" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 
@@ -29,7 +29,21 @@ import "../Login.scss";
    result = await result.json()
    localStorage.setItem("token", result.your_accessToken)
 
-   history.push("/UserHome")
+   if(result.role=="user"){
+     history.push("/UserHome")
+   }
+   else if(result.role=="admin"){
+      history.push("/admin-home")
+   }
+   else if(result.role=="manager"){
+    history.push("/admin-home")
+ }
+ else if(result.role=="admin"){
+  history.push("/admin-home")
+}
+else if(result.role=="admin"){
+  history.push("/admin-home")
+}
   }catch (error) {
     alert("Your Email and Password Doesn't match !")
   }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../Button';
 import PopUp from './Pop-up';
-import PopUpcart from './PopUP-Cart';
 import { HashLink as Link } from 'react-router-hash-link';
 import './User-Nav.scss';
 
@@ -12,18 +11,11 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
 
  
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
-
-  const togglePopups = () => {
-    setIsOpenPopup(!isOpenPopup);
-  }
-  
- 
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
