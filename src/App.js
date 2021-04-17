@@ -34,6 +34,10 @@ import CookReset from './component/Cook/Cook-reset';
 
 import Product from './component/Product';
 import Cart from './component/User/Cart';
+import MenuComponent from './component/User/MenuComponent';
+import Orders from './component/User/Orders';
+
+import Menus from './component/User/function-menu';
 
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 import './App.css';
@@ -78,7 +82,12 @@ function App() {
         <Route path='/UserSection' component={UserSection} />
 
         <Route path='/product' component={Product} />
+        <Route path='/orders' component={Orders} />
         <Route path='/cart' component={Cart} />
+        <Route path='/menucomponent' component={MenuComponent} />
+        <Route path='/menufunction' component={Menus} />
+
+
 
 
 

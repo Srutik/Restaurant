@@ -2,7 +2,6 @@ import React,{useState} from "react";
 import PropTypes from 'prop-types';
 import loginImg from '../login.svg';
 import {useHistory} from 'react-router-dom';
-import LoginNav from '../Login-navbar';
 import { Link } from 'react-router-dom';
 import "../Login.scss";
 
@@ -18,7 +17,7 @@ import "../Login.scss";
   
     
     try {
-    let result = await fetch("http://192.168.0.2:8080/all/login" , {
+    let result = await fetch("http://192.168.0.4:8080/all/login" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 
@@ -36,7 +35,7 @@ import "../Login.scss";
       history.push("/admin-home")
    }
    else if(result.role=="manager"){
-    history.push("/admin-home")
+    history.push("/manager-home")
  }
  else if(result.role=="admin"){
   history.push("/admin-home")
@@ -51,7 +50,6 @@ else if(result.role=="admin"){
 
     return (
       <div>
-        <LoginNav />
       <div className="base-container" >
         <div className="header">Login</div>
         <div className="content">

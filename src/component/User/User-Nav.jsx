@@ -48,7 +48,7 @@ function Navbar() {
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             <li className='nav-item'>
-              <Link to='#UserSection' smooth duration={2000} className='nav-links' onClick={closeMobileMenu}>
+              <Link to='/UserHome' smooth duration={2000} className='nav-links' onClick={closeMobileMenu}>
                 Home
               </Link>
             </li>
@@ -60,6 +60,9 @@ function Navbar() {
                  Menu
               </Link>
             </li>
+
+            
+           
           
 
             <li className='nav-item'>
@@ -73,6 +76,15 @@ function Navbar() {
             {isOpen && <PopUp
               handleClose={togglePopup}
             />}
+
+<li className='nav-item'>
+              <Link
+                to='/orders'
+                className='nav-links'
+                onClick={closeMobileMenu}>
+                 My Orders
+              </Link>
+            </li>
 
               <li className='nav-item'>
               <Link

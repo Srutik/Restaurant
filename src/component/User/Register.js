@@ -31,9 +31,7 @@ import "../Login.scss";
    }
  
     return (
-      <div>
-        <LoginNav />
-  
+      <div>  
       <div className="base-container" >
         <div className="header">Register</div>
         <div className="content">
