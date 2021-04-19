@@ -28,7 +28,6 @@ import {useHistory} from 'react-router-dom';
                       <div className="FoNt">{person.name}</div>
                       <div className="FoNt">{person.description}</div>
                     </div>
-
                   </div>
                 </div>
               ))}

@@ -75,16 +75,25 @@ export class Orders extends Component {
     }
 
     render() {
-        return (
+        return (<div>
+            <div className="order-List">
+            <h1 className="order-title">Your Orders</h1>
+            </div>
             <div className="order-card">
                 {this.state.AllOrder.map(order1 => (
                     <div key={order1._id}>
                         <div className="all-orders">
-                            <div className="all-data">
-                                <div className="order-data">SubTotal:{order1.subTotal}</div>
-                                <div className="order-data">Payment-methods:{order1.paymentMethod}</div>
-                                <div className="order-data">Product-Id:{order1._id}</div>
-                                <div>
+                         
+                                    {order1.order.map((suborder) => 
+                                    <div key={suborder._id}>
+                                         <div className="all-data">
+                                        {suborder.items.map((key) =>
+                                        <ul className="sub-orders">
+                                            <div className="order-data">id:{key.productId}</div>
+                                            <div className="order-data">Quantity:{key.qty}</div>
+                                            <div className="order-data">price:{key.price}</div>
+                                            <div className="order-data">Total:{key.total}</div>
+                                            <div>
                                     <button className="feedback-btn" onClick={this.togglePopup.bind(this)} >Feedback</button>
                                     {this.state.showPopup ?
                             <Popup
@@ -94,11 +103,16 @@ export class Orders extends Component {
                             : null
                         }
                                 </div>
+
+                                        </ul>)}
+                                        </div>
+                                    </div>)}
+                               
                             </div>
 
                         </div>
-                    </div>
                 ))}
+            </div>
             </div>
         )
     }

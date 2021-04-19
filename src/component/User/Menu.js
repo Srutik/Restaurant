@@ -126,7 +126,7 @@ class Menu extends React.Component {
                     <div className="content">
                       <div className="Font1">Name:- {person.name}</div>
                       <div className="price">
-                        <div className="Font1">price:- {person.price} ₹ </div>
+                        <div className="Font1">price:- {person.originalPrice} ₹ </div>
                       </div>
                       <div className="Font1">Description:- {person.description}</div>
                       <div >

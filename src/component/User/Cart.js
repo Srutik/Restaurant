@@ -3,14 +3,13 @@ import { Button } from '../Button';
 import { Link } from 'react-router-dom';
 import img from './carts.png';
 import './Cart.css';
-
 import './Pop-up.css';
 
-class Popup extends React.Component {
+class DeletePopup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: null
+            loading:true,
         }
     }
 
@@ -28,6 +27,41 @@ class Popup extends React.Component {
         })
     }
 
+    render() {
+        return (
+            <div className='Deletepopup'>
+                <div className='Deletepopup_inner'>
+                    <h1>{this.props.text}</h1>
+                    <div className="close-set">
+                        <button className="close-btn" onClick={this.props.closePopup}>X</button>
+                    </div>
+
+                    <div>
+                        <div className="form-group">
+                            <div>Are You Sure to Delete Cart !</div>
+                            <div className="order-btn">
+                                <button className="cart-button" onClick={this.handleDelete}>Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+
+
+class Popup extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading:true,
+            name: null
+        }
+    }
+
+    
     async handleSubmit(name) {
         try {
             const response = await fetch("http://192.168.0.61:8020/order/makeorder", {
@@ -90,7 +124,8 @@ class Cart extends Component {
             loading: true,
             cartItem: [],
             quantity: 0,
-            showPopup: false
+            showPopup: false,
+            showDeletePopup: false
         };
        
     }
@@ -101,6 +136,11 @@ class Cart extends Component {
         });
     }
 
+    toggleDeletePopup() {
+        this.setState({
+            showDeletePopup: !this.state.showDeletePopup
+        });
+    }
 
     async componentDidMount() {
         try {
@@ -117,22 +157,6 @@ class Cart extends Component {
         }
     }
 
-    
-
-    handleDelete() {
-        fetch("http://192.168.0.61:8020/cart/emptycart", {
-            method: "DELETE",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ` + localStorage.getItem("token")
-            },
-        }).then((data) => {
-            data.json().then((response) => {
-                window.location.reload(false)
-            })
-        })
-        alert("Are You Sure to Empty Your Cart !")
-    }
 
     render() {
 
@@ -174,7 +198,14 @@ class Cart extends Component {
                         </div>
                     ))}
                     <div className="Buttons">
-                        <button className="cart-button" onClick={this.handleDelete}>Delete Cart</button>
+                        <button className="cart-button" onClick={this.toggleDeletePopup.bind(this)}>Delete Cart</button>
+                        {this.state.showDeletePopup ?
+                            <DeletePopup
+                                text='Close Me'
+                                closePopup={this.toggleDeletePopup.bind(this)}
+                            />
+                            : null
+                        }
                         <button className="cart-button" onClick={this.togglePopup.bind(this)}>Make Order</button>
                         {this.state.showPopup ?
                             <Popup
@@ -190,4 +221,4 @@ class Cart extends Component {
     };
 }
 
-export default Cart;
+export default Cart; 
