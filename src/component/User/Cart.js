@@ -9,7 +9,7 @@ class DeletePopup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading:true,
+            loading: true,
         }
     }
 
@@ -56,12 +56,12 @@ class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading:true,
+            loading: true,
             name: null
         }
     }
 
-    
+
     async handleSubmit(name) {
         try {
             const response = await fetch("http://192.168.0.61:8020/order/makeorder", {
@@ -124,10 +124,11 @@ class Cart extends Component {
             loading: true,
             cartItem: [],
             quantity: 0,
+            subTotal: null,
             showPopup: false,
             showDeletePopup: false
         };
-       
+
     }
 
     togglePopup() {
@@ -151,7 +152,7 @@ class Cart extends Component {
                 },
             });
             const data = await response.json();
-            this.setState({ cartItem: data.Your_Cart.items, quantity: data.Your_Cart.items.qty, loading: false });
+            this.setState({ cartItem: data.Your_Cart.items, subTotal:data.Your_Cart.subTotal, loading: false });
             this.searchArray = data
         } catch (err) {
         }
@@ -160,11 +161,11 @@ class Cart extends Component {
 
     render() {
 
-          if (this.state.loading) {
+        if (this.state.loading) {
             return <div className="empty-cart">
                 <div className="transparent-cart">
                     <div className="logo">
-                        <img src={img} />
+                        <img height="200px" width="200px" src={img} />
                     </div>
                     <div className="text-area">
                         <div className="state">Opps ! Your cart is Empty</div>
@@ -190,13 +191,20 @@ class Cart extends Component {
                     {this.state.cartItem.map(item => (
                         <div key={item._id}>
                             <div className="cartItems1">
-                                <div className="fontS">Quantity:{item.qty}</div>
-                                    <div className="fontS">Price:{item.price}</div>
-                                    <div className="fontS">Priority:{item.priority}</div>
-                                    <div className="fontS">Total:{item.total}</div>
+                                <div classname="cart-images">
+                                    <img height="100px" width="100px" src={item.productId.imageUrl} />
+                                    <div className="fontS">Name:{item.productId.name}</div>
+                                </div>
+                                <div className="fontS">Priority:{item.priority}</div>
+                                <div className="fontS">Price:{item.price} 🗙 Quantity:{item.qty}</div>
+                                <div className="fontS">SubTotal:{item.total}</div>
                             </div>
+                            <div className="Line">______________________________________________________________</div>
                         </div>
                     ))}
+                    <div className="Grand-Total">Grand Total = {this.state.subTotal} ₹</div>
+                
+
                     <div className="Buttons">
                         <button className="cart-button" onClick={this.toggleDeletePopup.bind(this)}>Delete Cart</button>
                         {this.state.showDeletePopup ?
@@ -217,8 +225,9 @@ class Cart extends Component {
                     </div>
                 </div>
             </div>
+         
         );
     };
 }
 
-export default Cart; 
+export default Cart;

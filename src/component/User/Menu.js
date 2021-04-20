@@ -121,7 +121,7 @@ class Menu extends React.Component {
                   <div className="CategoryName">{person.categoryName}</div>
                   <div className="cardItem1">
                     <div classname="image" >
-                      <img src={person.imageUrl} />
+                      <img width="200px" height="200px" src={person.imageUrl} />
                     </div>
                     <div className="content">
                       <div className="Font1">Name:- {person.name}</div>

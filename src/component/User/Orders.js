@@ -8,6 +8,7 @@ class Popup extends React.Component {
             name: null
         }
     }
+    componentDidMount
 
     handleFeedback(e) {
         let name = e.target.value
@@ -16,8 +17,8 @@ class Popup extends React.Component {
 
     render() {
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
+            <div className='complain-popup'>
+                <div className='complain-popup_inner'>
                     <h1>{this.props.text}</h1>
                     <div className="close-set">
                         <button className="close-btn" onClick={this.props.closePopup}>X</button>
@@ -25,9 +26,14 @@ class Popup extends React.Component {
 
                     <div>
                         <div className="form-group">
-                            <label htmlFor="Order-Name">Enter Feedback</label>
+                        <label htmlFor="Order-Name">Title</label>
+              <div>
+                <input className="input" type="text" name="title" placeholder="Enter Complain Title" onChange={(e) => this.handleTitle(e)} />
+              </div>
+
+                            <label htmlFor="Order-Name">Enter Complain</label>
                             <div>
-                                <textarea className="textarea" type="text" name="name" placeholder="Enter Order Name" onChange={(e) => this.handleFeedback(e)} />
+                                <textarea className="textarea" type="text" name="name" placeholder="Explain please ! what you dislike." onChange={(e) => this.handleFeedback(e)} />
 
                             </div>
                             <div className="order-btn">
@@ -77,46 +83,44 @@ export class Orders extends Component {
     render() {
         return (<div>
             <div className="order-List">
-            <h1 className="order-title">Your Orders</h1>
+                <h1 className="order-title">Your Orders</h1>
             </div>
             <div className="order-card">
                 {this.state.AllOrder.map(order1 => (
                     <div key={order1._id}>
                         <div className="all-orders">
-                         
-                                    {order1.order.map((suborder) => 
-                                    <div key={suborder._id}>
-                                         <div className="all-data">
-                                        {suborder.items.map((key) =>
-                                        <ul className="sub-orders">
-                                            <div className="order-data">id:{key.productId}</div>
-                                            <div className="order-data">Quantity:{key.qty}</div>
-                                            <div className="order-data">price:{key.price}</div>
-                                            <div className="order-data">Total:{key.total}</div>
-                                            <div>
-                                    <button className="feedback-btn" onClick={this.togglePopup.bind(this)} >Feedback</button>
-                                    {this.state.showPopup ?
-                            <Popup
-                                text='Close Me'
-                                closePopup={this.togglePopup.bind(this)}
-                            />
-                            : null
-                        }
-                                </div>
-
-                                        </ul>)}
-                                        </div>
-                                    </div>)}
-                               
-                            </div>
+                            {order1.items.map((suborder) =>
+                                <div key={suborder._id}>
+                                                            <div className="single-order">
+                                    <div classname="cart-images" >
+                                        <img height="200px" width="200px" src={suborder.productId.imageUrl} />
+                                    </div>
+                                    <div className="order-data">Name:{suborder.productId.name}</div>
+                                    <div className="order-data">Original Price:{suborder.productId.originalPrice}</div>
+                                    <div className="order-data">Quantity:{suborder.qty}</div>
+                                    <div className="order-data">Price:{suborder.price}</div>
+                                    <div className="order-data">Grand Total:{suborder.total}</div>
+                                    <div>
+                                        <button className="feedback-btn" onClick={this.togglePopup.bind(this)}>Complain</button>
+                                        {this.state.showPopup ?
+                                            <Popup
+                                                text='Close Me'
+                                                closePopup={this.togglePopup.bind(this)}
+                                            />
+                                            : null
+                                        }
+                                    </div>
+                                    </div>
+                                </div>)}
 
                         </div>
+
+                    </div>
                 ))}
             </div>
-            </div>
+        </div>
         )
     }
 }
-
 export default Orders;
 

@@ -1,5 +1,10 @@
 
-  
+ .all-body{
+
+  background: #0f0c29;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+ } 
   
  .cart-button {
     margin: 10px;
@@ -13,11 +18,10 @@
   }
 
 .cartbox1{
+ 
 text-align: center;
 align-items: center;
 justify-content: center;
-box-shadow: darkgreen;
-
 }
 
 .add-button{
@@ -30,6 +34,21 @@ box-shadow: darkgreen;
      background:darkgray;
      color: black;
   }
+  .Grand-Total{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 30px;
+  }
+
+  .cart-image{
+    height: 10px;
+    width: 100px;
+  }
+
+  .Line{
+    justify-content: center;
+    margin: 5px;
+  }
   
   .cartbox1 .cartView {
     display: flexbox;
@@ -39,7 +58,9 @@ box-shadow: darkgreen;
     width: 40%;
     margin: auto;
     size: 20px;
-    margin-top: 50px;
+    background-image: radial-gradient( circle 993px at 0.5% 50.5%,  rgba(137,171,245,0.37) 0%, rgba(245,247,252,1) 100.2% );
+        
+        margin-top: 50px;
     justify-content: center;
     border: 3px solid ;
     border-radius: 5px;
@@ -105,7 +126,7 @@ box-shadow: darkgreen;
   background-color: rgba(0,0,0, 0.5);
 }
 
-.Dedletepopup {
+.Deletepopup {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -157,9 +178,10 @@ box-shadow: darkgreen;
   right: 25%;
   top: 25%;
   bottom: 25%;
-  height: 50%;
-  width: 40%;
+  height: 30%;
+  width: 30%;
   margin: auto;
+  border: black 3px solid;
   background: white;
   border-radius: 7px;
 }

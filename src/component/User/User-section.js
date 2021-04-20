@@ -1,93 +1,111 @@
 import React, { Component } from 'react'
 import '../User/User-Section.css'
+import ReactStars from "react-rating-stars-component";
+import StarRatingComponent from 'react-star-rating-component';
+
 class FeedbackPopup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       description: null,
-      title:null,
-      rating:null
+      title: null,
+      rating: null,
     }
   }
 
-  async handleFeedback(title,description,rating) {
+
+  async handleFeedback(title, description, rating) {
     try {
-        const response = await fetch("http://192.168.0.61:8020/feedback/feedback", {
-            method: "POST",
-            body: JSON.stringify({
-                title: title,
-                rating: rating,
-                message: description
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ` + localStorage.getItem("token")
-            },
-        })
-        let data = await response.json()
-        alert("Your Feedback is Submit !")
-        console.log(data)
+      const response = await fetch("http://192.168.0.61:8020/feedback/feedback", {
+        method: "POST",
+        body: JSON.stringify({
+          title: title,
+          rating: rating,
+          message: description
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ` + localStorage.getItem("token")
+        },
+      })
+      let data = await response.json()
+      alert("Your Feedback is Submit !")
+      console.log(data)
     } catch (err) {
-        console.log(err)
+      console.log(err)
     }
-}
+  }
 
-handleTitle(e) {
-  let title = e.target.value
-  this.setState({ title: title })
-}
+  handleTitle(e) {
+    let title = e.target.value
+    this.setState({ title: title })
+  }
 
-handleDescription(e) {
-  let description = e.target.value
-  this.setState({description:description})
-}
+  handleDescription(e) {
+    let description = e.target.value
+    this.setState({ description: description })
+  }
 
-handleRating(e) {
-  let rating = e.target.value
-  this.setState({rating:rating})
-}
+  ratingChanged = (newRating) => {
+    this.setState({ rating: null })
+    this.setState({ rating: newRating })
+    console.log(newRating);
+  };
+
 
   render() {
-    return (
-        <div className='Feedbackpopup'>
-            <div className='Feedbackpopup_inner'>
-                <h1>{this.props.text}</h1>
-                <div className="close-set">
-                    <button className="close-btn" onClick={this.props.closePopup}>X</button>
-                </div>
+    const { rating } = this.state;
 
-                <div>
-                    <div className="form-group">
-                        <label htmlFor="Order-Name">Title</label>
-                        <div>
-                            <input className="input" type="text" name="title" placeholder="Enter Feedback Title" onChange={(e) => this.handleTitle(e)} />
-                        </div>
-                        <label htmlFor="Order-Name">Description</label>
-                        <div>
-                            <textarea className="input" type="text" name="description" placeholder="Enter Description" onChange={(e) => this.handleDescription(e)} />
-                        </div>
-                        <label htmlFor="Order-Name">Rating</label>
-                        <div>
-                            <input className="input" type="number" name="name" placeholder="Enter total Rating" onChange={(e) => this.handleRating(e)} />
-                        </div>
-                        <div className="order-btn">
-                            <button className="cart-button" onClick={() => this.handleFeedback(this.state.title,this.state.description,this.state.rating)}>Submit</button>
-                        </div>
-                    </div>
-                </div>
+    return (
+
+      <div className='Feedbackpopup'>
+        <div className='Feedbackpopup_inner'>
+          <h1>{this.props.text}</h1>
+          <div className="close-set">
+            <button className="close-btn" onClick={this.props.closePopup}>X</button>
+          </div>
+
+          <div>
+            <div className="form-group">
+              <label htmlFor="Order-Name">Title</label>
+              <div>
+                <input className="input" type="text" name="title" placeholder="Enter Feedback Title" onChange={(e) => this.handleTitle(e)} />
+              </div>
+              <label htmlFor="Order-Name">Description</label>
+              <div>
+                <textarea className="input" type="text" name="description" placeholder="Enter Description" onChange={(e) => this.handleDescription(e)} />
+              </div>
+              <label htmlFor="Order-Name">Rating</label>
+              <div >
+
+                <ReactStars
+                  count={5}
+                  onChange={this.ratingChanged.bind(this)}
+                  size={30}
+                  emptyIcon={<i className="far fa-star"></i>}
+                  fullIcon={<i className="fa fa-star"></i>}
+                  activeColor="#ffd700"
+                />
+
+              </div>
+              <div className="order-btn">
+                <button className="feedback-button" onClick={() => this.handleFeedback(this.state.title, this.state.description, this.state.rating)}>Submit</button>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     );
 
   }
 }
-    class Popup extends React.Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          name: null
-        }
-      }
+class Popup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: null
+    }
+  }
 
   render() {
     return (
@@ -108,7 +126,7 @@ class Usersection extends Component {
     super(props)
     this.state = {
       showPopup: false,
-      showFeedbackPopup:false
+      showFeedbackPopup: false
     };
   }
   togglePopup() {
@@ -138,8 +156,8 @@ class Usersection extends Component {
               />
               : null
             }
-           <button className="offer-button" onClick={this.toggleFeedbackPopup.bind(this)} >Feedback</button>
-           {this.state.showFeedbackPopup ?
+            <button className="offer-button" onClick={this.toggleFeedbackPopup.bind(this)} >Feedback</button>
+            {this.state.showFeedbackPopup ?
               <FeedbackPopup
                 text='Close Me'
                 closePopup={this.toggleFeedbackPopup.bind(this)}

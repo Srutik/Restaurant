@@ -1,7 +1,11 @@
 img {
+   
+justify-content: center;   
+}
+
+.image {
     height: 200px;
     width: 200px;
-justify-content: center;   
 }
 .Allpage {
     display: flex;
