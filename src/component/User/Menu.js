@@ -71,7 +71,7 @@ class Menu extends React.Component {
     if (this.state.loading) {
       return <div>
         <div className="logo">
-          <img src={url} />
+          <img height="100px" width="100px" src={url} />
         </div>
         <div className="state">loading...</div>
       </div>
@@ -81,11 +81,8 @@ class Menu extends React.Component {
       return <div className="state">didn't get Menu</div>;
     }
 
-
-
-
     return (
-      <div >
+      <div className="wrapper-nav" >
         <UserNav />
         <div className="cart-counter">
           <span className="counter">{this.state.counter}</span>
@@ -104,12 +101,12 @@ class Menu extends React.Component {
                       <div className="FoNt">{person.name}</div>
                       <div className="FoNt">{person.description}</div>
                     </div>
-
                   </div>
                 </div>
               ))}
             </div>
           </div>
+
 
           <div className="flex2">
             <div className="List">
@@ -164,9 +161,7 @@ class Menu extends React.Component {
     people: [],
   };
 
-
   async componentDidMount() {
-
     const url = "http://192.168.0.2:8080/feed/getposts";
     const response = await fetch(url,{
       headers: {
@@ -201,13 +196,9 @@ class Menu extends React.Component {
 
 
   render() {
-
     if (this.state.loading) {
       return <div>loading...</div>;
     }
-
-
-
     return (
       <div>
       <h1 className="List">Category List</h1>
@@ -225,7 +216,6 @@ class Menu extends React.Component {
                 <button className="addbutton" onClick={(e) => this.addToCart(person._id, 1)}>Add to Cart</button>
               </div>
               </div>
-
             </div>
           </div>
         ))}

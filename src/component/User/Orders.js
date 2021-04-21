@@ -5,19 +5,52 @@ class Popup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: null
+            title: null,
+            description: null,
         }
     }
-    componentDidMount
 
-    handleFeedback(e) {
-        let name = e.target.value
-        this.setState({ name: name })
+    handleComplain(e) {
+        let title = e.target.value
+        this.setState({ title: title })
+        console.log(title);
     }
+
+
+    handleComplainData(e) {
+        let description = e.target.value
+        this.setState({ description: description })
+        console.log(description);
+    }
+
+
+    async handleSubmit(title, description) {
+        try {
+
+            const response = await fetch("http://192.168.0.61:8020/complaint/complaint/" + this.props._id, {
+                method: "POST",
+                body: JSON.stringify({
+                    title: title,
+                    message: description
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ` + localStorage.getItem("token")
+                },
+            })
+            let data = await response.json()
+            alert("Your Complain is Submit !")
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 
     render() {
         return (
             <div className='complain-popup'>
+
                 <div className='complain-popup_inner'>
                     <h1>{this.props.text}</h1>
                     <div className="close-set">
@@ -26,18 +59,18 @@ class Popup extends React.Component {
 
                     <div>
                         <div className="form-group">
-                        <label htmlFor="Order-Name">Title</label>
-              <div>
-                <input className="input" type="text" name="title" placeholder="Enter Complain Title" onChange={(e) => this.handleTitle(e)} />
-              </div>
+                            <label htmlFor="Order-Name">Title</label>
+                            <div>
+                                <input className="input" type="text" name="title" placeholder="Enter Complain Title" onChange={(e) => this.handleComplain(e)} />
+                            </div>
 
                             <label htmlFor="Order-Name">Enter Complain</label>
                             <div>
-                                <textarea className="textarea" type="text" name="name" placeholder="Explain please ! what you dislike." onChange={(e) => this.handleFeedback(e)} />
+                                <textarea className="textarea" type="text" name="description" placeholder="Explain please ! what you dislike." onChange={(e) => this.handleComplainData(e)} />
 
                             </div>
                             <div className="order-btn">
-                                <button className="cart-button" onClick={() => this.handleSubmit(this.state.name)}>Submit</button>
+                                <button className="cart-button" onClick={() => this.handleSubmit(this.state.title, this.state.description)}>Submit</button>
                             </div>
                         </div>
                     </div>
@@ -55,15 +88,20 @@ export class Orders extends Component {
             loading: true,
             AllOrder: [],
             quantity: 0,
+            activeItemId: null,
             showPopup: false
         };
+        this.togglePopup = this.togglePopup.bind(this)
+
     }
 
-    togglePopup() {
+    togglePopup(suborder) {
         this.setState({
-            showPopup: !this.state.showPopup
+            showPopup: !this.state.showPopup,
+            activeItemId: suborder.productId._id
         });
     }
+
 
     async componentDidMount() {
         try {
@@ -91,26 +129,28 @@ export class Orders extends Component {
                         <div className="all-orders">
                             {order1.items.map((suborder) =>
                                 <div key={suborder._id}>
-                                                            <div className="single-order">
-                                    <div classname="cart-images" >
-                                        <img height="200px" width="200px" src={suborder.productId.imageUrl} />
+                                    <div className="single-order">
+                                        <div classname="cart-images">
+                                            <img height="100px" width="100px" src={suborder.productId.imageUrl} />
+                                        </div>
+                                        <div className="order-data">Name:{suborder.productId.name}</div>
+                                        <div className="order-data">Original Price:{suborder.productId.originalPrice} ₹ </div>
+                                        <div className="order-data">Quantity:{suborder.qty}</div>
+                                        <div className="order-data">Price:{suborder.price} ₹ </div>
+                                        <div className="order-total">Grand Total:{suborder.total} ₹ </div>
+                                        <div>
+                                            <button className="feedback-btn" onClick={() => this.togglePopup(suborder)}>Complain</button>
+                                            {this.state.showPopup ?
+                                                <Popup _id={this.state.activeItemId}
+                                                    text='Close Me'
+                                                    closePopup={() => this.togglePopup(suborder)}
+                                                />
+                                                : null
+                                            }
+                                        </div>
                                     </div>
-                                    <div className="order-data">Name:{suborder.productId.name}</div>
-                                    <div className="order-data">Original Price:{suborder.productId.originalPrice}</div>
-                                    <div className="order-data">Quantity:{suborder.qty}</div>
-                                    <div className="order-data">Price:{suborder.price}</div>
-                                    <div className="order-data">Grand Total:{suborder.total}</div>
-                                    <div>
-                                        <button className="feedback-btn" onClick={this.togglePopup.bind(this)}>Complain</button>
-                                        {this.state.showPopup ?
-                                            <Popup
-                                                text='Close Me'
-                                                closePopup={this.togglePopup.bind(this)}
-                                            />
-                                            : null
-                                        }
-                                    </div>
-                                    </div>
+                                    <div></div>
+
                                 </div>)}
 
                         </div>

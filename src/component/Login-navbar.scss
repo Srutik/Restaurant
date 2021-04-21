@@ -81,7 +81,7 @@
       position: relative;
     }
   
-    .nav-menu {
+    .nav-menus {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -93,7 +93,7 @@
       transition: all 0.5s ease;
     }
   
-    .nav-menu.active {
+    .nav-menus.active {
       background:black;
       left: 0;
       opacity: 1;

@@ -1,5 +1,5 @@
 .order-card{
-    display: flex;
+    display: inline-block;
     padding: 50px;
     justify-content: space-between;  
     margin-top: -10px;
@@ -10,30 +10,24 @@
 .all-orders{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     flex-flow: row wrap;
-    justify-content: space-between;  
     box-sizing: border-box;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
     border: 2px solid;
-    margin: 40px;
     margin-bottom: 20px;
 }
 
 .single-order {
     display: flex;
-    flex-wrap: wrap;
-    padding: 20px;
-    flex-flow: row wrap;
-    flex-direction: column;
-    justify-content: space-between;  
-    box-sizing: border-box;
-    border-radius: 5px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     cursor: pointer;
     text-align: center;
-    border: 2px solid;
-    margin: 40px;
+    margin: 20px;
     margin-bottom: 20px;
 }
 
@@ -69,6 +63,7 @@
 }
 
 .feedback-btn{
+    margin-top: 30px;
     height: 40px;
     width: 100px;
     text-align: center;
@@ -76,6 +71,14 @@
       color: rgb(0, 0, 0);
       font-size: 20px;
       width: 150px;
+}
+
+.order-total{
+    display: flex;
+    font-weight: bold;
+    flex-wrap: nowrap;
+    padding: 20px;
+    margin: auto;
 }
 
 .complain-popup {
@@ -117,5 +120,7 @@
 
 .order-data{
     display: flex;
-    padding: 10px;
+    flex-wrap: nowrap;
+    padding: 20px;
+    margin: auto;
 }

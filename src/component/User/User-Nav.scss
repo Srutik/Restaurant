@@ -34,12 +34,14 @@
     font-size: 1.8rem;
   }
   
-  .nav-menu {
-    display: flex;
+  .navmenu-menu {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
     list-style: none;
     text-align: center;
     width: 60vw;
-    justify-content: flex-end;
+    justify-content: end;
     margin-right: 2rem;
   }
   
@@ -79,11 +81,11 @@
       position: relative;
     }
   
-    .nav-menu {
+    .navmenu-menu {
       display: flex;
       flex-direction: column;
       width: 100%;
-      height: 0vh;
+      height: 90vh;
       position: absolute;
       top: 80px;
       left: -100%;
@@ -91,7 +93,7 @@
       transition: all 0.5s ease;
     }
   
-    .nav-menu.active {
+    .navmenu-menu.active {
       background:black;
       left: 0;
       opacity: 1;

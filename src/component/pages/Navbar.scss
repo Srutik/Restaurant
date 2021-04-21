@@ -34,7 +34,7 @@
     font-size: 1.8rem;
   }
   
-  .nav-menu {
+  .nav-menudata {
     display: grid;
     grid-template-columns: repeat(4, auto);
     grid-gap: 10px;
@@ -81,7 +81,7 @@
       position: relative;
     }
   
-    .nav-menu {
+    .nav-menudata {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -93,7 +93,7 @@
       transition: all 0.5s ease;
     }
   
-    .nav-menu.active {
+    .nav-menudata.active {
       background:black;
       left: 0;
       opacity: 1;
