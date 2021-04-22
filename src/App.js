@@ -18,12 +18,14 @@ import AdminReset from './component/Admin/Admin-reset';
 import AdminForgot from './component/Admin/Admin-Forgot';
 
 import Manager from './component/Manager/Manager-login';
+import Dashboard from './component/Manager/Dashboard';
 import ManagerForgot from './component/Manager/Manager-Forgot';
 import ManagerReset from './component/Manager/Manager-reset';
 import ManagerHome from './component/Manager/ManagerHome';
-import RegisterCook from './component/Manager/register-cook';
-import RegisterWeiter from './component/Manager/register-weiter';
-
+import ManagersRegister from './component/Manager/register-manager';
+import Offers from './component/Manager/offers';
+import Complaints from './component/Manager/Complaints';
+ 
 import Waiter from './component/Waiter/Waiter-login';
 import WaiterForgot from './component/Waiter/Waiter-forgot';
 import WaiterReset from './component/Waiter/Waiter-reset';
@@ -64,9 +66,11 @@ function App() {
         <Route path='/manager-login' component={Manager} />
         <Route path='/manager-forgot' component={ManagerForgot} />
         <Route path='/manager-reset' component={ManagerReset} />
+        <Route path='/dashboard' component={Dashboard} />
         <Route path='/manager-home' component={ManagerHome} />
-        <Route path='/register-cook' component={RegisterCook} />
-        <Route path='/register-weiter' component={RegisterWeiter} />
+        <Route path='/register-manager' component={ManagersRegister} />
+        <Route path='/offers' component={Offers} />
+        <Route path='/complaint' component={Complaints} />
 
         <Route path='/cook-login' component={Cook} />
         <Route path='/cook-forgot' component={CookForgot} />
@@ -86,9 +90,6 @@ function App() {
         <Route path='/cart' component={Cart} />
         <Route path='/menucomponent' component={MenuComponent} />
         <Route path='/menufunction' component={Menus} />
-
-
-
 
 
       </Switch>

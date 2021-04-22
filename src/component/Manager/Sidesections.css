@@ -17,7 +17,6 @@
   background: radial-gradient(circle, rgba(56,56,56,1) 0%, rgba(25,25,25,1) 81%);   width: 250px;
    height: 100vh;
    display: flex;
-   justify-content: center;
    position: fixed;
    top: 0;
    left: -100%;
@@ -25,7 +24,7 @@
 }
 
 .nav-menus.active{
-   left: 0;
+  left: 0;
  transition: 350ms;
 }
 
@@ -73,9 +72,9 @@
      font-weight: bold;
      align-items: center;
      font-size: 30px;
-     margin-bottom: 8px;
-   
+     margin-bottom: 8px; 
  }
+ 
  span {
    margin-left: 16px;
  } 

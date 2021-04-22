@@ -1,0 +1,23 @@
+.complaint-data {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    flex-wrap:wrap;
+    flex-flow: row wrap;
+    justify-content: space-between;  
+}
+
+.complaint-data .Single-complaint {
+    box-sizing: border-box;
+    box-sizing: initial;
+    border-radius: 5px;
+    border: 2px solid;
+    padding: 20px;
+    margin: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 25px 10px rgba(25, 25, 25, .3);
+}
+
+.black {
+      font-size: 15px;
+}

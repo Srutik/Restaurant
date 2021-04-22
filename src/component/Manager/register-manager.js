@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import {useHistory} from 'react-router-dom';
 import loginImg from "../login.svg";
+import { Link } from 'react-router-dom';
 import Sidesection from './Sidesection';
 import "../Login.scss";
 
@@ -10,13 +11,14 @@ import "../Login.scss";
   const [password, setPassword] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
+  const [activerole,setactiverole] = useState();
   const history = useHistory();
 
   async function signup() {
-    let data={email,name,password,phone}
+    let data={email,name,password,phone,activerole}
     console.warn(data)
 
-    let result = await fetch("http://192.168.0.61:8020/waiter/waitersignup" , {
+    let result = await fetch("http://192.168.0.61:8020/all/register" , {
       method:'PUT',
       body:JSON.stringify(data),
       headers:{
@@ -35,12 +37,21 @@ import "../Login.scss";
         <Sidesection />
   
       <div className="base-container" >
-        <div className="header">Register Weiter</div>
+        <div className="header">Register</div>
         <div className="content">
           <div className="image">
             <img src={loginImg} alt={1}/>
           </div>
           <div className="form">
+            <div className="radio-btn">
+
+              <input type="radio" className="radio" name="select" value="cook" onChange={e => setactiverole(e.target.value)} />
+              <label className="label-register" for="cook">Cook</label>
+
+              <input type="radio" className="radio" name="select" value="Waiter" onChange={e => setactiverole(e.target.value)} />
+              <label className="label-register" for="Waiter">Waiter</label>
+
+            </div>
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <input type="text" name="name" placeholder="username" onChange={e => setName(e.target.value)} />
@@ -60,10 +71,11 @@ import "../Login.scss";
           </div>
         </div>
         <div className="footer">
-          <button type="button" onClick={signup} className="btns">
+          <button type="button" onClick={signup} className="btns"> 
             Register
           </button>
           </div>
+
         </div>
       </div>
     );

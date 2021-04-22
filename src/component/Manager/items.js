@@ -1,5 +1,4 @@
 
-
 export const SidebarData = [
   {
     title: 'Dashboard',
@@ -7,13 +6,18 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Add Cook',
-    path: '/register-cook',
+    title: 'Add Cook & Waiter',
+    path: '/register-manager',
     cName: 'nav-text'
   },
   {
-    title: 'Add Waiter',
-    path: '/register-waiter',
+    title: 'View Cook',
+    path: '/viewCook',
+    cName: 'nav-text'
+  },
+  {
+    title: 'View Waiter',
+    path: '/viewWaiter',
     cName: 'nav-text'
   },
   {
@@ -21,5 +25,9 @@ export const SidebarData = [
     path: '/offers',
     cName: 'nav-text'
   },
- 
+  {
+    title: 'Complaints',
+    path: '/complaint',
+    cName: 'nav-text'
+  },
 ];

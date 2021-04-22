@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
-import './ManagerHome.css';
 import Sidesection from './Sidesection';
-export class Dashboard extends Component {
+import './offers.css';
+
+
+export class offers extends Component {
     render() {
         return (
             <div>
                 <Sidesection />
+                <h1 className="offer-label">Offers</h1>
             </div>
         )
     }
 }
 
-export default Dashboard;
+export default offers;

@@ -82,11 +82,16 @@ class Menu extends React.Component {
     }
 
     return (
+      <div>
       <div className="wrapper-nav" >
+        <div className="items2">
         <UserNav />
-        <div className="cart-counter">
-          <span className="counter">{this.state.counter}</span>
         </div>
+        <div className="items1">
+          <div className="counter">{this.state.counter}</div>
+          </div>
+        </div>
+
         <div className="Allpage">
           <div className="flex1">
             <div className="List">
@@ -106,7 +111,6 @@ class Menu extends React.Component {
               ))}
             </div>
           </div>
-
 
           <div className="flex2">
             <div className="List">
