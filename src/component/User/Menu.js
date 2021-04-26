@@ -18,14 +18,14 @@ class Menu extends React.Component {
     };
   }
   async componentDidMount() {
-    const url = "http://192.168.0.61:8020/categorypost/categories";
+    const url = "http://localhost:8020/categorypost/categories";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ people: data.categoryposts, loading: false });
   }
 
    async handleClick(_id) {
-    const url = "http://192.168.0.61:8020/menu/menu/" + _id;
+    const url = "http://localhost:8020/menu/menu/" + _id;
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ carts: data.products, });
@@ -44,7 +44,7 @@ class Menu extends React.Component {
 
   async addCart(_id, priority, quantity) {
     try {
-      const response = await fetch("http://192.168.0.61:8020/cart/addtocart/" + _id, {
+      const response = await fetch("http://localhost:8020/cart/addtocart/" + _id, {
         method: "POST",
         body: JSON.stringify({
           priority: priority,

@@ -23,16 +23,22 @@ import ManagerForgot from './component/Manager/Manager-Forgot';
 import ManagerReset from './component/Manager/Manager-reset';
 import ManagerHome from './component/Manager/ManagerHome';
 import ManagersRegister from './component/Manager/register-manager';
-import Offers from './component/Manager/offers';
+import Review from './component/Manager/review';
 import Complaints from './component/Manager/Complaints';
+import viewCook from './component/Manager/View-cook';
+import viewWaiter from './component/Manager/View-waiter';
  
 import Waiter from './component/Waiter/Waiter-login';
 import WaiterForgot from './component/Waiter/Waiter-forgot';
 import WaiterReset from './component/Waiter/Waiter-reset';
 
 import Cook from './component/Cook/Cook-login';
+import CookHome from './component/Cook/Cook-home';
 import CookForgot from './component/Cook/Cook-forgot';
 import CookReset from './component/Cook/Cook-reset';
+import OrderList from './component/Cook/OrderList';
+import Unavilableitem from './component/Cook/Unavilable-item';
+import DeliverdItem from './component/Cook/Deliverd-Item';
 
 import Product from './component/Product';
 import Cart from './component/User/Cart';
@@ -69,12 +75,19 @@ function App() {
         <Route path='/dashboard' component={Dashboard} />
         <Route path='/manager-home' component={ManagerHome} />
         <Route path='/register-manager' component={ManagersRegister} />
-        <Route path='/offers' component={Offers} />
+        <Route path='/review' component={Review} />
         <Route path='/complaint' component={Complaints} />
+        <Route path='/viewCook' component={viewCook} />
+        <Route path='/viewWaiter' component={viewWaiter} />
 
         <Route path='/cook-login' component={Cook} />
         <Route path='/cook-forgot' component={CookForgot} />
         <Route path='/cook-reset' component={CookReset} />
+        <Route path='/cook-home' component={CookHome} />
+        <Route path='/order-list' component={OrderList} />
+        <Route path='/deliverd-item' component={Unavilableitem} />
+        <Route path='/unavilable-item' component={DeliverdItem} />
+
 
         <Route path='/waiter-login' component={Waiter} />
         <Route path='/waiter-forgot' component={WaiterForgot} />

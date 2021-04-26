@@ -12,10 +12,14 @@ export class Complaints extends Component {
         };
       }
 
+      setOffer() {
+        alert("ok");
+      }
+
 
 
     async componentDidMount() {
-        const url = "http://192.168.0.61:8020/complaint/complaints";
+        const url = "http://localhost:8020/complaint/complaints";
         const response = await fetch(url);
         const data = await response.json();
         this.setState({ complaint: data.complaints, loading: false });
@@ -49,6 +53,8 @@ export class Complaints extends Component {
                       <div className="black">Title :- {key.title}</div>
                       <div className="black">Complaint :- {key.message}</div>
                       <div className="black">ProductId :- {key.productId}</div>
+                      <div>
+                      </div>
                     </div>
                   </div>
                 </div>

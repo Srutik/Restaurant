@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import './ManagerHome.css';
+import './Dashboard.css';
 import Sidesection from './Sidesection';
 export class Dashboard extends Component {
     render() {
         return (
-            <div>
+            <div className="manager-dash">
                 <Sidesection />
             </div>
         )

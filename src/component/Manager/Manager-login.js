@@ -17,7 +17,7 @@ import "../Login.scss";
     console.log(data)
     
     try {
-    let result = await fetch("http://192.168.0.61:8020/manager/managerlogin" , {
+    let result = await fetch("http://localhost:8020/manager/managerlogin" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 

@@ -16,7 +16,7 @@ import './Pop-up.css';
      
     async componentDidMount() {
         try{
-            const url = "http://192.168.0.61:8020/cart/getcart";
+            const url = "http://localhost:8020/cart/getcart";
             const response = await fetch(url,{
                 headers: {
                     Authorization: `Bearer ` + localStorage.getItem("token")
@@ -34,14 +34,14 @@ onShow() {
 
   return(
 <div>
-  <div></div>
+  
 </div>
   )
 
 }
 
           handleDelete() {
-                  fetch("http://192.168.0.61:8020/cart/emptycart" , { 
+                  fetch("http://localhost:8020/cart/emptycart" , { 
                   method: "DELETE",
                   headers: {
                     "Content-type": "application/json; charset=UTF-8",

@@ -27,7 +27,7 @@ class Popup extends React.Component {
     async handleSubmit(title, description) {
         try {
 
-            const response = await fetch("http://192.168.0.61:8020/complaint/complaint/" + this.props._id, {
+            const response = await fetch("http://localhost:8020/complaint/complaint/" + this.props._id, {
                 method: "POST",
                 body: JSON.stringify({
                     title: title,
@@ -105,7 +105,7 @@ export class Orders extends Component {
 
     async componentDidMount() {
         try {
-            const url = "http://192.168.0.61:8020/order/myorders";
+            const url = "http://localhost:8020/order/myorders";
             const response = await fetch(url, {
                 headers: {
                     Authorization: `Bearer ` + localStorage.getItem("token")

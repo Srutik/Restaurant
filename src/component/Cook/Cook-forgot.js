@@ -4,8 +4,6 @@ import loginImg from '../login.svg';
 import {useHistory} from 'react-router-dom';
 import "../Login.scss";
 
-
-
  function ManagerForgot() {
 
   const [email, setUserName] = useState();
@@ -39,8 +37,6 @@ import "../Login.scss";
   }
    }
    
-  
-
  
  /* const handleClick = async e => {
     e.preventDefault();
@@ -53,11 +49,15 @@ import "../Login.scss";
 
     return (
       <div className="base-container" >
+        
         <div className="header">Forgot Password</div>
+
         <div className="content">
+
           <div className="image">
             <img src={loginImg} alt={1} />
           </div>
+
           <div className="form">
             <div className="form-group">
               <label htmlFor="username">Username</label>
@@ -65,6 +65,7 @@ import "../Login.scss";
             </div>
           </div>
         </div>
+
         <div className="footer">
           <button type="button" onClick={send} className="btns">
             Send

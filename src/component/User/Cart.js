@@ -14,7 +14,7 @@ class DeletePopup extends React.Component {
     }
 
     handleDelete() {
-        fetch("http://192.168.0.61:8020/cart/emptycart", {
+        fetch("http://localhost:8020/cart/emptycart", {
             method: "DELETE",
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
@@ -64,7 +64,7 @@ class Popup extends React.Component {
 
     async handleSubmit(name) {
         try {
-            const response = await fetch("http://192.168.0.61:8020/order/makeorder", {
+            const response = await fetch("http://localhost:8020/order/makeorder", {
                 method: "PUT",
                 body: JSON.stringify({
                     name: name,
@@ -145,7 +145,7 @@ class Cart extends Component {
 
     async componentDidMount() {
         try {
-            const url = "http://192.168.0.61:8020/cart/getcart";
+            const url = "http://localhost:8020/cart/getcart";
             const response = await fetch(url, {
                 headers: {
                     Authorization: `Bearer ` + localStorage.getItem("token")

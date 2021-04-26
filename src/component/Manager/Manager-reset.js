@@ -19,7 +19,7 @@ import "../Login.scss";
     console.log(data)
   
     
-    let result = await fetch("http://192.168.29.61:8020/manager/managerresetP" , {
+    let result = await fetch("http://localhost:8020/manager/managerresetP" , {
       method:'POST',
       headers:{
         "Content-Type":'application/json; charset=UTF-8', 

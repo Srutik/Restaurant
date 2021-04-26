@@ -17,7 +17,7 @@ import "../Login.scss";
     let data={email,name,password,phone}
     console.warn(data)
 
-    let result = await fetch("http://192.168.0.63:8020/home/signup" , {
+    let result = await fetch("http://localhost:8020/home/signup" , {
       method:'PUT',
       body:JSON.stringify(data),
       headers:{

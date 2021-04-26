@@ -2,7 +2,12 @@
 export const SidebarData = [
   {
     title: 'Dashboard',
-    path: '/dashboard',
+    path: '/manager-home',
+    cName: 'nav-text'
+  },
+  {
+    title: 'Category',
+    path: '/category',
     cName: 'nav-text'
   },
   {
@@ -21,8 +26,8 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Offers',
-    path: '/offers',
+    title: 'Reviews',
+    path: '/review',
     cName: 'nav-text'
   },
   {

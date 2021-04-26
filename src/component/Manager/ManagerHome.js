@@ -5,7 +5,10 @@ export class ManagerHome extends Component {
     render() {
         return (
             <div>
-                <Sidesection />
+                 <Sidesection />
+                    <div className="manager-home">
+                </div>
+               
             </div>
         )
     }
