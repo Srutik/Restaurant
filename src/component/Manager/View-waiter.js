@@ -46,11 +46,13 @@ export class viewWaiter extends Component {
                 <div key={cook._id}>
                   <div >
                     <div className="Single-waiter">
-                      <div className="black">UserId :- {cook._id}</div>
-                      <div className="black">Name :- {cook.name}</div>
-                      <div className="black">Email :- {cook.email}</div>
-                      <div className="black">PhoneNo :- {cook.phone}</div>
+                      <div className="waiter-info">UserId :- {cook._id}</div>
+                      <div className="waiter-info">Name :- {cook.name}</div>
+                      <div className="waiter-info">Email :- {cook.email}</div>
+                      <div className="waiter-info">PhoneNo :- {cook.phone}</div>
+                      <div className="waiter-info">Created At :- {cook.created_At}</div>
                     </div>
+                    <div>__________________________________________________________________________________________________________________________</div>
                   </div>
                 </div>
               ))}

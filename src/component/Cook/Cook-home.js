@@ -4,11 +4,11 @@ import CookSidesection from './Cook-sidesection';
 export class CookHome extends Component {
     render() {
         return (
+            <div className="cook-home">
             <div>
                  <CookSidesection />
-                    <div className="cook-home">
-                </div>
-               
+                 </div>  
+                    <div className="dash-title">Dashboard</div>
             </div>
         )
     }

@@ -76,8 +76,8 @@ class Popup extends React.Component {
             })
             let data = await response.json()
             alert("Your Order is Submit !")
-            this.handleDelete()
             console.log(data)
+            window.location.reload(false)
         } catch (err) {
             console.log(err)
         }

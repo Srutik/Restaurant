@@ -1,3 +1,11 @@
-.manager-home{
- 
+.manager-dashboard {
+    background: url('./manager-dash1.jpg') center center/cover no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+.dash-title{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }

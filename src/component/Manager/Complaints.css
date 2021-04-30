@@ -1,3 +1,11 @@
+.complain-label{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px;
+    color: black;
+}
+
 .complaint-data {
     display: flex;
     padding: 20px;
@@ -15,9 +23,19 @@
     padding: 20px;
     margin: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 25px 10px rgba(25, 25, 25, .3);
+    background: white;
+    box-shadow: 0 0 25px 10px rgba(116, 111, 111, 0.3);
 }
 
-.black {
+.complaint {
       font-size: 15px;
+      margin: 10px;
+      font-size: 15px;
+}
+
+.main-complaint{
+    font-size: 15px;
+    margin: 10px;
+    font-size: 15px;
+    font-weight: bold;
 }

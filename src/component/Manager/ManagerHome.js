@@ -4,11 +4,12 @@ import Sidesection from './Sidesection';
 export class ManagerHome extends Component {
     render() {
         return (
-            <div>
-                 <Sidesection />
-                    <div className="manager-home">
+            <div className="manager-dashboard">
+                <div>
+                    <Sidesection />
+                    <div className="dash-title">Dashboard</div>
+
                 </div>
-               
             </div>
         )
     }

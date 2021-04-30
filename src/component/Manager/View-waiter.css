@@ -6,21 +6,31 @@
 }
 
 .waiter-data {
-    display: flex;
-    padding: 20px;
-    flex-direction: column;
-    flex-wrap:wrap;
-    flex-flow: row wrap;
-    justify-content: space-between;  
+    display: flexbox;
+    flex-wrap: nowrap;
+    height: 50%;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    size: 20px;
+    background-image: radial-gradient( circle 993px at 0.5% 50.5%,  rgba(133, 119, 76, 0.37) 0%, rgba(245,247,252,1) 100.2% );
+    margin-top: 50px;
+    justify-content: center;
+    border: 3px solid ;
+    border-radius: 5px;
+    margin-bottom: 50px;
 }
 
 .waiter-data .Single-waiter {
-    box-sizing: border-box;
-    box-sizing: initial;
-    border-radius: 5px;
-    border: 2px solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
     padding: 20px;
-    margin: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 25px 10px rgba(25, 25, 25, .3);
+    margin-top: 10px;
+}
+
+.waiter-info{
+    font-size: 15px;
+    font-weight: bold;
 }

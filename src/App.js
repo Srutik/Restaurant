@@ -27,6 +27,7 @@ import Review from './component/Manager/review';
 import Complaints from './component/Manager/Complaints';
 import viewCook from './component/Manager/View-cook';
 import viewWaiter from './component/Manager/View-waiter';
+import AddCategory from './component/Manager/Add-Category';
  
 import Waiter from './component/Waiter/Waiter-login';
 import WaiterForgot from './component/Waiter/Waiter-forgot';
@@ -39,6 +40,8 @@ import CookReset from './component/Cook/Cook-reset';
 import OrderList from './component/Cook/OrderList';
 import Unavilableitem from './component/Cook/Unavilable-item';
 import DeliverdItem from './component/Cook/Deliverd-Item';
+import ProcessOrder from './component/Cook/Process-order';
+import RejectOrder from './component/Cook/Cancle-order';
 
 import Product from './component/Product';
 import Cart from './component/User/Cart';
@@ -79,6 +82,7 @@ function App() {
         <Route path='/complaint' component={Complaints} />
         <Route path='/viewCook' component={viewCook} />
         <Route path='/viewWaiter' component={viewWaiter} />
+        <Route path='/category' component={AddCategory} />
 
         <Route path='/cook-login' component={Cook} />
         <Route path='/cook-forgot' component={CookForgot} />
@@ -87,7 +91,8 @@ function App() {
         <Route path='/order-list' component={OrderList} />
         <Route path='/deliverd-item' component={Unavilableitem} />
         <Route path='/unavilable-item' component={DeliverdItem} />
-
+        <Route path='/process-order' component={ProcessOrder} />
+        <Route path='/reject-order' component={RejectOrder} />
 
         <Route path='/waiter-login' component={Waiter} />
         <Route path='/waiter-forgot' component={WaiterForgot} />
@@ -103,8 +108,7 @@ function App() {
         <Route path='/cart' component={Cart} />
         <Route path='/menucomponent' component={MenuComponent} />
         <Route path='/menufunction' component={Menus} />
-
-
+    
       </Switch>
       </Router>
     </div>

@@ -11,6 +11,16 @@ export const SidebarData = [
       cName: 'nav-text'
     },
     {
+      title: 'Process-Order',
+      path: '/process-order',
+      cName: 'nav-text'
+    },
+    {
+      title: 'Rejected-Order',
+      path: '/reject-order',
+      cName: 'nav-text'
+    },
+    {
       title: 'Deliverd Items',
       path: '/deliverd-item',
       cName: 'nav-text'

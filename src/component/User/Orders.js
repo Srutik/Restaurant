@@ -102,7 +102,6 @@ export class Orders extends Component {
         });
     }
 
-
     async componentDidMount() {
         try {
             const url = "http://localhost:8020/order/myorders";
@@ -118,6 +117,7 @@ export class Orders extends Component {
         }
     }
 
+
     render() {
         return (<div>
             <div className="order-List">
@@ -126,6 +126,10 @@ export class Orders extends Component {
             <div className="order-card">
                 {this.state.AllOrder.map(order1 => (
                     <div key={order1._id}>
+                        <div className="head-order">
+                            <div className="order-total">Name:{order1.name}</div>
+                            <div className="order-total">Order Total:{order1.grandTotal}</div>
+                        </div>
                         <div className="all-orders">
                             {order1.items.map((suborder) =>
                                 <div key={suborder._id}>
@@ -136,7 +140,8 @@ export class Orders extends Component {
                                         <div className="order-data">Name:{suborder.productId.name}</div>
                                         <div className="order-data">Original Price:{suborder.productId.originalPrice} ₹ </div>
                                         <div className="order-data">Quantity:{suborder.qty}</div>
-                                        <div className="order-data">Price:{suborder.price} ₹ </div>
+                                        <div className="order-data">Offer Price:{suborder.productId.offerPrice} ₹ </div>
+                                        <div className="order-data">Date:{suborder.productId.createdAt} </div>
                                         <div className="order-total">Grand Total:{suborder.total} ₹ </div>
                                         <div>
                                             <button className="feedback-btn" onClick={() => this.togglePopup(suborder)}>Complain</button>
@@ -149,12 +154,11 @@ export class Orders extends Component {
                                             }
                                         </div>
                                     </div>
-                                    <div></div>
-
+                                    <div>
+                                            
+                                    </div>
                                 </div>)}
-
                         </div>
-
                     </div>
                 ))}
             </div>
@@ -162,5 +166,6 @@ export class Orders extends Component {
         )
     }
 }
+
 export default Orders;
 

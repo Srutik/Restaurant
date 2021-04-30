@@ -39,10 +39,10 @@ export class offers extends Component {
                 <div key={key._id}>
                   <div >
                     <div className="Single-feedback">
-                      <div className="black">UserId :- {key._id}</div>
-                      <div className="black">Title :- {key.title}</div>
-                      <div className="black">Complaint :- {key.message}</div>
-                      <div className="black">Rating :- {key.rating}</div>
+                      <div className="review">UserId :- {key._id}</div>
+                      <div className="review">Title :- {key.title}</div>
+                      <div className="review">Messages :- {key.message}</div>
+                      <div className="review">Rating :- {key.rating}</div>
                     </div>
                   </div>
                 </div>

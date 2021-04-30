@@ -1,3 +1,11 @@
+.review-label{
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px;
+}
+
 .feedback-data {
     display: flex;
     padding: 20px;
@@ -11,9 +19,20 @@
     box-sizing: border-box;
     box-sizing: initial;
     border-radius: 5px;
+    justify-content: space-between;
     border: 2px solid;
     padding: 20px;
     margin: 20px;
+    background: #9EBAE2;
+background: -webkit-linear-gradient(top left, #9EBAE2, #8AD999);
+background: -moz-linear-gradient(top left, #9EBAE2, #8AD999);
+background: linear-gradient(to bottom right, #9EBAE2, #8AD999);
     margin-bottom: 20px;
-    box-shadow: 0 0 25px 10px rgba(37, 66, 73, 0.3);
+}
+
+.review{
+    margin: 10px;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bold;
 }

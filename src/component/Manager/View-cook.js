@@ -41,17 +41,19 @@ export class viewCook extends Component {
             <div>
                 <Sidesection />
                 <div className="head-cook">All Cook</div>
-                <div className="feedback-data">
+                <div className="cook-data">
                 {this.state.people.map(cook => (
                 <div key={cook._id}>
                   <div >
-                    <div className="Single-feedback">
-                      <div className="black">UserId :- {cook._id}</div>
-                      <div className="black">Name :- {cook.name}</div>
-                      <div className="black">Email :- {cook.email}</div>
-                      <div className="black">PhoneNo :- {cook.phone}</div>
+                    <div className="Single-cook">
+                      <div className="cook-info">UserId :- {cook._id}</div>
+                      <div className="cook-info">Name :- {cook.name}</div>
+                      <div className="cook-info">Email :- {cook.email}</div>
+                      <div className="cook-info">PhoneNo :- {cook.phone}</div>
+                      <div className="cook-info">Created At :- {cook.created_At}</div>
                     </div>
                   </div>
+                  <div>__________________________________________________________________________________________________________________________</div>
                 </div>
               ))}
                 </div>

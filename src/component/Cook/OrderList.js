@@ -29,17 +29,25 @@ export class OrderList extends Component {
     toggleDeletePopup(order1) {
         this.setState({
             showDeletePopup: !this.state.showDeletePopup,
-            activeOrderId: order1._id
-
+            activeOrderId: order1._id,
         });
     }
 
     async componentDidMount() {
         try {
-            const url = "http://localhost:8020/order/getorders";
-            const response = await fetch(url);
+            const url = "http://localhost:8020/order/list";
+            const response = await fetch(url,{
+                method: "POST",
+                body: JSON.stringify({
+                    OrderIs:"Pending",
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ` + localStorage.getItem("token")
+                }, 
+            });
             const data = await response.json();
-            this.setState({ AllOrder: data.orders });
+            this.setState({ AllOrder: data.list });
             this.searchArray = data
         } catch (err) {
         }
@@ -67,7 +75,7 @@ export class OrderList extends Component {
                                         </div>
                                         <div className="cookorder-data">Quantity:{suborder.qty}</div>
                                         <div className="cookorder-data">Priority:{suborder.priority}</div>
-                                        <div className="cookorder-data">Price:{suborder.price} ₹ </div>
+                                        <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
                                         <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
                                     </div>
                                 </div>)}
@@ -115,6 +123,7 @@ class Popup extends React.Component {
             let data = await response.json()
             alert("Your Order is Received !")
             console.log(data)
+            window.location.reload(false)
         } catch (err) {
             console.log(err)
         }
@@ -157,6 +166,7 @@ class DeletePopup extends React.Component {
             let data = await response.json()
             alert("Your Order is Rejected !")
             console.log(data)
+            window.location.reload(false)
         } catch (err) {
             console.log(err)
         }

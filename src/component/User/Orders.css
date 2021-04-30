@@ -16,8 +16,8 @@
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
-    border: 2px solid;
-    margin-bottom: 20px;
+    border: 2px solid;                               
+    margin-bottom: 80px;
 }
 
 .single-order {
@@ -30,6 +30,12 @@
     margin: 20px;
     margin-bottom: 20px;
 }
+
+.head-order{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;}
 
 .order-title{
     color: rgb(255, 250, 250);

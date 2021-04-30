@@ -42,17 +42,17 @@ export class Complaints extends Component {
         return (
             <div>
                 <Sidesection />
-                <h1 className="offer-label">Complaints</h1>
+                <h1 className="complain-label">Complaints</h1>
 
                 <div className="complaint-data">
                 {this.state.complaint.map(key => (
                 <div key={key._id}>
                   <div >
                     <div className="Single-complaint">
-                      <div className="black">UserId :- {key._id}</div>
-                      <div className="black">Title :- {key.title}</div>
-                      <div className="black">Complaint :- {key.message}</div>
-                      <div className="black">ProductId :- {key.productId}</div>
+                      <div className="complaint">UserId :- {key._id}</div>
+                      <div className="complaint">Title :- {key.title}</div>
+                      <div className="main-complaint">Complaint :- {key.message}</div>
+                      <div className="complaint">ProductId :- {key.productId}</div>
                       <div>
                       </div>
                     </div>
