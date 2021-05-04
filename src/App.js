@@ -42,6 +42,7 @@ import Unavilableitem from './component/Cook/Unavilable-item';
 import DeliverdItem from './component/Cook/Deliverd-Item';
 import ProcessOrder from './component/Cook/Process-order';
 import RejectOrder from './component/Cook/Cancle-order';
+import CookMenu from './component/Cook/MenuList';
 
 import Product from './component/Product';
 import Cart from './component/User/Cart';
@@ -94,6 +95,7 @@ function App() {
         <Route path='/unavilable-item' component={Unavilableitem} />
         <Route path='/process-order' component={ProcessOrder} />
         <Route path='/reject-order' component={RejectOrder} />
+        <Route path='menu-cook' component={CookMenu} />
 
         <Route path='/waiter-login' component={Waiter} />
         <Route path='/waiter-forgot' component={WaiterForgot} />

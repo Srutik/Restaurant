@@ -112,7 +112,7 @@ export class Orders extends Component {
             });
             const data = await response.json();
             this.setState({ AllOrder: data.data.orders });
-            this.searchArray = data
+            console.log(this.state.AllOrder)
         } catch (err) {
         }
     }
@@ -124,25 +124,25 @@ export class Orders extends Component {
                 <h1 className="order-title">Your Orders</h1>
             </div>
             <div className="order-card">
-                {this.state.AllOrder.map(order1 => (
-                    <div key={order1._id}>
+                {this.state.AllOrder.map(order => (
+                    <div key={order._id}>
                         <div className="head-order">
-                            <div className="order-total">Name:{order1.name}</div>
-                            <div className="order-total">Order Total:{order1.grandTotal}</div>
-                            <div className="order-total">Date:{order1.createdAt} </div>
+                            <div className="order-total">Name:{order.name}</div>
+                            <div className="order-total">Order Total:{order.grandTotal}</div>
+                            <div className="order-total">Date:{order.createdAt} </div>
 
                         </div>
                         <div className="all-orders">
-                            {order1.items.map((suborder) =>
+                            {order.items.map((suborder) =>
                                 <div key={suborder._id}>
                                     <div className="single-order">
                                         <div classname="cart-images">
-                                            <img height="100px" width="100px" src={suborder.productId.imageUrl} />
+                                            <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
                                         </div>
-                                        <div className="order-data">Name:{suborder.productId.name}</div>
-                                        <div className="order-data">Original Price:{suborder.productId.originalPrice} ₹ </div>
+                                        <div className="order-data">Name:{suborder.product_id.name}</div>
+                                        <div className="order-data">Original Price:{suborder.product_id.originalPrice} ₹ </div>
                                         <div className="order-data">Quantity:{suborder.qty}</div>
-                                        <div className="order-data">Offer Price:{suborder.productId.offerPrice} ₹ </div>
+                                        <div className="order-data">Offer Price:{suborder.product_id.offerPrice} ₹ </div>
                                         <div className="order-total">Grand Total:{suborder.total} ₹ </div>
                                         <div>
                                             <button className="feedback-btn" onClick={() => this.togglePopup(suborder)}>Complain</button>
@@ -169,4 +169,3 @@ export class Orders extends Component {
 }
 
 export default Orders;
-

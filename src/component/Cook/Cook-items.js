@@ -6,6 +6,11 @@ export const SidebarData = [
       cName: 'nav-text'
     },
     {
+      title: 'Menu List',
+      path: '/menu-cook',
+      cName: 'nav-text'
+    },
+    {
       title: 'Order List',
       path: '/order-list',
       cName: 'nav-text'

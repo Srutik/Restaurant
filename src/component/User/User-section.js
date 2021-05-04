@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../User/User-Section.css'
 import ReactStars from "react-rating-stars-component";
 import StarRatingComponent from 'react-star-rating-component';
+import { Link } from 'react-router-dom';
 
 class FeedbackPopup extends React.Component {
   constructor(props) {
@@ -156,6 +157,10 @@ class Usersection extends Component {
               />
               : null
             }
+            <Link  to='/menu'>
+            <button className="offer-button" >Menu</button>
+            </Link>
+
             <button className="offer-button" onClick={this.toggleFeedbackPopup.bind(this)} >Feedback</button>
             {this.state.showFeedbackPopup ?
               <FeedbackPopup
