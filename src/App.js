@@ -28,7 +28,7 @@ import Complaints from './component/Manager/Complaints';
 import viewCook from './component/Manager/View-cook';
 import viewWaiter from './component/Manager/View-waiter';
 import AddCategory from './component/Manager/Add-Category';
- 
+import AddIngrediants from './component/Manager/Add-Ingrediants'; 
 import Waiter from './component/Waiter/Waiter-login';
 import WaiterForgot from './component/Waiter/Waiter-forgot';
 import WaiterReset from './component/Waiter/Waiter-reset';
@@ -83,14 +83,15 @@ function App() {
         <Route path='/viewCook' component={viewCook} />
         <Route path='/viewWaiter' component={viewWaiter} />
         <Route path='/category' component={AddCategory} />
+        <Route path='/add-ingrediant' component={AddIngrediants} />
 
         <Route path='/cook-login' component={Cook} />
         <Route path='/cook-forgot' component={CookForgot} />
         <Route path='/cook-reset' component={CookReset} />
         <Route path='/cook-home' component={CookHome} />
         <Route path='/order-list' component={OrderList} />
-        <Route path='/deliverd-item' component={Unavilableitem} />
-        <Route path='/unavilable-item' component={DeliverdItem} />
+        <Route path='/deliverd-item' component={DeliverdItem} />
+        <Route path='/unavilable-item' component={Unavilableitem} />
         <Route path='/process-order' component={ProcessOrder} />
         <Route path='/reject-order' component={RejectOrder} />
 

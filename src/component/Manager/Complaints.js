@@ -49,10 +49,23 @@ export class Complaints extends Component {
                 <div key={key._id}>
                   <div >
                     <div className="Single-complaint">
+                    <div className="complaint">Name :- {key.orderId.name}</div>
                       <div className="complaint">UserId :- {key._id}</div>
+                      <div className="complaint">Date :- {key.created_At}</div>
                       <div className="complaint">Title :- {key.title}</div>
                       <div className="main-complaint">Complaint :- {key.message}</div>
-                      <div className="complaint">ProductId :- {key.productId}</div>
+                      {key.orderId.items.map((suborder) =>
+                                <div key={suborder._id}>
+                                    <div className="cooksingle-orderDone">
+                                        <div classname="cookcart-images">
+                                            <img height="100px" width="100px" src={suborder.productId.imageUrl} />
+                                        </div>
+                                        <div className="cookorder-data">Quantity:{suborder.qty}</div>
+                                        <div className="cookorder-data">Priority:{suborder.priority}</div>
+                                        <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
+                                        <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
+                                    </div>
+                                </div>)}
                       <div>
                       </div>
                     </div>

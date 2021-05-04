@@ -43,6 +43,7 @@ export class offers extends Component {
                       <div className="review">Title :- {key.title}</div>
                       <div className="review">Messages :- {key.message}</div>
                       <div className="review">Rating :- {key.rating}</div>
+                      <div className="review">Date :- {key.created_At}</div>
                     </div>
                   </div>
                 </div>

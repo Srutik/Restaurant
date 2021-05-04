@@ -11,6 +11,11 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
+    title: 'Add-Ingrediants',
+    path: '/add-ingrediant',
+    cName: 'nav-text'
+  },
+  {
     title: 'Add Cook & Waiter',
     path: '/register-manager',
     cName: 'nav-text'

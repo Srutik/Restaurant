@@ -23,10 +23,8 @@
     border: 2px solid;
     padding: 20px;
     margin: 20px;
-    background: #9EBAE2;
-background: -webkit-linear-gradient(top left, #9EBAE2, #8AD999);
-background: -moz-linear-gradient(top left, #9EBAE2, #8AD999);
-background: linear-gradient(to bottom right, #9EBAE2, #8AD999);
+    background-color: #b3babd;
+    background-image: linear-gradient(315deg, #dae3e6 0%, #c4ccd3 74%);
     margin-bottom: 20px;
 }
 

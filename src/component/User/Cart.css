@@ -69,6 +69,7 @@ justify-content: center;
 
   .cartItems1 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
     padding: 20px;
@@ -76,6 +77,16 @@ justify-content: center;
 
   }
   
+
+  @media only screen and (max-width: 500px) {
+    .cartItems1 {
+      display: inline-block;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin-top: 10px;
+    }
+  }
   .picker {
     height: 30px;
     width: 200px;
@@ -112,6 +123,12 @@ justify-content: center;
       color: rgb(0, 0, 0);
       margin: 10px;
   } 
+
+  .fontS-total{
+    color: black;
+    font-weight: bold;
+    margin: 10px;
+  }
   
 .popup {
   position: fixed;

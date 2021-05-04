@@ -64,7 +64,11 @@ export class OrderList extends Component {
             <div className="cookorder-card">
                 {this.state.AllOrder.map(order1 => (
                     <div key={order1._id}>
+                        <div className="order-head">
                         <div className="cookorder-total">Name:{order1.name}</div>
+                        <div className="cookorder-total">Grand Total:{order1.grandTotal}</div>
+                        <div className="cookorder-total">Date:{order1.createdAt}</div>
+                        </div>
                         <div className="cookall-orderbtn">
                         <div className="cookall-orders">
                             {order1.items.map((suborder) =>

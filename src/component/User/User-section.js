@@ -16,7 +16,7 @@ class FeedbackPopup extends React.Component {
 
   async handleFeedback(title, description, rating) {
     try {
-      const response = await fetch("http://192.168.0.61:8020/feedback/feedback", {
+      const response = await fetch("http://localhost:8020/feedback/feedback", {
         method: "POST",
         body: JSON.stringify({
           title: title,

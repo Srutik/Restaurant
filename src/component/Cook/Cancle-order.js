@@ -40,15 +40,19 @@ export class Cancleorder extends Component {
                 <CookSidesection />
                 </div>
              <div className="cookprocessorder-title">Rejected Order</div>
-             <div className="cookorder-card">
+             <div className="cookCancel-card">
                 {this.state.CancleOrder.map(order1 => (
                     <div key={order1._id}>
+                        <div className="cancelled-head">
                         <div className="cookorder-total">Name:{order1.name}</div>
-                        <div className="cookall-orderbtn">
-                        <div className="cookall-orders">
+                        <div className="cookorder-total">Grand Total:{order1.grandTotal}</div>
+                        <div className="cookorder-total">Date:{order1.createdAt}</div>
+                        </div>
+                        <div className="cookCancel-orderbtn">
+                        <div className="cookCancel-orders">
                             {order1.items.map((suborder) =>
                                 <div key={suborder._id}>
-                                    <div className="cooksingle-order">
+                                    <div className="cooksingle-Cancelorder">
                                         <div classname="cookcart-images">
                                             <img height="100px" width="100px" src={suborder.productId.imageUrl} />
                                         </div>

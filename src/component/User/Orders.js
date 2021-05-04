@@ -49,9 +49,9 @@ class Popup extends React.Component {
 
     render() {
         return (
-            <div className='complain-popup'>
+            <div className='complainbox-popup'>
 
-                <div className='complain-popup_inner'>
+                <div className='complainbox-popup_inner'>
                     <h1>{this.props.text}</h1>
                     <div className="close-set">
                         <button className="close-btn" onClick={this.props.closePopup}>X</button>
@@ -129,6 +129,8 @@ export class Orders extends Component {
                         <div className="head-order">
                             <div className="order-total">Name:{order1.name}</div>
                             <div className="order-total">Order Total:{order1.grandTotal}</div>
+                            <div className="order-total">Date:{order1.createdAt} </div>
+
                         </div>
                         <div className="all-orders">
                             {order1.items.map((suborder) =>
@@ -141,7 +143,6 @@ export class Orders extends Component {
                                         <div className="order-data">Original Price:{suborder.productId.originalPrice} ₹ </div>
                                         <div className="order-data">Quantity:{suborder.qty}</div>
                                         <div className="order-data">Offer Price:{suborder.productId.offerPrice} ₹ </div>
-                                        <div className="order-data">Date:{suborder.productId.createdAt} </div>
                                         <div className="order-total">Grand Total:{suborder.total} ₹ </div>
                                         <div>
                                             <button className="feedback-btn" onClick={() => this.togglePopup(suborder)}>Complain</button>

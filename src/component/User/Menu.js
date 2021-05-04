@@ -13,9 +13,15 @@ class Menu extends React.Component {
       people: [],
       carts: [],
       counter: 0,
+      count: 0,
       priority: 1,
       quantity: 1
     };
+    this.incrementCount=this.incrementCount.bind(this);
+    this.DecrementCount=this.DecrementCount.bind(this);
+    this.incrementQTY=this.incrementQTY.bind(this);
+    this.DecrementQTY=this.DecrementQTY.bind(this)
+
   }
   async componentDidMount() {
     const url = "http://localhost:8020/categorypost/categories";
@@ -32,16 +38,6 @@ class Menu extends React.Component {
     this.searchArray = data 
   }
 
-  handlepriority(event) {
-    let priority = event.target.value
-    this.setState({ priority: priority });
-  }
-
-  handlequantity(event) {
-    let quantity = event.target.value
-    this.setState({ quantity: quantity });
-  }
-
   async addCart(_id, priority, quantity) {
     try {
       const response = await fetch("http://localhost:8020/cart/addtocart/" + _id, {
@@ -55,13 +51,38 @@ class Menu extends React.Component {
           Authorization: `Bearer ` + localStorage.getItem("token")
         },
       })
-      this.setState({ counter: this.state.counter + 1 })
+      this.setState({ counter: this.state.counter + 1 , priority:1 , quantity:1})
       let data = await response.json()
       console.log(data)
     } catch (err) {
       console.log(err)
     }
 
+  }
+
+  incrementCount(){
+    this.setState({
+      priority: this.state.priority + 1
+    });
+  } 
+
+  DecrementCount() {
+  	this.setState({
+  		priority: this.state.priority - 1
+  	});
+  }
+
+
+  incrementQTY(){
+    this.setState({
+      quantity: this.state.quantity + 1
+    });
+  } 
+
+  DecrementQTY() {
+  	this.setState({
+  		quantity: this.state.quantity - 1
+  	});
   }
 
 
@@ -104,7 +125,6 @@ class Menu extends React.Component {
                     <div className="content">
                       <div className="FoNt">{person.categoryName}</div>
                       <div className="FoNt">{person.name}</div>
-                      <div className="FoNt">{person.description}</div>
                     </div>
                   </div>
                 </div>
@@ -131,8 +151,18 @@ class Menu extends React.Component {
                       </div>
                       <div className="Font1">Description:- {person.description}</div>
                       <div >
-                        <input className="priority" type="number" priority="priority" placeholder="priority" onChange={(e) => this.handlepriority(e)} />
-                        <input className="priority" type="number" quantity="quantity" placeholder="quantity" onChange={(e) => this.handlequantity(e)} />
+                        <div className="priority-set">
+                            <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                            <p>Priority : {this.state.priority}</p>
+                            <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                      </div>
+
+                      <div className="Quantity-set">
+                            <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                            <p>Quantity : {this.state.quantity}</p>
+                            <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                      </div>
+                      
                       </div>
                       <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
                     </div>

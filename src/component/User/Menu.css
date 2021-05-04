@@ -15,17 +15,15 @@ justify-content: center;
     justify-content: space-between;
 }
 
-
-
-.items2 {
+/* .items2 {
     grid-area: overlap;
 }
 
 .items1 {
   grid-area: overlap;
 }
-
-.wrapper-nav{
+*/
+.wrapper-nav {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
@@ -41,12 +39,12 @@ justify-content: center;
     width: 20px;
 }
 
-.flex1{
+.flex1 {
     flex: 1;
     margin: 5px;
 }
 
-.flex2{
+.flex2 {
     flex: 3;
     margin: 5px;
 }
@@ -65,6 +63,9 @@ justify-content: center;
 .card .cardItem {
     box-sizing: border-box;
     border-radius: 5px;
+    height: 50px;
+    align-items: center;
+    width: 200px;
     cursor: pointer;
     border: 2px solid;
     margin: 40px;
@@ -72,7 +73,7 @@ justify-content: center;
     background: #12232E;
 }
 
-.cardItem:hover{
+.cardItem:hover {
     background-color: cadetblue;
 }
 
@@ -82,14 +83,11 @@ justify-content: center;
     flex-direction: column;
     flex-wrap:wrap;
     flex-flow: row wrap;
-    justify-content: space-between;  
     margin-top: 10px;
     margin-bottom: 20px;
-}
+} 
 
-
-
-.card1 .cardItem1{
+.card1 .cardItem1 {
     box-sizing: border-box;
     box-sizing: initial;
     border-radius: 5px;
@@ -124,13 +122,13 @@ justify-content: center;
     margin: 10px;
 }
 
-.addCart{
+.addCart {
     height: 30px;
     width: 130px;
 }
 
 
-.Font1{
+.Font1 {
     color: rgb(255, 255, 255);
 }
 
@@ -144,9 +142,7 @@ justify-content: center;
     font-style: normal;
     color: black;
     font-weight: 100;
-    margin-bottom: 15px;
-    margin-top: 15px;
- 
+    margin-top: 10px; 
 } 
 
 .button {
@@ -184,3 +180,35 @@ justify-content: center;
     flex-wrap: wrap;
 } */
 
+.priority-set{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+}
+
+.priority-btn{
+    height: 25px;
+    width: 25px;
+    font-weight: bold;
+}
+
+p {
+    color: white;
+    font-size: 16px;
+}
+
+.Quantity-set {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+}
+
+.Quantity-btn {
+    height: 25px;
+    width: 25px;
+    font-weight: bold;
+}
