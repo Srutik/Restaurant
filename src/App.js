@@ -38,7 +38,7 @@ import CookHome from './component/Cook/Cook-home';
 import CookForgot from './component/Cook/Cook-forgot';
 import CookReset from './component/Cook/Cook-reset';
 import OrderList from './component/Cook/OrderList';
-import Unavilableitem from './component/Cook/Unavilable-item';
+import MenuList from './component/Cook/MenuList';
 import DeliverdItem from './component/Cook/Deliverd-Item';
 import ProcessOrder from './component/Cook/Process-order';
 import RejectOrder from './component/Cook/Cancle-order';
@@ -46,10 +46,9 @@ import CookMenu from './component/Cook/MenuList';
 
 import Product from './component/Product';
 import Cart from './component/User/Cart';
-import MenuComponent from './component/User/MenuComponent';
 import Orders from './component/User/Orders';
 
-import Menus from './component/User/function-menu';
+import MenuData from './component/User/MenuList';
 
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 import './App.css';
@@ -92,10 +91,10 @@ function App() {
         <Route path='/cook-home' component={CookHome} />
         <Route path='/order-list' component={OrderList} />
         <Route path='/deliverd-item' component={DeliverdItem} />
-        <Route path='/unavilable-item' component={Unavilableitem} />
+        <Route path='/menu-list' component={MenuList} />
         <Route path='/process-order' component={ProcessOrder} />
         <Route path='/reject-order' component={RejectOrder} />
-        <Route path='menu-cook' component={CookMenu} />
+        <Route path='/menu-cook' component={CookMenu} />
 
         <Route path='/waiter-login' component={Waiter} />
         <Route path='/waiter-forgot' component={WaiterForgot} />
@@ -109,8 +108,7 @@ function App() {
         <Route path='/product' component={Product} />
         <Route path='/orders' component={Orders} />
         <Route path='/cart' component={Cart} />
-        <Route path='/menucomponent' component={MenuComponent} />
-        <Route path='/menufunction' component={Menus} />
+        <Route path='/menudata' component={MenuData} />
     
       </Switch>
       </Router>

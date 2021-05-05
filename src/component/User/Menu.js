@@ -1,6 +1,96 @@
 
 import React from "react";
 import './Menu.css';
+import { Link, useHistory } from 'react-router-dom';
+import UserNav from './User-Nav';
+
+class Menu extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            people: [],
+            carts: [],
+            counter: 0,
+            count: 0,
+            priority: 1,
+            quantity: 1
+        };
+
+    }
+    async componentDidMount() {
+        const url = "http://localhost:8020/categorypost/categories";
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({ people: data.categoryposts, loading: false });
+    }
+
+    render() {
+        const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
+
+        if (this.state.loading) {
+            return <div>
+                <div className="logo">
+                    <img height="100px" width="100px" src={url} />
+                </div>
+                <div className="state">loading...</div>
+            </div>
+        }
+
+        if (!this.state.people.length) {
+            return <div className="state">didn't get Menu</div>;
+        }
+
+        return (
+            <div>
+                        <UserNav />
+
+                <div className="Allpage-category">
+                    <div className="flex1">
+                        <div className="List">
+                            <h1 className="titles">Category List</h1>
+                        </div>
+                        <div className="card-category">
+                            {this.state.people.map(person => (
+                                <div key={person._id}>
+                                        <div className="cardItem-category">
+                                            <div className="category-content">
+                                                <div classname="image" >
+                                                    <img width="200px" height="200px" src={person.imageUrl} />
+                                                </div>
+                                                <div className="category-data">{person.categoryName}</div>
+                                                <div className="menubtn-margin">
+                                                <Link to={{
+                                        pathname: "/menudata",
+                                        state: { id: person._id }
+                                    }} >
+                                                    <button className="menu-btn">Menu</button>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                </div>
+            </div>);
+    }
+}
+
+export default Menu;
+
+
+
+
+
+
+
+/* 
+import React from "react";
+import './Menu.css';
 import MenuComponent from './MenuComponent';
 import {Link, useHistory} from 'react-router-dom';
 import UserNav from './User-Nav';
@@ -178,7 +268,7 @@ class Menu extends React.Component {
   }
 }
 
-export default Menu;
+export default Menu; */
 
 
 

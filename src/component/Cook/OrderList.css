@@ -105,6 +105,20 @@ margin: 10px;
 .accept-reject{
     display: flex;
     justify-content: center;
+    margin: 20px;
     flex-wrap: nowrap;
     flex-flow: row wrap;
+}
+
+.reject-btn{
+    height: 40px;
+    width: 130px;
+}
+
+.accept-btn{
+    height: 40px;
+    width: 130px;
+}
+.accept-margin{
+    margin: 10px;
 }

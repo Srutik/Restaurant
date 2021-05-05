@@ -315,7 +315,7 @@ class SecondPopup extends React.Component {
                     <div>
                         
                             <div className="container">
-                                    <h4>Edit Menu</h4>
+                                    <h4>Add Ingrediants</h4>
 
                                     <div className="file">
                                         <input

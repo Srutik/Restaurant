@@ -7,7 +7,7 @@ export const SidebarData = [
     },
     {
       title: 'Menu List',
-      path: '/menu-cook',
+      path: '/menu-list',
       cName: 'nav-text'
     },
     {

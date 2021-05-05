@@ -1,58 +1,143 @@
 import React from "react";
-import './Menu.css';
-import { Link } from 'react-router-dom';
+import './MenuList.css';
+import UserNav from './User-Nav';
 
 class MenuList extends React.Component {
-  state = {
-    loading: true,
-    people: [],
-    cart:[]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      people: [],
+      cart: [],
+      counter: 0,
+      priority: 1,
+      quantity: 1
+    };
+    this.incrementCount = this.incrementCount.bind(this);
+    this.DecrementCount = this.DecrementCount.bind(this);
+    this.incrementQTY = this.incrementQTY.bind(this);
+    this.DecrementQTY = this.DecrementQTY.bind(this)
 
-  async componentDidMount(_id) {
-        
-    const url = "http://192.168.0.61:8020/menu/menu/" + _id;
+  }
+  async componentDidMount() {
+
+    const url = "http://localhost:8020/menu/menu/" + this.props.location.state.id;
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ cart: data.product });
+    this.setState({ cart: data.products, loading: false });
     this.searchArray = data
   }
 
+  async addCart(_id, priority, quantity) {
+    try {
+      const response = await fetch("http://localhost:8020/cart/addtocart/" + _id, {
+        method: "POST",
+        body: JSON.stringify({
+          priority: priority,
+          qty: quantity,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ` + localStorage.getItem("token")
+        },
+      })
+      this.setState({ counter: this.state.counter + 1, priority: 1, quantity: 1 })
+      let data = await response.json()
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
+  incrementCount() {
+    this.setState({
+      priority: this.state.priority + 1
+    });
+  }
+
+  DecrementCount() {
+    this.setState({
+      priority: this.state.priority - 1
+    });
+  }
+
+
+  incrementQTY() {
+    this.setState({
+      quantity: this.state.quantity + 1
+    });
+  }
+
+  DecrementQTY() {
+    this.setState({
+      quantity: this.state.quantity - 1
+    });
+  }
+
+
   render() {
 
+    const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
+
     if (this.state.loading) {
-      return <div>loading...</div>;
+      return <div>
+        <div className="logo">
+          <img height="100px" width="100px" src={url} />
+        </div>
+        <div className="state">loading...</div>
+      </div>
     }
 
-    if (!this.state.people.length) {
-      return <div>didn't get Menu</div>;
+    if (!this.state.cart.length) {
+      return <div className="state">didn't get Menu</div>;
     }
-
     return (
-        <div>
-          <h1 className="List">Menu List</h1>
-        <div className="card">
-          {this.state.cart.map(person => (
-            <div key={person._id}>
-              <div className="cardItem">
-               <div classname="image" >
-                 <img src={person.imageUrl}/>
-              </div> 
-                <div className="content">
-                <div className="FoNt">{person.name}</div>
-                <div className="FoNt">{person.price}</div>
-                <div className="FoNt">{person.description}</div>
-                </div>
-                
-              </div>
-            </div>
-          ))}       
+      <div className="All-menu">
+        <UserNav />
+        <div className="flex2">
+          <div className="List">
+            <h1 className="titles">Menu List</h1>
           </div>
-  
-          </div>    );
-    }
-  }
-  
-  export default MenuList; 
+          <div className="card-menu" >
+            {this.state.cart.map(person => (
+              <div key={person._id}>
+                <div className="cardItem-menu">
+                  <div classname="image" >
+                    <img width="230px" height="230px" src={person.imageUrl} />
+                  </div>
+                  <div className="content">
+                    <div className="menu-data">{person.name}</div>
+                    <div className="menu-description">Description :- {person.description}</div>
+                    <div className="price">
+                      <div className="menu-price">price :- {person.originalPrice} ₹ </div>
+                    </div>
+                    <div >
+                      <div className="priority-set">
+                        <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                        <div classNam="p-data">Priority : {this.state.priority}</div>
+                        <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                      </div>
 
-  
+                      <div className="Quantity-set">
+                        <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                        <div className="q-data">Quantity : {this.state.quantity}</div>
+                        <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                      </div>
+
+                    </div>
+                    <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default MenuList;
+

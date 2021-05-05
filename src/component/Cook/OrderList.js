@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import './OrderList.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 import CookSidesection from './Cook-sidesection';
+
+
 
 export class OrderList extends Component {
     constructor(props) {
@@ -13,9 +18,8 @@ export class OrderList extends Component {
             AllOrder: [],
         };
 
-        this.togglePopup=this.togglePopup.bind(this);
-        this.toggleDeletePopup=this.toggleDeletePopup.bind(this)
-
+        this.togglePopup = this.togglePopup.bind(this);
+        this.toggleDeletePopup = this.toggleDeletePopup.bind(this)
 
     }
     togglePopup(order1) {
@@ -36,15 +40,15 @@ export class OrderList extends Component {
     async componentDidMount() {
         try {
             const url = "http://localhost:8020/order/list";
-            const response = await fetch(url,{
+            const response = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({
-                    OrderIs:"Pending",
+                    OrderIs: "Pending",
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
                     Authorization: `Bearer ` + localStorage.getItem("token")
-                }, 
+                },
             });
             const data = await response.json();
             this.setState({ AllOrder: data.list });
@@ -58,55 +62,75 @@ export class OrderList extends Component {
             <div>
                 <CookSidesection />
                 <div>
-            <div className="cookorder-List">
-                <h1 className="cookorder-title">Orders</h1>
-            </div>
-            <div className="cookorder-card">
-                {this.state.AllOrder.map(order1 => (
-                    <div key={order1._id}>
-                        <div className="order-head">
-                        <div className="cookorder-total">Name:{order1.name}</div>
-                        <div className="cookorder-total">Grand Total:{order1.grandTotal}</div>
-                        <div className="cookorder-total">Date:{order1.createdAt}</div>
-                        </div>
-                        <div className="cookall-orderbtn">
-                        <div className="cookall-orders">
-                            {order1.items.map((suborder) =>
-                                <div key={suborder._id}>
-                                    <div className="cooksingle-order">
-                                        <div classname="cookcart-images">
-                                            <img height="100px" width="100px" src={suborder.productId} />
-                                        </div>
-                                        <div className="cookorder-data">Quantity:{suborder.qty}</div>
-                                        <div className="cookorder-data">Priority:{suborder.priority}</div>
-                                        <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
-                                        <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
-                                    </div>
-                                </div>)}
-                        </div>
-                        <div className="accept-reject" >
-                        <button className="cart-button" onClick={() => this.togglePopup(order1)}>Accept Order</button>
-                        {this.state.showPopup ?
-                            <Popup _id={this.state.activeOrderId}
-                                text='Close Me'
-                                closePopup={() => this.togglePopup(order1)}
-                            />
-                            : null
-                        }
-                        <button className="cart-button" onClick={() => this.toggleDeletePopup(order1)}>Reject Order</button>
-                        {this.state.showDeletePopup ?
-                            <DeletePopup _id={this.state.activeOrderId}
-                                text='Close Me'
-                                closeDeletePopup={() => this.toggleDeletePopup(order1)}
-                            />
-                            : null
-                        }
-                        </div>
-                      </div>
+                    <div className="cookorder-List">
+                        <h1 className="cookorder-title">Orders</h1>
                     </div>
-                ))}
-            </div>
-        </div>       
+                    <div className="cookorder-card">
+                        {this.state.AllOrder.map(order1 => (
+                            <div key={order1._id}>
+                                <div className="order-head">
+                                    <div className="cookorder-total">Name:{order1.name}</div>
+                                    <div className="cookorder-total">Grand Total:{order1.grandTotal}</div>
+                                    <div className="cookorder-total">Date:{order1.createdAt}</div>
+                                </div>
+                                <div className="cookall-orderbtn">
+                                    <div className="cookall-orders">
+                                        {order1.items.map((suborder) =>
+                                            <div key={suborder._id}>
+                                                <div className="cooksingle-order">
+                                                    <div classname="cookcart-images">
+                                                        <img height="100px" width="100px" src={suborder.productId} />
+                                                    </div>
+                                                    <div className="cookorder-data">Quantity:{suborder.qty}</div>
+                                                    <div className="cookorder-data">Priority:{suborder.priority}</div>
+                                                    <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
+                                                    <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
+                                                </div>
+                                            </div>)}
+                                    </div>
+                                    <div className="accept-reject" >
+                                        <div className="accept-margin">
+                                    <Button
+                                            variant="contained"
+                                            color="primary"
+                                            className="accept-btn"
+                                            onClick={() => this.togglePopup(order1)}
+                                        >
+                                            Accept
+                                        </Button>
+                                        </div>
+
+                                        {this.state.showPopup ?
+                                            <Popup _id={this.state.activeOrderId}
+                                                text='Close Me'
+                                                closePopup={() => this.togglePopup(order1)}
+                                            />
+                                            : null
+                                        }
+                                        <div className="accept-margin">
+                                        <Button
+                                            variant="contained"
+                                            color="secondary"
+                                            className="reject-btn"
+                                            startIcon={<DeleteIcon />}
+                                            onClick={() => this.toggleDeletePopup(order1)}
+                                        >
+                                            Reject
+                                        </Button>
+                                        </div>
+                                        {this.state.showDeletePopup ?
+                                            <DeletePopup _id={this.state.activeOrderId}
+                                                text='Close Me'
+                                                closeDeletePopup={() => this.toggleDeletePopup(order1)}
+                                            />
+                                            : null
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
         )
     }
@@ -131,7 +155,7 @@ class Popup extends React.Component {
         } catch (err) {
             console.log(err)
         }
-        }
+    }
 
     render() {
         return (
@@ -174,7 +198,7 @@ class DeletePopup extends React.Component {
         } catch (err) {
             console.log(err)
         }
-        }
+    }
 
 
     render() {
