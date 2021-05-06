@@ -137,12 +137,12 @@ export class Orders extends Component {
                                 <div key={suborder._id}>
                                     <div className="single-order">
                                         <div classname="cart-images">
-                                            <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
+                                            <img height="100px" width="100px" src={suborder.product_id} />
                                         </div>
-                                        <div className="order-data">Name:{suborder.product_id.name}</div>
-                                        <div className="order-data">Original Price:{suborder.product_id.originalPrice} ₹ </div>
+                                        <div className="order-data">Name:{suborder.product_id}</div>
+                                        <div className="order-data">Original Price:{suborder.product_id} ₹ </div>
                                         <div className="order-data">Quantity:{suborder.qty}</div>
-                                        <div className="order-data">Offer Price:{suborder.product_id.offerPrice} ₹ </div>
+                                        <div className="order-data">Offer Price:{suborder.product_id} ₹ </div>
                                         <div className="order-total">Grand Total:{suborder.total} ₹ </div>
                                         <div>
                                             <button className="feedback-btn" onClick={() => this.togglePopup(suborder)}>Complain</button>

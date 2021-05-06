@@ -11,7 +11,6 @@ import UserHome from './component/User/User-Home';
 import Menu from './component/User/Menu';
 import subcategory from './component/User/Subcategory';
 import UserSection from './component/User/User-section';
-import MenuItem from './component/User/Menu';
 
 import Admin from './component/Admin/Admin-login';
 import AdminReset from './component/Admin/Admin-reset';
