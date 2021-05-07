@@ -1,0 +1,7 @@
+.cook-navend {
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-end;
+    color: rgb(124, 165, 201);
+
+}

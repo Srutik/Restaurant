@@ -73,7 +73,7 @@ function Navbar() {
               handleClose={togglePopup}
             />}
 
-<li className='nav-item'>
+            <li className='nav-item'>
               <Link
                 to='/orders'
                 className='nav-links'
@@ -91,6 +91,7 @@ function Navbar() {
                  <i class="fas fa-shopping-cart"></i>
               </Link>
             </li>
+
             <li>
               <Link
                 to='/'

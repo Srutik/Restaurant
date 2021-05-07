@@ -1,9 +1,52 @@
 .navbar2 {
   background: rgb(56,56,56);
-  background: radial-gradient(circle, rgba(56,56,56,1) 0%, rgba(25,25,25,1) 81%);    height: 80px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+  background: radial-gradient(circle, rgba(56,56,56,1) 0%, rgba(25,25,25,1) 81%);   
+   height: 80px;
+   display: grid;
+   align-items: center;
+}
+
+.managerbar-alldata {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navItem-title{
+  display: flex;
+  margin-top: 10px;
+}
+
+.navbar-end{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.manager-logoutbtn{
+  height: 40px;
+  width: 100px;
+  margin-right: 40px;
+  background-color: transparent;
+  border: solid white 2px;
+  color: white;
+  font-size: 15px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.manager-logoutbtn:hover{
+  background-color: white;
+  border: solid rgb(0, 0, 0) 2px;
+  color: black;
+  font-size: 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.DATA-VALUE{
+  margin-top: 20px;
+  align-items: center;
+  color: white;
 }
 
 .menu-bar {

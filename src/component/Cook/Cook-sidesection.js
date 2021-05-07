@@ -19,6 +19,9 @@ function CookSidesection() {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
           <div className="Fonts">Cook</div>
+          <div className="cook-navend">
+            <div></div>
+          </div>
         </div>
         <nav className={sidebar ? 'nav-menus active' : 'nav-menus'}>
           <ul className='nav-menu-items' onClick={showSidebar}>

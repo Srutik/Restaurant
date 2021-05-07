@@ -12,7 +12,6 @@
     flex-direction: column;
     flex-wrap:wrap;
     flex-flow: row wrap;
-    justify-content: center;  
 }
 
 .complaint-data .Single-complaint {

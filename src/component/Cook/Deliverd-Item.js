@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Deliverd-item.css';
 import CookSidesection from './Cook-sidesection';
 
+
 export class DeliverdItem extends Component {
     constructor(props) {
         super(props)
@@ -9,7 +10,7 @@ export class DeliverdItem extends Component {
             loading: true,
             showPopup: false,
             activeOrderId: null,
-            DoneOrder: [],
+            DoneOrder: []
         };
     }
 
@@ -45,7 +46,7 @@ export class DeliverdItem extends Component {
                     <div key={order1._id}>
                         <div className="done-head">
                             <div className="cookDone-total">Name:{order1.name}</div>
-                            <div className="cookDone-total">Order Total:{order1.grandTotal}</div>
+                            <div className="cookDone-total">Order Total:{order1.grandTotal.toFixed(2)}</div>
                             <div className="cookDone-total">Date:{order1.createdAt}</div>
                         </div>
                         <div className="cookDone-orderbtn">
@@ -54,12 +55,12 @@ export class DeliverdItem extends Component {
                                 <div key={suborder._id}>
                                     <div className="cooksingle-Doneorder">
                                         <div classname="cookcart-images">
-                                            <img height="100px" width="100px" src={suborder.productId.imageUrl} />
+                                            <img height="100px" width="100px" src={suborder.product_id} />
                                         </div>
                                         <div className="cookorder-data">Quantity:{suborder.qty}</div>
                                         <div className="cookorder-data">Priority:{suborder.priority}</div>
                                         <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
-                                        <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
+                                        <div className="cookorder-total">Grand Total:{suborder.total.toFixed(2)} ₹ </div>
                                     </div>
                                 </div>)}
                         </div>

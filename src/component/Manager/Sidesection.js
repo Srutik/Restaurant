@@ -15,10 +15,19 @@ function Sidesection() {
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
         <div className='navbar2'>
+          <div className="managerbar-alldata">
+          <div className="navItem-title">
           <Link to='#' className='menu-bar'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
           <div className="Fonts">Manager</div>
+          </div>
+          <div className="navbar-end">
+          <Link to='/'>
+            <button className="manager-logoutbtn">Logout</button>
+            </Link> 
+          </div>
+          </div>
         </div>
         <nav className={sidebar ? 'nav-menus active' : 'nav-menus'}>
           <ul className='nav-menu-items' onClick={showSidebar}>

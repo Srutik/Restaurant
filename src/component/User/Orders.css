@@ -7,17 +7,26 @@
     background-color: transparent;
 }
 
+.set-complaint{
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid;                               
+    margin-bottom: 80px;
+}
+
+.complaints-center{
+    text-align: center;
+    margin: 20px;
+}
+
 .all-orders{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     flex-flow: row wrap;
-    box-sizing: border-box;
-    border-radius: 5px;
+   
     cursor: pointer;
     text-align: center;
-    border: 2px solid;                               
-    margin-bottom: 80px;
 }
 
 .single-order {
@@ -67,7 +76,6 @@
 }
 
 .feedback-btn{
-    margin-top: 30px;
     height: 40px;
     width: 100px;
     text-align: center;

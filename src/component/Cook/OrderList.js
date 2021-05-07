@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './OrderList.css';
+import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -18,17 +19,25 @@ export class OrderList extends Component {
             AllOrder: [],
         };
 
-        this.togglePopup = this.togglePopup.bind(this);
         this.toggleDeletePopup = this.toggleDeletePopup.bind(this)
+        this.accept = this.accept.bind(this)
 
     }
-    togglePopup(order1) {
-        this.setState({
-            showPopup: !this.state.showPopup,
-            activeOrderId: order1._id
 
-        });
+    async accept(_id) {
+        try {
+            const response = await fetch("http://localhost:8020/order/receive/" + _id, {
+                method: "PUT",
+            })
+            let data = await response.json()
+            alert("Your Order is Received !")
+            console.log(data)
+            this.props.history.push("process-order");   
+        } catch (err) {
+            console.log(err)
+        }
     }
+
 
     toggleDeletePopup(order1) {
         this.setState({
@@ -94,19 +103,12 @@ export class OrderList extends Component {
                                             variant="contained"
                                             color="primary"
                                             className="accept-btn"
-                                            onClick={() => this.togglePopup(order1)}
+                                            onClick={() => this.accept(order1._id)}
                                         >
                                             Accept
                                         </Button>
                                         </div>
 
-                                        {this.state.showPopup ?
-                                            <Popup _id={this.state.activeOrderId}
-                                                text='Close Me'
-                                                closePopup={() => this.togglePopup(order1)}
-                                            />
-                                            : null
-                                        }
                                         <div className="accept-margin">
                                         <Button
                                             variant="contained"
@@ -137,49 +139,6 @@ export class OrderList extends Component {
 }
 
 export default OrderList;
-
-class Popup extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    async accept() {
-        try {
-            const response = await fetch("http://localhost:8020/order/receive/" + this.props._id, {
-                method: "PUT",
-            })
-            let data = await response.json()
-            alert("Your Order is Received !")
-            console.log(data)
-            window.location.reload(false)
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    render() {
-        return (
-            <div className='popup'>
-                <div className='popup_inner'>
-                    <h1>{this.props.text}</h1>
-                    <div className="close-set">
-                        <button className="close-btn" onClick={this.props.closePopup}>X</button>
-                    </div>
-
-                    <div>
-                        <div className="form-group">
-                            <label htmlFor="Order-Name">Order Accept</label>
-                            <div>Are You Sure to Confirm the Order.</div>
-                            <div className="order-btn">
-                                <button className="cart-button" onClick={() => this.accept()}>Accept</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
 
 class DeletePopup extends React.Component {
     constructor(props) {

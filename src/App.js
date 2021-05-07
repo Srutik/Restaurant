@@ -49,6 +49,9 @@ import Orders from './component/User/Orders';
 
 import MenuData from './component/User/MenuList';
 
+
+import MenuMenu from './component/User/MenuMenu';
+
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 import './App.css';
 
@@ -108,6 +111,7 @@ function App() {
         <Route path='/orders' component={Orders} />
         <Route path='/cart' component={Cart} />
         <Route path='/menudata' component={MenuData} />
+        <Route path='/menumenu' component={MenuMenu} />
     
       </Switch>
       </Router>

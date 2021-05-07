@@ -55,7 +55,7 @@ export class Processorder extends Component {
                     <div key={order._id}>
                         <div className="done-head">
                         <div className="cookorder-total">Name:{order.name}</div>
-                        <div className="cookorder-total">Grand Total:{order.grandTotal}</div>
+                        <div className="cookorder-total">Grand Total:{order.grandTotal.toFixed(2)}</div>
                         <div className="cookorder-total">Date:{order.createdAt}</div>
                         </div>
                         <div className="cookall-donebtn">
@@ -64,12 +64,12 @@ export class Processorder extends Component {
                                 <div key={suborder._id}>
                                     <div className="cooksingle-orderDone">
                                         <div classname="cookcart-images">
-                                            <img height="100px" width="100px" src={suborder.productId.imageUrl} />
+                                            <img height="100px" width="100px" src={suborder.product_id} />
                                         </div>
                                         <div className="cookorder-data">Quantity:{suborder.qty}</div>
                                         <div className="cookorder-data">Priority:{suborder.priority}</div>
                                         <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
-                                        <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
+                                        <div className="cookorder-total">Grand Total:{suborder.total.toFixed(2)} ₹ </div>
                                     </div>
                                 </div>)}
                         </div>
