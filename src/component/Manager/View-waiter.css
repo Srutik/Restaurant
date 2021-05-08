@@ -1,3 +1,9 @@
+
+.view-Data{
+    color: black;
+    margin: 10px;
+}
+
 .head-waiter{
     font-size: 20px;
     font-weight: bold;
@@ -34,3 +40,4 @@
     font-size: 15px;
     font-weight: bold;
 }
+

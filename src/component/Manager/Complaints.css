@@ -1,3 +1,77 @@
+.popup_complaints {
+    position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0,0,0, 0.7);
+  }
+
+  .popup_inner-complaints {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    height: 50%;
+    width: 40%;
+    background-image: linear-gradient(
+      180deg,
+      #ffe1aa 0,
+      #ffd4a7 16.67%,
+      #ffc7a2 33.33%,
+      #f2b99d 50%,
+      #e1ac97 66.67%,
+      #d1a092 83.33%,
+      #c2968d 100%
+    );
+  }
+
+  .pop-complaint{
+    height: 30px;
+    width: 50px;
+    font-weight: bold;
+}
+
+.popbtn2-complaints {
+  display: flex;
+  float: right;
+  margin-top: -270px;
+}
+.phone2-cook {
+    height: 30px;
+    width: 200px;
+  }
+  
+  .popbtn-update {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .view-Data{
+    color: black;
+    margin: 10px;
+}
+  .popbtn1-update {
+    height: 35px;
+    width: 80px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .label-discount {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+/* 
 .complain-label{
     font-size: 30px;
     font-weight: bold;
@@ -38,3 +112,4 @@
     font-size: 15px;
     font-weight: bold;
 }
+*/
