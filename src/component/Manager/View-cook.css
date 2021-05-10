@@ -99,6 +99,10 @@
     align-items: center;
   }
   
+  .view-Data{
+    color: black;
+    margin: 10px;
+}
   .popbtn1-cook {
     height: 35px;
     width: 80px;

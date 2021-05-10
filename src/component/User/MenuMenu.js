@@ -112,25 +112,6 @@ class MenuMenu extends React.Component {
           </div>
         </div>
 
-        <div className="Allpage">
-          <div className="flex1">
-            <div className="List">
-              <h1 className="titles">Category List</h1>
-            </div>
-            <div className="card">
-              {this.state.people.map(person => (
-                <div key={person._id}>
-                  <div className="cardItem" onClick={() => this.handleClick(person._id)}>
-                    <div className="content">
-                      <div className="FoNt">{person.categoryName}</div>
-                      <div className="FoNt">{person.name}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
           <div className="flex2">
           <div className="List">
               <h1 className="titles">Menu List</h1>
@@ -170,6 +151,25 @@ class MenuMenu extends React.Component {
               ))}
             </div>
 
+          </div>
+
+           <div className="Allpage">
+          <div className="flex1">
+            <div className="List">
+              <h1 className="titles">Category List</h1>
+            </div>
+            <div className="card">
+              {this.state.people.map(person => (
+                <div key={person._id}>
+                  <div className="cardItem" onClick={() => this.handleClick(person._id)}>
+                    <div className="content">
+                      <div className="FoNt">{person.categoryName}</div>
+                      <div className="FoNt">{person.name}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>

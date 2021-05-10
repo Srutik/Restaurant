@@ -49,10 +49,10 @@ export class AddCategory extends Component {
     handleUpload(e) {
         let file = this.state.file
         let categoryName = this.state.categoryName
-        let formdata = new FormData()
+        let formData = new FormData()
 
-        formdata.append('imageUrl', file)
-        formdata.append('categoryName', categoryName)
+        formData.append('imageUrl', file)
+        formData.append('categoryName', categoryName)
 
         axios({
             /*  url: `http://192.168.0.61:8020/categorypost/create`, */
@@ -61,7 +61,7 @@ export class AddCategory extends Component {
             headers: {
                 authorization: `your token`
             },
-            data: formdata
+            data: formData,
         }).then((res) => {
             this.componentDidMount()
 

@@ -192,8 +192,8 @@ class Cart extends Component {
                         <div key={item._id}>
                             <div className="cartItems1">
                                 <div classname="cart-images">
-                                    <img height="100px" width="100px" src={item.imageUrl} />
-                                    <div className="fontS">Name:{item.name}</div>
+                                    <img height="100px" width="100px" src={item.product_id.imageUrl} />
+                                    <div className="fontS">Name:{item.product_id.name}</div>
                                 </div>
                                 <div className="fontS">Priority:{item.priority}</div>
                                 <div className="fontS">Price:{item.productPrice} 🗙 Quantity:{item.qty}</div>
