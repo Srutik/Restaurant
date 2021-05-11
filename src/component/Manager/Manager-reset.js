@@ -4,8 +4,6 @@ import loginImg from '../login.svg';
 import {useHistory} from 'react-router-dom';
 import "../Login.scss";
 
-
-
  function Reset() {
 
   const [email,setEmail] = useState();

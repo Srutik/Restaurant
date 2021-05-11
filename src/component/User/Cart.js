@@ -182,6 +182,7 @@ class Cart extends Component {
         }
 
         return (
+            <div>
             <div className="cartbox1">
                 <div className="ListS">
                     <h1 className="titleS">Cart</h1>
@@ -224,6 +225,7 @@ class Cart extends Component {
                         }
                     </div>
                 </div>
+            </div>
             </div>
          
         );

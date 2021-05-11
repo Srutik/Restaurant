@@ -24,13 +24,13 @@
     flex-wrap: wrap;
     justify-content: center;
     flex-flow: row wrap;
-   
     cursor: pointer;
     text-align: center;
 }
 
 .single-order {
     display: flex;
+    justify-content: flex-start;
     flex-direction: row;
     flex-wrap: nowrap;
     cursor: pointer;
@@ -135,4 +135,5 @@
     flex-wrap: nowrap;
     padding: 20px;
     margin: auto;
+    justify-content: flex-start;
 }

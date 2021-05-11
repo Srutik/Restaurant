@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../Button';
 import PopUp from './Pop-up';
+import * as RiIcons from 'react-icons/ri';
+import { RiTableFill } from "react-icons/ri";
 import { HashLink as Link } from 'react-router-hash-link';
 import './User-Nav.scss';
 

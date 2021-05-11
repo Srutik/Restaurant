@@ -178,6 +178,7 @@ class viewCook extends Component {
          <td>Name</td>
          <td>Email</td>
          <td>Phone</td>
+         <td>Date</td>
          <td>Action</td>
       
        </table>
@@ -190,6 +191,7 @@ class viewCook extends Component {
                       <td> {cook.name}</td>
                       <td> {cook.email}</td>
                       <td>{cook.phone}</td>
+                      <td>{cook.created_At}</td>
                       <td>
                         <button className="sb sb1" onClick={() => this.togglePopup(cook)}>
                           Edit item

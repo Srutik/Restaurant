@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../Button';
+import * as RiIcons from 'react-icons/ri';
+import { RiTableFill } from "react-icons/ri";
 import { HashLink as Link} from 'react-router-hash-link';
 import './Navbar.scss'
 
@@ -48,6 +50,16 @@ function Navbar() {
             <li className='nav-item'>
               <Link
                 to='#card'
+                smooth
+                duration={2000}
+                className='nav-links'
+                onClick={closeMobileMenu}>
+                 Special Items
+              </Link>
+            </li>
+
+            <li className='nav-item'>
+              <Link
                 smooth
                 duration={2000}
                 className='nav-links'

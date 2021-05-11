@@ -44,9 +44,8 @@ class Menu extends React.Component {
         return (
             <div>
                         <UserNav />
-
                 <div className="Allpage-category">
-                    <div className="flex1">
+                    <div className="flex-menu">
                         <div className="List">
                             <h1 className="titles">Category List</h1>
                         </div>

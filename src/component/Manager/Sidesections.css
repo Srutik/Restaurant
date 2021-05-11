@@ -3,6 +3,9 @@
   background: radial-gradient(circle, rgba(56,56,56,1) 0%, rgba(25,25,25,1) 81%);   
    height: 80px;
    display: grid;
+  /* position: sticky;
+   top: 0;
+    z-index: 999; */
    align-items: center;
 }
 
@@ -19,6 +22,13 @@
 .navbar-end{
   display: flex;
   justify-content: flex-end;
+}
+
+.nav-links{
+  text-align: center;
+  margin: auto;
+  color: white; 
+  font-style: none;
 }
 
 .manager-logoutbtn{
