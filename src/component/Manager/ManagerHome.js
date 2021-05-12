@@ -85,7 +85,7 @@ export class Dashboard1 extends Component {
         <div className="flex-category1">
           <div className="flex-category2">
 
-            <Link className="link" >
+            <Link className="link" to="/all-order" >
             <h2>TOTAL ORDER
               <div>{this.state.order}</div>
             </h2>

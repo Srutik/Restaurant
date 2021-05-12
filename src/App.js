@@ -31,6 +31,7 @@ import AddIngrediants from './component/Manager/Add-Ingrediants';
 import Waiter from './component/Waiter/Waiter-login';
 import WaiterForgot from './component/Waiter/Waiter-forgot';
 import WaiterReset from './component/Waiter/Waiter-reset';
+import ManagerOrders from './component/Manager/All-order';
 
 import Cook from './component/Cook/Cook-login';
 import CookHome from './component/Cook/Cook-home';
@@ -86,6 +87,7 @@ function App() {
         <Route path='/viewWaiter' component={viewWaiter} />
         <Route path='/category' component={AddCategory} />
         <Route path='/add-ingrediant' component={AddIngrediants} />
+        <Route path='/all-order' component={ManagerOrders} />
 
         <Route path='/cook-login' component={Cook} />
         <Route path='/cook-forgot' component={CookForgot} />
