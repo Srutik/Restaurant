@@ -12,11 +12,20 @@
 .data-table {
     width: 100%;
   }
+  .table-grandtotal{
+    text-align: right;
+    margin-right: 30px;
+    font-weight: bold;
+  }
+
+  .table-data{
+    text-align: center;
+  }
   
   .data-table td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    text-align: center;
+    text-align: left;
   }
   
   .data-table tr:hover {
@@ -31,5 +40,6 @@
   .orders-table {
     padding: 25px;
     text-align: center;
+    font-weight: bold;
     background-color: rgb(120, 187, 187);
   }

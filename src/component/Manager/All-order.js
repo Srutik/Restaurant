@@ -66,7 +66,7 @@ class OrderList extends Component {
                 <Sidesection />
                 <div>
                     <div className="manager-List">
-                        <h1 className="manager-title">All Orders</h1>
+                        <h1 className="manager-title">Order History</h1>
                     </div>
                     <table className="orders-table">
 
@@ -81,10 +81,16 @@ class OrderList extends Component {
                             <table className="data-table">
                                 <tr>
                                     <td>{order1.name}</td>
-                                    <td>{order1.createdAt}</td>
-                                    <td>{order1.grandTotal}</td>
-                                    <td>{order1.OrderIs}</td>
-                                    <td>{order1.paymentMethod}</td>
+                                    <td>{order1.createdAt}</td>    
+                                    <td>
+                                        <div className="table-grandtotal">{order1.grandTotal} ₹</div> 
+                                    </td>
+                                    <td>
+                                        <div className="table-data">{order1.OrderIs}</div> 
+                                    </td>
+                                    <td>
+                                        <div className="table-data">{order1.paymentMethod}</div>
+                                    </td>
                                 </tr>
                             </table>
                         </div>

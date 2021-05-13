@@ -5,7 +5,7 @@
   .wt td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    text-align: center;
+    text-align: left;
   }
   
   .wt tr:hover {
@@ -20,6 +20,7 @@
   .wt1 td {
     padding: 25px;
     text-align: center;
+    font-weight: bold;
     background-color: rgb(120, 187, 187);
   }
   

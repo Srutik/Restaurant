@@ -60,17 +60,6 @@ function Navbar() {
 
             <li className='nav-item'>
               <Link
-                smooth
-                duration={2000}
-                className='nav-links'
-                onClick={closeMobileMenu}>
-                 Special Items
-              </Link>
-            </li>
-          
-
-            <li className='nav-item'>
-              <Link
                 to='#about'
                 smooth
                 duration={2000}

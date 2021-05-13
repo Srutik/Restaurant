@@ -124,7 +124,7 @@ class complaints extends Component {
          <Sidesection />
         <h1 className="view-Data">All Complaints</h1>
         <div>
-        <table className="wt1">
+        <table className="complaint-tables">
          
          <td>Title</td>
          <td>Complaint</td>
@@ -136,15 +136,17 @@ class complaints extends Component {
             <div key={complaint._id}>
               <div>
                 <div>
-                <table className="wt">
+                <table className="complaint-table">
                     <tr>
                       <td> {complaint.title}</td>
                       <td> {complaint.message}</td>
                       <td>{complaint.created_At}</td>
                       <td>
+                        <div className='complaint-table_btn'>
                         <button className="sb sb1" onClick={() => this.togglePopup(complaint)}>
                           Discount
                         </button>
+                        </div>
                       </td>
                     </tr>
                     </table>

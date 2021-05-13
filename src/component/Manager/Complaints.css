@@ -71,6 +71,163 @@
     font-size: 30px;
     margin-bottom: 50px;
   }
+  .complaint-table {
+    width: 100%;
+  }
+  
+  .complaint-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .complaint-table tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .complaint-tables {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .complaint-tables td {
+    padding: 25px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(120, 187, 187);
+  }
+  .complaint-table_btn{
+    text-align: center;
+  }
+  
+  .label-cook {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+  }
+  
+  .title-cook {
+    margin-top: 30px;
+    margin-bottom: 5px;
+    color: black;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .text1-cook {
+      margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text2-cook {
+    height: 30px;
+    width: 200px;
+  }
+  
+  .email-cook {
+    margin-bottom: 5px;
+    color: black;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .email1-cook {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .email2-cook {
+    height: 30px;
+    width: 200px;
+  }
+  
+  .phone-cook {
+    margin-bottom: 5px;
+    color: black;
+    font-size: 20px;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .phone1-cook {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .phone2-cook {
+    height: 30px;
+    width: 200px;
+  }
+  
+  .popbtn-cook {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .view-Data{
+    color: black;
+    margin: 10px;
+}
+  .popbtn1-cook {
+    height: 35px;
+    width: 80px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .pop-cook{
+      height: 30px;
+      width: 50px;
+      font-weight: bold;
+  }
+  
+  .popbtn2-cook {
+    display: flex;
+    float: right;
+    margin-top: -490px;
+  }
+  
+  .popbtn3-cook {
+    height: 25px;
+    width: 30px;
+  }
+
+  
+  .sb {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .sb1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+  }
+  
+  .sb1:hover {
+    background-color: #555555;
+    color: white;
+  }
+
 /* 
 .complain-label{
     font-size: 30px;
