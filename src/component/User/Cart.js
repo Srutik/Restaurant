@@ -100,9 +100,9 @@ class Popup extends React.Component {
 
                     <div>
                         <div className="form-group">
-                            <label htmlFor="Order-Name">Order Name</label>
+                            <label htmlFor="Order-Name">Order Note</label>
                             <div>
-                                <input className="input" type="text" name="name" placeholder="Enter Order Name" onChange={(e) => this.handleName(e)} />
+                                <input className="input" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
 
                             </div>
                             <div className="order-btn">

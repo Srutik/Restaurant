@@ -29,7 +29,7 @@ import "../Login.scss";
    localStorage.setItem("token", result.your_accessToken)
 
    if(result.role=="user"){
-     history.push("/UserHome")
+     history.push("/menu")
    }
    else if(result.role=="admin"){
       history.push("/admin-home")

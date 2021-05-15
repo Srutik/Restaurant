@@ -74,25 +74,41 @@ class OrderList extends Component {
                         <td>Date</td>
                         <td>GrandTotal</td>
                         <td>Status</td>
-                        <td>Payment Method</td>
+                        <td>Payment </td>
+                        <td>Action</td>
                     </table>
                     {this.state.orders.map(order1 => (
                         <div key={order1._id}>
                             <table className="data-table">
                                 <tr>
                                     <td>{order1.name}</td>
-                                    <td>{order1.createdAt}</td>    
+                                    <td >{order1.createdAt}</td>
                                     <td>
-                                        <div className="table-grandtotal">{order1.grandTotal} ₹</div> 
+                                        <div className="table-grandtotal">{order1.grandTotal} ₹</div>
                                     </td>
                                     <td>
-                                        <div className="table-data">{order1.OrderIs}</div> 
+                                        <div className="table-data">{order1.OrderIs}</div>
                                     </td>
                                     <td>
                                         <div className="table-data">{order1.paymentMethod}</div>
                                     </td>
+                                    <td>
+                                        <div className='complaint-table_btn'>
+                                            <button className="sb sb1" onClick={() => this.togglePopup(order1)}>
+                                                View Order
+                                            </button>
+                                        </div>
+                                    </td>
                                 </tr>
                             </table>
+
+                            {this.state.showPopup ? (
+                                <Popup
+                                    _id={this.state.id}
+                                    closePopup={() => this.togglePopup(order1)}
+                                />
+                            ) : null}
+
                         </div>
                     ))}
                 </div>
@@ -102,6 +118,82 @@ class OrderList extends Component {
 }
 
 export default OrderList;
+
+
+class Popup extends React.Component {
+
+    constructor(props) {
+
+        super(props);
+        this.state = {
+            loading: true,
+            order: [],
+        }
+    }
+
+    async componentDidMount() {
+        try {
+            const url = "http://localhost:8020/order/getorder/" + this.props._id;
+            const response = await fetch(url, {
+                method: "GET",
+                /* headers: {
+                     "Content-type": "application/json; charset=UTF-8",
+                     Authorization: `Bearer ` + localStorage.getItem("token")
+                 }, */
+            });
+            const data = await response.json();
+            this.setState({ order: data.order.items, loading: false });
+            this.searchArray = data
+        } catch (err) {
+        }
+    }
+
+
+    render() {
+        return (
+            <div className="popuporder">
+
+                <div className="popuporder_inner">
+                <div className="popbtn2-order">
+                            <button className="pop-order" onClick={this.props.closePopup}>X</button>
+                        </div>
+                    <div>
+                        <div>
+                            <div className="manager-List">
+                                <h1 className="manager-title">Order Details</h1>
+                            </div>
+                            <table className="orders-table">
+
+                                <td>Name</td>
+                                <td>Quantity</td>
+                                <td>Price</td>
+                                <td>Total</td>
+                            </table>
+                            {this.state.order.map(order1 => (
+                                <div key={order1._id}>
+                                    <table className="data-table">
+                                        <tr>
+                                            <td>{order1.product_id.name}</td>
+                                            <td >{order1.qty}</td>
+                                            <td>
+                                                <div className="table-data"  >{order1.productPrice} ₹</div>
+                                            </td>
+                                            <td>
+                                                <div className="table-grandtotal">{order1.total} ₹ </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            ))}
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        );
+    }
+}
 
 
 /*

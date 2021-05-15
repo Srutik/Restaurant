@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import { NavItem } from 'reactstrap';
 import './Revenue.css'
 
 class Revenue extends Component {

@@ -45,4 +45,9 @@ export const SidebarData = [
     path: '/complaint',
     cName: 'nav-text'
   },
+  {
+    title: 'Revenue',
+    path: '/revenue',
+    cName: 'nav-text'
+  },
 ];

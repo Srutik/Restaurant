@@ -1,6 +1,7 @@
 .order-card{
     display: inline-block;
     padding: 50px;
+    margin-left: 80px;
     justify-content: space-between;  
     margin-top: -10px;
     margin-bottom: 20px;
@@ -20,8 +21,7 @@
 }
 
 .all-orders{
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     justify-content: center;
     flex-flow: row wrap;
     cursor: pointer;
@@ -36,6 +36,16 @@
     cursor: pointer;
     margin: 20px;
     margin-bottom: 20px;
+}
+
+.All_order-Total{
+    display: flex;
+    align-items: center;
+}
+.Complanit-btn-total{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
 }
 
 .head-order{

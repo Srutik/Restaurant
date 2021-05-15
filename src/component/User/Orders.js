@@ -120,42 +120,44 @@ export class Orders extends Component {
 
     render() {
         return (
-        <div>
-            <UserNav />
-            <div className="order-List">
-                <h1 className="order-title">Your Orders</h1>
-            </div>
-            <div className="order-card">
-                {this.state.AllOrder.map(order => (
-                    <div key={order._id}>
-                        <div className="head-order">
-                            <div className="order-total">Name : {order.name}</div>
-                            <div className="order-total">Order Total : {order.grandTotal.toFixed(2)}</div>
-                            <div className="order-total">Order Status :- {order.OrderIs}</div>
-                            <div className="order-total">Date : {order.createdAt} </div>
+            <div>
+                <UserNav />
+                <div className="order-List">
+                    <h1 className="order-title">Your Orders</h1>
+                </div>
+                <div className="order-card">
+                    {this.state.AllOrder.map(order => (
+                        <div key={order._id}>
+                            <div className="head-order">
+                                <div className="order-total">Name : {order.name}</div>
+                                <div className="order-total">Order Status :- {order.OrderIs}</div>
+                                <div className="order-total">Date : {order.createdAt} </div>
 
-                        </div>
-                        <div className="set-complaint">
-                        <div className="all-orders">
-                            {order.items.map((suborder) =>
-                                <div key={suborder._id}>
-                                    <div className="single-order">
-                                        <div classname="cart-images">
-                                            <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
+                            </div>
+                            <div className="set-complaint">
+                                <div className="all-orders">
+                                    {order.items.map((suborder) =>
+                                        <div key={suborder._id}>
+                                            <div className="single-order">
+                                                <div classname="cart-images">
+                                                    <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
+                                                </div>
+                                                <div className="order-data">Name : {suborder.product_id.name}</div>
+                                                <div className="order-data">Original Price : {suborder.product_id.originalPrice} ₹ </div>
+                                                <div className="order-data">Quantity : {suborder.qty}</div>
+                                                <div className="order-data">Offer Price : {suborder.product_id.offerPrice} ₹ </div>
+                                                <div className="order-total">Item Status : {suborder.progress}</div>
+                                                <div className="order-total">Total : {suborder.total.toFixed(2)} ₹ </div>
+                                            </div>
+                                            <div>
+
+                                            </div>
+                                        </div>)}
+                                    <div className='Complanit-btn-total'>
+                                        <div className="All_order-Total">
+                                            <div className="order-total">Order Total : {order.grandTotal.toFixed(2)}</div>
                                         </div>
-                                        <div className="order-data">Name : {suborder.product_id.name}</div>
-                                        <div className="order-data">Original Price : {suborder.product_id.originalPrice} ₹ </div>
-                                        <div className="order-data">Quantity : {suborder.qty}</div>
-                                        <div className="order-data">Offer Price : {suborder.product_id.offerPrice} ₹ </div>
-                                        <div className="order-total">Item Status : {suborder.progress}</div>
-                                        <div className="order-total">Grand Total : {suborder.total.toFixed(2)} ₹ </div>
-                                    </div>
-                                    <div>
-                                            
-                                    </div>
-                                </div>)}
-                        </div>
-                        <div className="complaints-center">
+                                        <div className="complaints-center">
                                             <button className="feedback-btn" onClick={() => this.togglePopup(order)}>Complain</button>
                                             {this.state.showPopup ?
                                                 <Popup _id={this.state.activeItemId}
@@ -165,11 +167,13 @@ export class Orders extends Component {
                                                 : null
                                             }
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
         )
     }
 }

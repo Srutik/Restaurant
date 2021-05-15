@@ -33,12 +33,6 @@ export class Dashboard extends Component {
     return (
 
       <div>
-          <Sidesection />
-
-        <h1 className='title-managerpage'>
-          Dashboard
-          </h1>
-
         <div className="flex-category1">
 
           <div className="flex-category2">
@@ -109,6 +103,50 @@ export class Dashboard2 extends Component {
     super(props);
     this.state = {
 
+      complaints: "",
+
+    }
+  }
+
+  async componentDidMount() {
+
+    const url = "http://localhost:8020/complaint/complaints"
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ complaints: data.totalItems });
+    this.searchArray = data
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="flex-category1">
+          <div className="flex-category2">
+
+            <Link className="link" to="/complaint" >
+            <h2>TOTAL COMPLAINT
+              <div>{this.state.complaints}</div>
+            </h2>
+            
+
+
+            <h3> <FaClipboardList style={{ fontSize: 40 }} /> </h3>
+            </Link>
+          </div>
+        </div>
+         
+      </div>         
+    )
+  }
+}
+
+export class Dashboard3 extends Component {
+
+  constructor(props) {
+
+    super(props);
+    this.state = {
+
       rating:""
 
     }
@@ -126,11 +164,19 @@ export class Dashboard2 extends Component {
   render() {
 
     return (
-
       <div>
+         <Sidesection />
+
+<h1 className='title-managerpage'>
+  Dashboard
+  </h1>
+      
+
+      <div className="DashView-Manager">
 
         <Dashboard />
         <Dashboard1 />
+        <Dashboard2 />
 
         <div className="flex-category3">
           <div className="flex-category4">
@@ -146,12 +192,13 @@ export class Dashboard2 extends Component {
         </div>
 
       </div>
+      </div>
     )
   }
 
 }
 
-export default Dashboard2;
+export default Dashboard3;
 
 
 /* 
