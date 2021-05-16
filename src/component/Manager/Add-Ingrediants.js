@@ -1,371 +1,389 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './Add-category.css';
+import './Add-ingrediants.css';
 import Sidesection from './Sidesection';
 
-export class AddIngrediants extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            file: null,
-            IngredientName: null,
-            price: null,
-            description: null,
-            people: [],
-            id: null,
-            showSecondPopup: false,
-            activeOrderId: null,
-            loading: true,
-            imageUrl: "",
-        }
+class Ingrediants extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: null,
+      name: null,
+      people: [],
+      showSecondPopup: false,
+      loading: true,
+      imageUrl: "",
+      Price: "",
+      description: "",
+      offer: "",
+      activeId1: null,
+    };
+    this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
+  }
 
-        this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
+  async componentDidMount() {
+    const url = "http://localhost:8020/ingredients/getIngredients";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ people: data.ingredients, loading: false });
+    this.searchArray = data;
+  }
 
-    }
+  handleItemName(e) {
+    let name = e.target.value;
+    this.setState({ name: name });
+  }
 
-    async componentDidMount() {
-        /* const url = "http://192.168.0.61:8020/categorypost/categories";
-         const response = await fetch(url);
-         const data = await response.json();
-         this.setState({ people: data.categoryposts,loading: false ,id:data.categoryposts._id}); */
+  handleItemFile(e) {
+    let file = e.target.files[0];
+    this.setState({ file: file });
+  }
 
-        const url = "http://localhost:8020/ingredients/getingredients";
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({ people: data.ingredients, loading: false });
-        this.searchArray = data
-    }
+  handleItemPrice(e) {
+    let Price = e.target.value;
+    this.setState({ Price: Price });
+  }
 
-    handleName(e) {
-        let IngredientName = e.target.value
-        this.setState({ IngredientName : IngredientName })
-    }
+  handleItemOffer(e) {
+    let offer = e.target.value;
+    this.setState({ offer: offer });
+  }
 
-    handleFile(e) {
-        let file = e.target.files[0]
-        this.setState({ file: file })
-    }
+  handleItemDescription(e) {
+    let description = e.target.value;
+    this.setState({ description: description });
+  }
 
-    handlePrice(e) {
-        let price = e.target.value
-        this.setState({ price : price })
-    }
+  async handleItemUpload(e) {
+    e.preventDefault();
 
-    handleDescription(e) {
-        let description = e.target.value
-        this.setState({ description: description })
-    }
+    let file = this.state.file;
+    let name = this.state.name;
+    let Price = this.state.Price;
+    let description = this.state.description;
 
-    handleUpload(e) {
-        let file = this.state.file
-        let IngredientName = this.state.IngredientName
-        let price = this.state.price
-        let description = this.state.description
+    let formdata = new FormData();
 
-        let formdata = new FormData()
+    formdata.append("imageUrl", file);
+    formdata.append("IngredientName", name);
+    formdata.append("price", Price);
+    formdata.append("description", description);
 
-        formdata.append('imageUrl', file)
-        formdata.append('IngredientName', IngredientName)
-        formdata.append('price', price)
-        formdata.append('description', description)
+    axios({
+      url: "http://localhost:8020/ingredients/addingredient/" ,
+      method: "POST",
+      headers: {
+        authorization: `your token`,
+      },
+      data: formdata,
+    }).then(
+      (res) => {
+        this.componentDidMount();
+      },
+      (err) => {}
+    );
+  }
 
+  toggleSecondPopup(data) {
+    this.setState({
+      showSecondPopup: !this.state.showSecondPopup,
+      activeId1: data._id,
+    });
+  }
 
-        axios({
-            /*  url: `http://192.168.0.61:8020/categorypost/create`, */
-            url: `http://localhost:8020/ingredients/addIngredient`,
-            method: "POST",
-            headers: {
-                authorization: `your token`
-            },
-            data: formdata
-        }).then((res) => {
-            this.componentDidMount()
+  delete(_id) {
+    fetch("http://localhost:8020/ingredients/delete/" + _id, {
+      method: "DELETE",
+    }).then((data) => {
+      data.json().then((resp) => {
+        alert("Are You Sure Delete");
+        this.componentDidMount();
+      });
+    });
+  }
 
-        }, (err) => {
-        }
-        )
-
-    }
-
-    delete(id) {
-        /* fetch('http://192.168.0.61:8020/categorypost/delete/' + id,*/
-        fetch('http://localhost:8020/ingredients/delete/' + id,
-            {
-                method: 'DELETE',
-            }).then((data) => {
-                data.json().then((resp) => {
-                    alert("Are You Sure Delete")
-                    this.componentDidMount()
-                })
-            })
-    }
-
-    update(id) {
-
-        fetch('http://localhost:8080/ingredients/update/' + id, {
-            method: 'PUT',
-            header: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
-    }
-
-    toggleSecondPopup(data) {
-        this.setState({
-            showSecondPopup: !this.state.showSecondPopup,
-            activeId1: data._id
-
-        });
-    }
-
-
-    renderTableData() {
-        return this.state.people.map((data) => {
-            return (
-
-                <tr key={data._id}>
-
-                    <td><div className="category-name">{data.IngredientName}</div></td>
-
-                    <td><img height="100px" width="100px" className="img" src={data.imageUrl} /></td>
-
-                    <td><div className="category-name">{data.price}</div></td>
-
-                    <td><div className="category-name">{data.description}</div></td>
-
-
-                    <td><div className="button2">
-                        <button className="cart-button" onClick={() => this.toggleSecondPopup(data)}>Update Item</button>
+  render() {
+    return (
+        <div>
+      <Sidesection />
+          <div>
+            <label className="il">Add Ingrediants</label>
+            <div>
+              <div className="add-i">
+                <div className="add-i1">
+                  <div className="add-i2">
+                  <div className="ingredient-title">Image</div>
+                    <div className="ingredient-text1">
+                      <input
+                        type="file"
+                        name="file"
+                        onChange={(e) => this.handleItemFile(e)}
+                      />
                     </div>
-                    </td>
+
+                    <div className="ingredient-title">Ingrediant Name</div>
+                    <div className="ingredient-text1">
+                      <input
+                        className="ingredient-text2"
+                        type="text"
+                        name="name"
+                        onChange={(e) => this.handleItemName(e)}
+                      />
+                    </div>
+
+                    <div className="ingredient-title">Price (RS)</div>
+                    <div className="price-i2">
+                      <input
+                        className="price-i3"
+                        type="number"
+                        name="originalPrice"
+                        min="1"
+                        onChange={(e) => this.handleItemPrice(e)}
+                      />
+                    </div>
+
+                    <div className="ingredient-title">Description</div>
+                    <div className="dsc-i1">
+                      <textarea
+                        className="dsc-i2"
+                        type="text"
+                        name="description"
+                        onChange={(e) => this.handleItemDescription(e)}
+                      />
+                    </div>
+
+                    <div className="upload-button1">
+                      <button
+                        className="upload-btn1"
+                        onClick={(e) => this.handleItemUpload(e)}
+                      >
+                        Upload
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="itn"> Ingredients</label>
+
+            <div>
+              <table className="ai">
+                <td>Title</td>
+                <td>Image</td>
+                <td>Price</td>
+                <td>Description</td>
+                <td>Action</td>
+              </table>
+
+              {this.state.people.map((data) => (
+                <div key={data._id}>
+                  <div>
+                    <div>
+                      <table className="ai1">
+                        <tr>
+                          <td> {data.IngredientName}</td>
+                          <td>
+                            <img
+                              height="80px"
+                              width="80px"
+                              className="img"
+                              src={data.imageUrl}
+                            />
+                          </td>
+
+                          <td>{data.price} ₹</td>
+                          <td>{data.description}</td>
+
+                          <td>
+                            <button
+                              className="eitb eitb1"
+                              onClick={() => this.toggleSecondPopup(data)}
+                            >
+                              Edit Item
+                            </button>
+
+                            <button
+                              className="eitb eitb1"
+                              onClick={() => this.delete(data._id)}
+                              variant="danger"
+                            >
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
 
                     {this.state.showSecondPopup ? (
-                        <SecondPopup
-                            id1={this.state.activeId1}
-                            closeSecondPopup={() => this.toggleSecondPopup(data)}
-                        />
+                      <SecondPopup
+                        id1={this.state.activeId1}
+                        closeSecondPopup={() => this.toggleSecondPopup(data)}
+                      />
                     ) : null}
-
-                    <td>
-                        <div className="button3">
-                            <button className="btn3" onClick={() => this.delete(data._id)}> Delete </button>
-                        </div></td>
-
-                </tr>
-            )
-        })
-    }
-
-    render() {
-        return (
-            <div className="manager-additem">
-                <Sidesection />
-                <div className="add-category">
-                    <div className="container">
-
-                        <h4>Add Ingrediants</h4>
-
-                        <div className="file">
-                            <input type="file" multiple name="file" onChange={(e) => this.handleFile(e)} />
-                        </div>
-
-                        <div className="title">Title</div>
-                        <div className="text1">
-                            <input type="text" className="text2" multiple name="IngredientName" onChange={(e) => this.handleName(e)} />
-                        </div>
-
-                        <div className="title">Price</div>
-                        <div className="text1">
-                            <input type="text" className="text2" multiple name="price" onChange={(e) => this.handlePrice(e)} />
-                        </div>
-
-                        <div className="title">Description</div>
-                        <div className="text1">
-                            <input type="text" className="text2" multiple name="description" onChange={(e) => this.handleDescription(e)} />
-                        </div>
-
-                        <div className="button1">
-                            <button className="btn1" onClick={(e) => this.handleUpload(e)}>Upload</button>
-                        </div>
-                    </div>
-
-                    <div className="container1">
-
-                        <div className="category-manager">Categories</div>
-
-                        <div className="content">
-
-                            <table id="table" >
-
-                                <tr>
-                                    <th width="130px" height="50px">Title</th>
-                                    <th width="170px" height="50px">Image</th>
-                                    <th width="550px" height="50px">Price</th>
-                                    <th width="550px" height="50px">Description</th>
-                                    <th width="550px" height="50px">Action</th>
-                                </tr>
-
-                            </table>
-
-                        </div>
-
-                        <div>
-
-                            <table id='students'>
-                                <tbody>
-                                    {this.renderTableData()}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-
+              ))}
             </div>
-        )
-    }
+          </div>
+      </div>
+    );
+  }
 }
 
-export default AddIngrediants;
-
+export default Ingrediants;
 
 class SecondPopup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            file: null,
-            name: null,
-            showSecondPopup: false,
-            loading: true,
-            imageUrl: "",
-            originalPrice: "",
-            description: "",
-            offer: "",
-            price:"",
-            activeId1:null,
-        };
-        this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: null,
+      name: null,
+      showSecondPopup: false,
+      loading: true,
+      imageUrl: "",
+      originalPrice: "",
+      description: "",
+      activeId1: null,
+    };
+    this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
+  }
 
-    }
+  EditItemName(e) {
+    let name = e.target.value;
+    this.setState({ name: name });
+  }
 
-    EditItemName(e) {
-        let name = e.target.value;
-        this.setState({ name: name });
-    }
+  EditItemFile(e) {
+    let file = e.target.files[0];
+    this.setState({ file: file });
+  }
 
-    EditItemFile(e) {
-        let file = e.target.files[0];
-        this.setState({ file: file });
-    }
+  EditItemPrice(e) {
+    let originalPrice = e.target.value;
+    this.setState({ originalPrice: originalPrice });
+  }
 
-    EditItemPrice(e) {
-        let originalPrice = e.target.value;
-        this.setState({ originalPrice: originalPrice });
-    }
+  EditItemDescription(e) {
+    let description = e.target.value;
+    this.setState({ description: description });
+  }
 
-    EditItemDescription(e) {
-        let description = e.target.value;
-        this.setState({ description: description });
-    }
+  async handleItemEdit(e) {
+    e.preventDefault();
 
-    async handleItemEdit(e) {
-        e.preventDefault();
+    let file = this.state.file;
+    let name = this.state.name;
+    let description = this.state.description;
 
-        let file = this.state.file;
-        let name = this.state.name;
-        let description = this.state.description;
+    let formdata = new FormData();
 
-        let formdata = new FormData();
+    formdata.append("imageUrl", file);
+    formdata.append("IngredientName", name);
+    formdata.append("description", description);
 
-        formdata.append("imageUrl", file);
-        formdata.append("IngredientName", name);
-        formdata.append("description", description);
+    axios({
+      url: `http://localhost:8020/ingredients/update/` + this.props.id1,
+      method: "PUT",
+      headers: {
+        authorization: `your token`,
+      },
+      data: formdata,
+    }).then(
+      (res) => {
+        this.setState({ showSecondPopup: !this.state.showSecondPopup });
+      },
+      (err) => {}
+    );
+  }
 
-        axios({
-            url: `http://localhost:8020/ingredients/update/` + this.props.id1,
-            method: "PUT",
-            headers: {
-                authorization: `your token`,
-            },
-            data: formdata,
-        }).then(
-            (res) => {this.setState({showSecondPopup: !this.state.showSecondPopup})
-            },
-            (err) => { }
-        );
-    }
+  toggleSecondPopup(data) {
+    this.setState({
+      showSecondPopup: !this.state.showSecondPopup,
+      activeId1: data._id,
+    });
+  }
 
-    toggleSecondPopup(data) {
-        this.setState({
-            showSecondPopup: !this.state.showSecondPopup,
-            activeId1: data._id
-        });
-    }
-
-
-    render() {
-        return (
-            <div className='Secondpopup-item'>
-                <div className='SecondpopupItem_inner'>
-                    <div className="secondcloseItem-set">
-                        <button className="secondcloseItem-btn" onClick={this.props.closeSecondPopup}>X</button>
-                    </div>
-
-                    <div>
-                        
-                            <div className="container">
-                                    <h4>Add Ingrediants</h4>
-
-                                    <div className="file">
-                                        <input
-                                            type="file"
-                                            name="file"
-                                            onChange={(e) => this.EditItemFile(e)}
-                                        />
-                                    </div>
-
-                                    <div className="Itemtitle">Title</div>
-                                    <div className="text1">
-                                        <input
-                                            className="text2"
-                                            type="text"
-                                            name="name"
-                                            onChange={(e) => this.EditItemName(e)}
-                                        />
-                                    </div>
-
-                                    <div className="price1">Price (RS)</div>
-                                    <div className="price2">
-                                        <input
-                                            className="price3"
-                                            type="number"
-                                            name="originalPrice"
-                                            min="1"
-                                            onChange={(e) => this.EditItemPrice(e)}
-                                        />
-                                    </div>
+  render() {
+    return (
+      <div className="add-ip">
+        <div className="add-ip1">
+          <div className="secondcloseItem-set">
+            <button
+              className="secondcloseItem-btn"
+              onClick={this.props.closeSecondPopup}
+            >
+              X
+            </button>
+          </div>
 
 
-                                    <div className="dsc">Description</div>
-                                    <div className="dsc1">
-                                        <textarea
-                                            className="dsc2"
-                                            type="text"
-                                            name="description"
-                                            onChange={(e) => this.EditItemDescription(e)}
-                                        />
-                                    </div>
 
-                                    <div className="button4">
-                                        <button className="btn4" onClick={(e) => this.handleItemEdit(e)}>
-                                            Submit
-                                        </button>
-                                    </div>
-                            </div>
-                    </div>
-                </div>
+          <div>
+    <label className="il">Edit Item</label>
+    <div>
+      <div className="add-i">
+        <div className="add-i1">
+          <div className="add-i2">
+          <div className="ingredient-title">Image</div>
+            <div className="ingredient-text1">
+              <input
+                type="file"
+                name="file"
+                onChange={(e) => this.EditItemFile(e)}
+                />
             </div>
-        );
-    }
+
+            <div className="ingredient-title">Ingredient-Title</div>
+            <div className="text-i1">
+              <input
+                className="text-i2"
+                type="text"
+                name="name"
+                onChange={(e) => this.EditItemName(e)}
+                />
+            </div>
+
+            <div className="ingredient-title">Price (RS)</div>
+            <div className="price-i2">
+              <input
+                className="price-i3"
+                type="number"
+                name="originalPrice"
+                min="1"
+                onChange={(e) => this.EditItemPrice(e)}
+                />
+            </div>
+
+            <div className="ingredient-title">Description</div>
+            <div className="dsc-i1">
+              <textarea
+                className="dsc-i2"
+                type="text"
+                name="description"
+                onChange={(e) => this.EditItemDescription(e)}
+                />
+            </div>
+
+            <div className="upload-button1">
+              <button
+                className="upload-btn1"
+                onClick={(e) => this.handleItemEdit(e)}>
+                Upload
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+</div>
+</div>
+);
+}
 }

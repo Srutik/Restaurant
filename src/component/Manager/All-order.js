@@ -150,6 +150,22 @@ class Popup extends React.Component {
 
 
     render() {
+        const url = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
+
+        if (this.state.loading) {
+          return (
+            <div>
+              <div className="logo">
+                <img height="100px" width="100px" src={url} />
+              </div>
+              <div className="state">loading...</div>
+            </div>
+          );
+        }
+    
+        if (!this.state.order.length) {
+          return <div className="state">You not have any Complaints</div>;
+        }
         return (
             <div className="popuporder">
 

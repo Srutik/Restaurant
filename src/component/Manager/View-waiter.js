@@ -57,27 +57,27 @@ class Popup extends React.Component {
 
   render() {
     return (
-      <div className="popupcook">
+      <div className="popupwaiter">
 
-        <div className="popupcook_inner">
+        <div className="popupwaiter_inner">
 
-          <label className="label-cook">Edit Cook Details</label>
+          <label className="label-waiter">Edit Waiter Details</label>
 
             <div className="dtl">
-            <div className="title-cook">Name</div>
-            <div className="text1-cook">
+            <div className="title-waiter">Name</div>
+            <div className="text1-waiter">
               <input
-                className="text2-cook"
+                className="text2-waiter"
                 type="text"
                 name="name"
                 onChange={(e) => this.handleName(e)}
               />
             </div>
 
-            <div className="email-cook">Email</div>
-            <div className="email1-cook">
+            <div className="email-waiter">Email</div>
+            <div className="email1-waiter">
               <input
-                className="email2-cook"
+                className="email2-waiter"
                 type="text"
                 name="email"
                
@@ -85,24 +85,24 @@ class Popup extends React.Component {
               />
             </div>
 
-            <div className="phone-cook">Phone</div>
-            <div className="phone1-cook">
+            <div className="phone-waiter">Phone</div>
+            <div className="phone1-waiter">
               <input
-                className="phone2-cook"
+                className="phone2-waiter"
                 type="text"
                 name="phone"
                 onChange={(e) => this.handlePhone(e)}
               />
             </div>
 
-            <div className="popbtn-cook">
-              <button className="popbtn1-cook" onClick={(e) => this.update(e)}>
+            <div className="popbtn-waiter">
+              <button className="popbtn1-waiter" onClick={(e) => this.update(e)}>
                 Update
               </button>
             </div>
 
-        <div className="popbtn2-cook">
-            <button className="pop-cook" onClick={this.props.closePopup}>X</button>
+        <div className="popbtn2-waiter">
+            <button className="pop-waiter" onClick={this.props.closePopup}>X</button>
             </div>
           </div>
           </div>
@@ -171,9 +171,9 @@ class viewWaiter extends Component {
     return (
       <div>
          <Sidesection />
-        <h1 className="view-Data">All Waiter</h1>
+        <h1 className="view-Data_waiter">All Waiter</h1>
         <div>
-        <table className="wt1">
+        <table className="waitert1">
          
          <td>Name</td>
          <td>Email</td>
@@ -186,18 +186,18 @@ class viewWaiter extends Component {
             <div key={cook._id}>
               <div>
                 <div>
-                <table className="wt">
+                <table className="waitert">
                     <tr>
                       <td> {cook.name}</td>
                       <td> {cook.email}</td>
                       <td>{cook.phone}</td>
                       <td>{cook.created_At}</td>
                       <td>
-                        <button className="sb sb1" onClick={() => this.togglePopup(cook)}>
+                        <button className="s-b s-b1" onClick={() => this.togglePopup(cook)}>
                           Edit item
                         </button>
 
-                        <button className="sb sb1"
+                        <button className="s-b s-b1"
                           onClick={() => this.delete(cook._id)}
                           variant="danger"
                         >
