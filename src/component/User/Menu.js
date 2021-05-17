@@ -75,6 +75,47 @@ class Menu extends React.Component {
                     </div>
 
                 </div>
+
+                <div className="flex2">
+          <div className="List">
+              <h1 className="titles">Menu List</h1>
+            </div>
+              <div className="card1" >
+              {this.state.carts.map(person => (
+                <div key={person._id}>
+                  <div className="cardItem1">
+                    <div classname="image" >
+                      <img width="200px" height="200px" src={person.imageUrl} />
+                    </div>
+                    <div className="content">
+                      <div className="Font1">Name:- {person.name}</div>
+                      <div className="price">
+                        <div className="Font1">price:- {person.originalPrice} ₹ </div>
+                      </div>
+                      <div className="Font1">Description:- {person.description}</div>
+                      <div >
+                        <div className="priority-set">
+                            <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                            <p>Priority : {this.state.priority}</p>
+                            <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                      </div>
+
+                      <div className="Quantity-set">
+                            <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                            <p>Quantity : {this.state.quantity}</p>
+                            <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                      </div>
+                      
+                      </div>
+                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
+                    </div>
+
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
             </div>);
     }
 }

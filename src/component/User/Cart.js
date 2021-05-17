@@ -158,6 +158,25 @@ class Cart extends Component {
         }
     }
 
+    async placeOrder() {
+        try {
+            const response = await fetch("http://localhost:8020/order/makeorder", {
+                method: "PUT",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ` + localStorage.getItem("token")
+                },
+            })
+            let data = await response.json()
+            alert("Your Order is Submit !")
+            console.log(data)
+            window.location.reload(false)
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
 
     render() {
 
@@ -207,6 +226,16 @@ class Cart extends Component {
                 
 
                     <div className="Buttons">
+
+                    <button className="cart-button" onClick={this.togglePopup.bind(this)}>Make Note</button>
+                        {this.state.showPopup ?
+                            <Popup
+                                text='Close Me'
+                                closePopup={this.togglePopup.bind(this)}
+                            />
+                            : null
+                        }
+
                         <button className="cart-button" onClick={this.toggleDeletePopup.bind(this)}>Delete Cart</button>
                         {this.state.showDeletePopup ?
                             <DeletePopup
@@ -215,14 +244,9 @@ class Cart extends Component {
                             />
                             : null
                         }
-                        <button className="cart-button" onClick={this.togglePopup.bind(this)}>Make Order</button>
-                        {this.state.showPopup ?
-                            <Popup
-                                text='Close Me'
-                                closePopup={this.togglePopup.bind(this)}
-                            />
-                            : null
-                        }
+
+                        <button className="cart-button" onClick={this.placeOrder.bind(this)}>Place Order</button>
+
                     </div>
                 </div>
             </div>
