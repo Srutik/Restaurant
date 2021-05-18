@@ -1,6 +1,5 @@
 import React from "react";
 import './MenuList.css';
-import UserNav from './User-Nav';
 
 class MenuList extends React.Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class MenuList extends React.Component {
   }
   async componentDidMount() {
 
-    const url = "http://localhost:8020/menu/menu/" + this.props.location.state.id;
+    const url = "http://localhost:8020/menu/menues";
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ cart: data.products, loading: false });
@@ -78,31 +77,16 @@ class MenuList extends React.Component {
 
   render() {
 
-    const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
-
-    if (this.state.loading) {
-      return <div>
-        <div className="logo">
-          <img height="100px" width="100px" src={url} />
-        </div>
-        <div className="state">loading...</div>
-      </div>
-    }
-
-    if (!this.state.cart.length) {
-      return <div className="state">didn't get Menu</div>;
-    }
     return (
       <div className="All-menu">
-        <UserNav />
         <div className="flex2">
-          <div className="List">
+          <div className="Lists">
             <h1 className="titles">Menu List</h1>
           </div>
-          <div className="card-menu" >
+          <div className="card-menus" >
             {this.state.cart.map(person => (
               <div key={person._id}>
-                <div className="cardItem-menu">
+                <div className="cardItem-menus">
                   <div classname="image" >
                     <img width="230px" height="230px" src={person.imageUrl} />
                   </div>
@@ -140,4 +124,7 @@ class MenuList extends React.Component {
 }
 
 export default MenuList;
+
+
+
 

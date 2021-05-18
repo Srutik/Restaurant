@@ -35,17 +35,21 @@
     flex-wrap: nowrap;
     cursor: pointer;
     margin: 20px;
-    margin-bottom: 20px;
 }
 
 .All_order-Total{
-    display: flex;
+    display: grid;
     align-items: center;
 }
-.Complanit-btn-total{
+
+.order-grandtotal{
     display: flex;
+    font-weight: bold;
     flex-wrap: nowrap;
-    justify-content: center;
+    padding: 20px;
+    justify-content: flex-end;
+    margin-right: 30px;
+
 }
 
 .head-order{

@@ -1,13 +1,13 @@
 import React from 'react';
 import UserNav from './User-Nav';
-import UserSection from './User-section';
+import UserProfile from './User-Profile';
 import './User-Home.css';
 
 function UserHome() {
     return (
         <>
         <UserNav />
-        <UserSection />
+        <UserProfile />
         </>
     )
 }

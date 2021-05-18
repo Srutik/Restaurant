@@ -50,16 +50,20 @@ function Navbar() {
         </div>
         <ul className={click ? 'navmenu-menu active' : 'navmenu-menu'}>
             <li className='nav-item'>
-              <Link to='/UserHome' smooth duration={2000} className='nav-links' onClick={closeMobileMenu}>
-                Home
-              </Link>
-            </li>
-            <li className='nav-item'>
               <Link
                 to='/menu'
                 className='nav-links'
                 onClick={closeMobileMenu}>
                  Menu
+              </Link>
+            </li>
+
+            <li className='nav-item'>
+              <Link
+                to='/Offer-page'
+                className='nav-links'
+                onClick={closeMobileMenu}>
+                 Offers
               </Link>
             </li>
 
@@ -90,7 +94,18 @@ function Navbar() {
                 className='nav-links'
                 onClick={closeMobileMenu}>
                  Cart
-                 <i class="fas fa-shopping-cart"></i>
+                 <div className="icon_link">
+                    <i class="fas fa-shopping-cart"></i>
+                 </div>
+              </Link>
+            </li>
+
+            <li className='nav-item'>
+              <Link to='/UserProfile'  className='nav-links' onClick={closeMobileMenu}>
+                Profile
+                <div className="icon_link">
+                    <i class="fas fa-user-circle"></i>
+                </div>
               </Link>
             </li>
 

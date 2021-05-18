@@ -1,137 +1,6 @@
-
 import React from "react";
 import './Menu.css';
-import { Link, useHistory } from 'react-router-dom';
-import UserNav from './User-Nav';
-
-class Menu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-            people: [],
-            carts: [],
-            counter: 0,
-            count: 0,
-            priority: 1,
-            quantity: 1
-        };
-
-    }
-    async componentDidMount() {
-        const url = "http://localhost:8020/categorypost/categories";
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({ people: data.categoryposts, loading: false });
-    }
-
-    render() {
-        const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
-
-        if (this.state.loading) {
-            return <div>
-                <div className="logo">
-                    <img height="100px" width="100px" src={url} />
-                </div>
-                <div className="state">loading...</div>
-            </div>
-        }
-
-        if (!this.state.people.length) {
-            return <div className="state">didn't get Menu</div>;
-        }
-
-        return (
-            <div>
-                        <UserNav />
-                <div className="Allpage-category">
-                    <div className="flex-menu">
-                        <div className="List">
-                            <h1 className="titles">Category List</h1>
-                        </div>
-                        <div className="card-category">
-                            {this.state.people.map(person => (
-                                <div key={person._id}>
-                                        <div className="cardItem-category">
-                                            <div className="category-content">
-                                                <div classname="image" >
-                                                    <img width="200px" height="200px" src={person.imageUrl} />
-                                                </div>
-                                                <div className="category-data">{person.categoryName}</div>
-                                                <div className="menubtn-margin">
-                                                <Link to={{
-                                        pathname: "/menudata",
-                                        state: { id: person._id }
-                                    }} >
-                                                    <button className="menu-btn">Menu</button>
-                                                    </Link>
-                                                </div>
-                                            </div>
-                                        </div>
-                                 
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="flex2">
-          <div className="List">
-              <h1 className="titles">Menu List</h1>
-            </div>
-              <div className="card1" >
-              {this.state.carts.map(person => (
-                <div key={person._id}>
-                  <div className="cardItem1">
-                    <div classname="image" >
-                      <img width="200px" height="200px" src={person.imageUrl} />
-                    </div>
-                    <div className="content">
-                      <div className="Font1">Name:- {person.name}</div>
-                      <div className="price">
-                        <div className="Font1">price:- {person.originalPrice} ₹ </div>
-                      </div>
-                      <div className="Font1">Description:- {person.description}</div>
-                      <div >
-                        <div className="priority-set">
-                            <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
-                            <p>Priority : {this.state.priority}</p>
-                            <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
-                      </div>
-
-                      <div className="Quantity-set">
-                            <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
-                            <p>Quantity : {this.state.quantity}</p>
-                            <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
-                      </div>
-                      
-                      </div>
-                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
-                    </div>
-
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          </div>
-            </div>);
-    }
-}
-
-export default Menu;
-
-
-
-
-
-
-
-/* 
-import React from "react";
-import './Menu.css';
-import MenuComponent from './MenuComponent';
+import MenuList from './MenuList';
 import {Link, useHistory} from 'react-router-dom';
 import UserNav from './User-Nav';
 
@@ -157,14 +26,14 @@ class Menu extends React.Component {
     const url = "http://localhost:8020/categorypost/categories";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ people: data.categoryposts, loading: false });
+    this.setState({ people: data.categoryposts, });
   }
 
    async handleClick(_id) {
     const url = "http://localhost:8020/menu/menu/" + _id;
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ carts: data.products, });
+    this.setState({ carts: data.products, loading:false });
     this.searchArray = data 
   }
 
@@ -217,14 +86,33 @@ class Menu extends React.Component {
 
 
   render() {
-    const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
-
     if (this.state.loading) {
       return <div>
-        <div className="logo">
-          <img height="100px" width="100px" src={url} />
-        </div>
-        <div className="state">loading...</div>
+            <UserNav />
+
+        <div className="Allpage">
+        <div className="flex1">
+            <div className="Lists">
+              <h1 className="titles">Category List</h1>
+            </div>
+            <div className="card">
+              {this.state.people.map(person => (
+                <div key={person._id}>
+                  <div className="cardItems" onClick={() => this.handleClick(person._id)}>
+                    <div className="content">
+                      <div className="category-content">{person.categoryName}</div>
+                      <div className="category-content">{person.name}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+            <MenuList />    
+          </div>
+
+
       </div>
     }
 
@@ -234,27 +122,20 @@ class Menu extends React.Component {
 
     return (
       <div>
-      <div className="wrapper-nav" >
-        <div className="items2">
-        <UserNav />
-        </div>
-        <div className="items1">
-          <div className="counter">{this.state.counter}</div>
-          </div>
-        </div>
+         <UserNav />
 
         <div className="Allpage">
           <div className="flex1">
-            <div className="List">
+            <div className="Lists">
               <h1 className="titles">Category List</h1>
             </div>
             <div className="card">
               {this.state.people.map(person => (
                 <div key={person._id}>
-                  <div className="cardItem" onClick={() => this.handleClick(person._id)}>
+                  <div className="cardItems" onClick={() => this.handleClick(person._id)}>
                     <div className="content">
-                      <div className="FoNt">{person.categoryName}</div>
-                      <div className="FoNt">{person.name}</div>
+                      <div className="category-content">{person.categoryName}</div>
+                      <div className="category-content">{person.name}</div>
                     </div>
                   </div>
                 </div>
@@ -263,56 +144,60 @@ class Menu extends React.Component {
           </div>
 
           <div className="flex2">
-            <div className="List">
-              <h1 className="titles">Menu List</h1>
-            </div>
-            <div className="card1" >
-              {this.state.carts.map(person => (
-                <div key={person._id}>
-                  <div className="CategoryName">{person.categoryName}</div>
-                  <div className="cardItem1">
-                    <div classname="image" >
-                      <img width="200px" height="200px" src={person.imageUrl} />
+          <div className="Lists">
+            <h1 className="titles">Menu List</h1>
+          </div>
+          <div className="card-menus" >
+            {this.state.carts.map(person => (
+              <div key={person._id}>
+                <div className="cardItem-menus">
+                  <div classname="image" >
+                    <img width="230px" height="230px" src={person.imageUrl} />
+                  </div>
+                  <div className="content">
+                    <div className="menu-data">{person.name}</div>
+                    <div className="menu-description">Description :- {person.description}</div>
+                    <div className="price">
+                      <div className="menu-price">price :- {person.originalPrice} ₹ </div>
                     </div>
-                    <div className="content">
-                      <div className="Font1">Name:- {person.name}</div>
-                      <div className="price">
-                        <div className="Font1">price:- {person.originalPrice} ₹ </div>
-                      </div>
-                      <div className="Font1">Description:- {person.description}</div>
-                      <div >
-                        <div className="priority-set">
-                            <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
-                            <p>Priority : {this.state.priority}</p>
-                            <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                    <div >
+                      <div className="priority-set">
+                        <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                        <div classNam="p-data">Priority : {this.state.priority}</div>
+                        <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
                       </div>
 
                       <div className="Quantity-set">
-                            <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
-                            <p>Quantity : {this.state.quantity}</p>
-                            <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                        <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                        <div className="q-data">Quantity : {this.state.quantity}</div>
+                        <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
                       </div>
-                      
-                      </div>
-                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
-                    </div>
 
+                    </div>
+                    <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
                   </div>
+
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+        </div>
 
         </div>
       </div>);
   }
 }
 
-export default Menu; */
+export default Menu; 
 
 
 
 /*
+
+
+<div className="items1">
+          <div className="counter">{this.state.counter}</div>
+          </div>
 
 import React from "react";
 import './Menu.css';

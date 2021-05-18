@@ -10,7 +10,8 @@ import Reset from './component/User/Reset';
 import UserHome from './component/User/User-Home';
 import Menu from './component/User/Menu';
 import subcategory from './component/User/Subcategory';
-import UserSection from './component/User/User-section';
+import UserProfile from './component/User/User-Profile';
+import OfferPage from './component/User/OfferPage';
 
 import Admin from './component/Admin/Admin-login';
 import AdminReset from './component/Admin/Admin-reset';
@@ -50,9 +51,6 @@ import Cart from './component/User/Cart';
 import Orders from './component/User/Orders';
 
 import MenuData from './component/User/MenuList';
-
-
-import MenuMenu from './component/User/MenuMenu';
 
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 import './App.css';
@@ -108,14 +106,14 @@ function App() {
 
         <Route path='/menu' component={Menu} /> 
         <Route path='/subcategory/:_id' component={subcategory} />
-        <Route path='/UserHome' component={UserHome} />
-        <Route path='/UserSection' component={UserSection} />
+        <Route path='/UserProfile' component={UserHome} />
+        <Route path='/profile' component={UserProfile} />
+        <Route path='/Offer-page' component={OfferPage} />
 
         <Route path='/product' component={Product} />
         <Route path='/orders' component={Orders} />
         <Route path='/cart' component={Cart} />
         <Route path='/menudata' component={MenuData} />
-        <Route path='/menumenu' component={MenuMenu} />
     
       </Switch>
       </Router>

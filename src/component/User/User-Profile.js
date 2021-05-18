@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../User/User-Section.css'
+import './User-Profile.css';
 import ReactStars from "react-rating-stars-component";
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
@@ -100,27 +100,6 @@ class FeedbackPopup extends React.Component {
 
   }
 }
-class Popup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: null
-    }
-  }
-
-  render() {
-    return (
-      <div className='popup-offer'>
-        <div className='popup-offer_inner'>
-          <h1>{this.props.text}</h1>
-          <div className="closeoffer-set">
-            <button className="closeoffer-btn" onClick={this.props.closePopup}>X</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
 
 class Usersection extends Component {
   constructor(props) {
@@ -146,17 +125,7 @@ class Usersection extends Component {
     return (
       <div>
         <div className='hero'>
-          <h1>--- Welcome To ---</h1>
-          <p> Dine Fine </p>
           <div className="btn-section">
-            <button className="offer-button" onClick={this.togglePopup.bind(this)} >See Offers</button>
-            {this.state.showPopup ?
-              <Popup
-                text='Close Me'
-                closePopup={this.togglePopup.bind(this)}
-              />
-              : null
-            }
             <Link  to='/menu'>
             <button className="offer-button" >Menu</button>
             </Link>
@@ -177,3 +146,40 @@ class Usersection extends Component {
 }
 
 export default Usersection;
+
+
+
+/* 
+
+<button className="offer-button" onClick={this.togglePopup.bind(this)} >See Offers</button>
+{this.state.showPopup ?
+  <Popup
+    text='Close Me'
+    closePopup={this.togglePopup.bind(this)}
+  />
+  : null
+}
+
+
+class Popup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: null
+    }
+  }
+
+  render() {
+    return (
+      <div className='popup-offer'>
+        <div className='popup-offer_inner'>
+          <h1>{this.props.text}</h1>
+          <div className="closeoffer-set">
+            <button className="closeoffer-btn" onClick={this.props.closePopup}>X</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+ */

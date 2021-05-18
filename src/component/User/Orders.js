@@ -153,10 +153,13 @@ export class Orders extends Component {
 
                                             </div>
                                         </div>)}
-                                    <div className='Complanit-btn-total'>
+
+                                        <div>_____________________________________________________________________________________________________________________________</div>
+
                                         <div className="All_order-Total">
-                                            <div className="order-total">Order Total : {order.grandTotal.toFixed(2)}</div>
+                                            <div className="order-grandtotal">Order Total : {order.grandTotal.toFixed(2)} ₹ </div>
                                         </div>
+                                    
                                         <div className="complaints-center">
                                             <button className="feedback-btn" onClick={() => this.togglePopup(order)}>Complain</button>
                                             {this.state.showPopup ?
@@ -167,7 +170,6 @@ export class Orders extends Component {
                                                 : null
                                             }
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
