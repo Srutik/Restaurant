@@ -13,7 +13,6 @@ import './Pop-up.css';
 
     }
 
-     
     async componentDidMount() {
         try{
             const url = "http://localhost:8020/cart/getcart";

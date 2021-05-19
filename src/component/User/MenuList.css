@@ -1,25 +1,4 @@
-img {
-   
-    justify-content: center;   
-    }
-    
-    .image {
-        height: 200px;
-        width: 200px;
-    }
-    
-    .Allpage-menu {
-        display: flex;
-        margin: 5px;
-        
-    }
 
-    .All-menu{
-        background:#DDAF94;
-        justify-content: space-between;
-        height: 100%;
-        width: 100%;
-    }
     
     /* .items2 {
         grid-area: overlap;

@@ -30,16 +30,16 @@ class OrderList extends Component {
                  }, */
             });
             const data = await response.json();
-            this.setState({ orders: data.orders, loading: false });
+            this.setState({ orders: data.orders, loading: false, });
             this.searchArray = data
         } catch (err) {
         }
     }
 
-    togglePopup(order1) {
+    togglePopup(_id) {
         this.setState({
             showPopup: !this.state.showPopup,
-            id: order1._id,
+            id: _id,
         });
     }
 
@@ -58,7 +58,7 @@ class OrderList extends Component {
         }
 
         if (!this.state.orders.length) {
-            return <div className="state">You not have any Complaints</div>;
+            return <div className="state">You not have any Orders</div>;
         }
 
         return (
@@ -94,7 +94,7 @@ class OrderList extends Component {
                                     </td>
                                     <td>
                                         <div className='complaint-table_btn'>
-                                            <button className="sb sb1" onClick={() => this.togglePopup(order1)}>
+                                            <button className="sb sb1" onClick={() => this.togglePopup(order1._id)}>
                                                 View Order
                                             </button>
                                         </div>
@@ -105,7 +105,7 @@ class OrderList extends Component {
                             {this.state.showPopup ? (
                                 <Popup
                                     _id={this.state.id}
-                                    closePopup={() => this.togglePopup(order1)}
+                                    closePopup={() => this.togglePopup(order1._id)}
                                 />
                             ) : null}
 
@@ -128,6 +128,7 @@ class Popup extends React.Component {
         this.state = {
             loading: true,
             order: [],
+            total: ''
         }
     }
 
@@ -142,7 +143,7 @@ class Popup extends React.Component {
                  }, */
             });
             const data = await response.json();
-            this.setState({ order: data.order.items, loading: false });
+            this.setState({ order: data.order.items, loading: false, total: data.order.grandTotal });
             this.searchArray = data
         } catch (err) {
         }
@@ -150,36 +151,21 @@ class Popup extends React.Component {
 
 
     render() {
-        const url = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
 
-        if (this.state.loading) {
-          return (
-            <div>
-              <div className="logo">
-                <img height="100px" width="100px" src={url} />
-              </div>
-              <div className="state">loading...</div>
-            </div>
-          );
-        }
-    
-        if (!this.state.order.length) {
-          return <div className="state">You not have any Complaints</div>;
-        }
-        
         return (
             <div className="popuporder">
 
                 <div className="popuporder_inner">
-                <div className="popbtn2-order">
-                            <button className="pop-order" onClick={this.props.closePopup}>X</button>
-                        </div>
+                    <div className="popbtn2-order">
+                        <button className="pop-order" onClick={this.props.closePopup}>X</button>
+                    </div>
                     <div>
                         <div>
                             <div className="manager-List">
                                 <h1 className="manager-title">Order Details</h1>
                             </div>
-                            <table className="orders-table">
+
+                            <table className="orders-table_data">
 
                                 <td>Name</td>
                                 <td>Quantity</td>
@@ -202,6 +188,10 @@ class Popup extends React.Component {
                                     </table>
                                 </div>
                             ))}
+
+                            <div className="orderTotal_popup">
+                                Grand Total : {this.state.total}
+                            </div>
 
                         </div>
                     </div>

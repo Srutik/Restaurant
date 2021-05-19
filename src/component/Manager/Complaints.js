@@ -150,7 +150,6 @@ class complaints extends Component {
                       </td>
                     </tr>
                     </table>
-                
                 </div>
 
                 {this.state.showPopup ? (
