@@ -125,8 +125,9 @@ export class Orders extends Component {
                 <div className="order-List">
                     <h1 className="order-title">Your Orders</h1>
                 </div>
-                <div className="order-card">
+                <div>
                     {this.state.AllOrder.map(order => (
+                     <div className="order-card">
                         <div key={order._id}>
                             <div className="head-order">
                                 <div className="order-total">Name : {order.name}</div>
@@ -134,47 +135,64 @@ export class Orders extends Component {
                                 <div className="order-total">Date : {order.createdAt} </div>
 
                             </div>
-                            <div className="set-complaint">
-                                <div className="all-orders">
-                                    {order.items.map((suborder) =>
-                                        <div key={suborder._id}>
-                                            <div className="single-order">
-                                                <div classname="cart-images">
-                                                    <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
-                                                </div>
-                                                <div className="order-data">Name : {suborder.product_id.name}</div>
-                                                <div className="order-data">Original Price : {suborder.product_id.originalPrice} ₹ </div>
-                                                <div className="order-data">Quantity : {suborder.qty}</div>
-                                                <div className="order-data">Offer Price : {suborder.product_id.offerPrice} ₹ </div>
-                                                <div className="order-total">Item Status : {suborder.progress}</div>
-                                                <div className="order-total">Total : {suborder.total.toFixed(2)} ₹ </div>
-                                            </div>
-                                            <div>
 
-                                            </div>
-                                        </div>)}
+                            <table className="order_t">
+                                <td>Image</td>
+                                <td>Name</td>
+                                <td>Quantity</td>
+                                <td>Price</td>
+                                <td>Status</td>
+                                <td>
+                                    <div>Total(Rs) </div>
+                                </td>
+                            </table>
 
-                                        <div>_____________________________________________________________________________________________________________________________</div>
+                            <div>
+                                {order.items.map((suborder) =>
+                                    <div key={suborder._id}>
+                                        <table className="orders_t1">
+                                            <tr>
+                                                <td>
+                                                    <div classname="cart-images">
+                                                        <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
+                                                    </div>
+                                                </td>
+                                                <td>{suborder.product_id.name}</td>
+                                                <td>{suborder.qty} x</td>
+                                                <td>
+                                                    <div className="table-Originaltotal"> {suborder.product_id.originalPrice} ₹</div>
+                                                </td>
+                                                <td>{suborder.progress}</td>
+                                                <td>
+                                                    <div className="table-total"> {suborder.total.toFixed(2)} ₹</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div>
 
-                                        <div className="All_order-Total">
-                                            <div className="order-grandtotal">Order Total : {order.grandTotal.toFixed(2)} ₹ </div>
                                         </div>
-                                    
-                                        <div className="complaints-center">
-                                            <button className="feedback-btn" onClick={() => this.togglePopup(order)}>Complain</button>
-                                            {this.state.showPopup ?
-                                                <Popup _id={this.state.activeItemId}
-                                                    text='Close Me'
-                                                    closePopup={() => this.togglePopup(order)}
-                                                />
-                                                : null
-                                            }
-                                        </div>
+                                    </div>)}
+                                <div className="All_order-Total">
+                                    <div className="order-grandtotal"> Total : {order.grandTotal.toFixed(2)} ₹ </div>
+                                </div>
+
+                                <div className="complaints-center">
+                                    <button className="feedback-btn" onClick={() => this.togglePopup(order)}>Complain</button>
+                                    {this.state.showPopup ?
+                                        <Popup _id={this.state.activeItemId}
+                                            text='Close Me'
+                                            closePopup={() => this.togglePopup(order)}
+                                        />
+                                        : null
+                                    }
                                 </div>
                             </div>
                         </div>
+                        </div>
                     ))}
                 </div>
+
+
             </div>
         )
     }

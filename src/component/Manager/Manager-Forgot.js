@@ -39,9 +39,6 @@ import "../Login.scss";
   }
    }
    
-  
-
- 
  /* const handleClick = async e => {
     e.preventDefault();
     const token = await loginUser ({

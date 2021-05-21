@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './User-Profile.css';
+import Profile from './user-shape.png';
 import ReactStars from "react-rating-stars-component";
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
@@ -124,12 +125,19 @@ class Usersection extends Component {
   render() {
     return (
       <div>
-        <div className='hero'>
-          <div className="btn-section">
-            <Link  to='/menu'>
-            <button className="offer-button" >Menu</button>
-            </Link>
+        <div className="Profile_section">
+                    <div className="Profile-title">Hello ! </div>
+                    <div className="Profile-data">Manager Your Profile !</div>
+                    <div className="Profile-img" >
+                        <img height="200px" width="200px" src={Profile} />
+                    </div>
+                </div>
+                <div className="activity-section">
+                <div className="activity-data">
+                    <div className="activity-type">Activity</div>
+                </div>
 
+          <div className="btn-section">
             <button className="offer-button" onClick={this.toggleFeedbackPopup.bind(this)} >Feedback</button>
             {this.state.showFeedbackPopup ?
               <FeedbackPopup
@@ -139,14 +147,23 @@ class Usersection extends Component {
               : null
             }
           </div>
-        </div>
+
+          <div className="btn-section">
+            <Link to='/orders'>
+            <button className="offer-button" >Order History</button>
+            </Link>
+          </div>
+
+          <div className="btn-section">
+            <button className="offer-button" >Sign Out</button>
+          </div>
+          </div>
       </div>
     )
   }
 }
 
 export default Usersection;
-
 
 
 /* 

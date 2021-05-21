@@ -149,7 +149,6 @@ class Popup extends React.Component {
         }
     }
 
-
     render() {
 
         return (
@@ -204,7 +203,6 @@ class Popup extends React.Component {
 
 
 /*
-
   <div className="cookall-orderbtn">
                                     <div className="cookall-orders">
                                         {order1.items.map((suborder) =>

@@ -12,6 +12,7 @@ import Menu from './component/User/Menu';
 import subcategory from './component/User/Subcategory';
 import UserProfile from './component/User/User-Profile';
 import OfferPage from './component/User/OfferPage';
+import OrdersList from './component/User/Order-List';
 
 import Admin from './component/Admin/Admin-login';
 import AdminReset from './component/Admin/Admin-reset';
@@ -109,7 +110,7 @@ function App() {
         <Route path='/UserProfile' component={UserHome} />
         <Route path='/profile' component={UserProfile} />
         <Route path='/Offer-page' component={OfferPage} />
-
+        <Route path='/orderslist' component={OrdersList} />
         <Route path='/product' component={Product} />
         <Route path='/orders' component={Orders} />
         <Route path='/cart' component={Cart} />
