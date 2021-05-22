@@ -90,7 +90,7 @@ class MenuList extends React.Component {
                   <div classname="image" >
                     <img width="230px" height="230px" src={person.imageUrl} />
                   </div>
-                  <div className="content">
+                  <div className="content-data">
                     <div className="menu-data">{person.name}</div>
                     <div className="menu-description">Description :- {person.description}</div>
                     <div className="price">

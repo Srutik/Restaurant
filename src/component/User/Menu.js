@@ -99,7 +99,7 @@ class Menu extends React.Component {
               {this.state.people.map(person => (
                 <div key={person._id}>
                   <div className="cardItems" onClick={() => this.handleClick(person._id)}>
-                    <div className="content">
+                    <div className="content-data">
                       <div className="category-content">{person.categoryName}</div>
                       <div className="category-content">{person.name}</div>
                     </div>
@@ -111,8 +111,7 @@ class Menu extends React.Component {
 
             <MenuList />    
           </div>
-
-
+          
       </div>
     }
 
@@ -133,7 +132,7 @@ class Menu extends React.Component {
               {this.state.people.map(person => (
                 <div key={person._id}>
                   <div className="cardItems" onClick={() => this.handleClick(person._id)}>
-                    <div className="content">
+                    <div className="content-data">
                       <div className="category-content">{person.categoryName}</div>
                       <div className="category-content">{person.name}</div>
                     </div>
@@ -154,7 +153,7 @@ class Menu extends React.Component {
                   <div classname="image" >
                     <img width="230px" height="230px" src={person.imageUrl} />
                   </div>
-                  <div className="content">
+                  <div className="content-data">
                     <div className="menu-data">{person.name}</div>
                     <div className="menu-description">Description :- {person.description}</div>
                     <div className="price">

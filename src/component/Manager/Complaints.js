@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './Complaints.css';
 import Sidesection from './Sidesection';
 
-class Popup extends React.Component {
+class PopupDiscount extends React.Component {
 
   constructor(props) {
 
@@ -49,7 +49,7 @@ class Popup extends React.Component {
 
           <label className="label-discount">Set Discount</label>
 
-            <div className="dtl">
+          <div className="dtl">
             <div className="title-cook">Enter Discount Value</div>
             <div className="text1-cook">
               <input
@@ -66,12 +66,86 @@ class Popup extends React.Component {
               </button>
             </div>
 
-        <div className="popbtn2-complaints">
-            <button className="pop-complaint" onClick={this.props.closePopup}>X</button>
+            <div className="popbtn2-complaints">
+              <button className="pop-complaint" onClick={this.props.closePopup}>X</button>
             </div>
           </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+class PopupReply extends React.Component {
+
+  constructor(props) {
+
+    super(props);
+    this.state = {
+
+      message: "",
+
+    };
+  }
+
+  updateReply(e) {
+    e.preventDefault();
+
+    fetch("http://localhost:8020/reply/reply/" + this.props._id1, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify({
+        message: this.state.message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  handleReply(e) {
+    let message = e.target.value;
+    this.setState({ message: message });
+  }
+
+  render() {
+    return (
+      <div className="popup_reply">
+
+        <div className="popup_inner-reply">
+
+          <label className="label-discount">Reply to Complaints</label>
+
+          <div className="dtl">
+            <div className="title-cook">Enter Message</div>
+            <div className="text1-cook">
+              <input
+                className="text2-cook"
+                type="text"
+                name="name"
+                onChange={(e) => this.handleReply(e)}
+              />
+            </div>
+
+            <div className="popbtn-update">
+              <button className="popbtn1-update" onClick={(e) => this.updateReply(e)}>
+                Send
+              </button>
+            </div>
+
+            <div className="popbtn2-complaints">
+              <button className="pop-complaint" onClick={this.props.closePopup1}>X</button>
+            </div>
           </div>
         </div>
+      </div>
     );
   }
 }
@@ -83,14 +157,27 @@ class complaints extends Component {
       loading: true,
       complaints: [],
       showPopup: false,
+      showPopup1: false,
+      id:"",
+      id1:""
+
     };
     this.togglePopup = this.togglePopup.bind(this);
+    this.togglePopup1 = this.togglePopup1.bind(this);
+
   }
 
   togglePopup(complaint) {
     this.setState({
       showPopup: !this.state.showPopup,
       id: complaint.orderId._id,
+    });
+  }
+
+  togglePopup1(complaint) {
+    this.setState({
+      showPopup1: !this.state.showPopup1,
+      id1: complaint._id,
     });
   }
 
@@ -121,47 +208,64 @@ class complaints extends Component {
 
     return (
       <div>
-         <Sidesection />
+        <Sidesection />
         <h1 className="view-Data">All Complaints</h1>
         <div>
-        <table className="complaint-tables">
-         
-         <td>Title</td>
-         <td>Complaint</td>
-         <td>Date</td>
-         <td>Action</td>
-      
-       </table>
+          <table className="complaint-tables">
+
+            <td>Title</td>
+            <td>Complaint</td>
+            <td>Date</td>
+            <td>Action</td>
+
+          </table>
           {this.state.complaints.map((complaint) => (
             <div key={complaint._id}>
               <div>
                 <div>
-                <table className="complaint-table">
+                  <table className="complaint-table">
                     <tr>
                       <td> {complaint.title}</td>
                       <td> {complaint.message}</td>
                       <td>{complaint.created_At}</td>
                       <td>
-                        <div className='complaint-table_btn'>
-                        <button className="sb sb1" onClick={() => this.togglePopup(complaint)}>
-                          Discount
+                        <div className="complaint_actions">
+                          <div className='complaint-table_btn'>
+                            <button className="sb sb1" onClick={() => this.togglePopup(complaint)}>
+                              Discount
                         </button>
+                          </div>
+
+                          <div className='complaint-table_btn'>
+                            <button className="sb sb1" onClick={() => this.togglePopup1(complaint)}>
+                              Reply
+                        </button>
+                          </div>
                         </div>
+
                       </td>
                     </tr>
-                    </table>
+                  </table>
                 </div>
 
                 {this.state.showPopup ? (
-                  <Popup
+                  <PopupDiscount
                     _id={this.state.id}
                     closePopup={() => this.togglePopup(complaint)}
                   />
                 ) : null}
+
+                {this.state.showPopup1 ? (
+                  <PopupReply
+                    _id1={this.state.id1}
+                    closePopup1={() => this.togglePopup1(complaint)}
+                  />
+                ) : null}
+
               </div>
             </div>
           ))}
-        
+
         </div>
       </div>
     );
@@ -174,7 +278,7 @@ export default complaints;
 
 
 
-/* 
+/*
 import React, { Component } from 'react'
 import Sidesection from './Sidesection';
 import './Complaints.css';

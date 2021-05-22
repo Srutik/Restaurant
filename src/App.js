@@ -13,6 +13,7 @@ import subcategory from './component/User/Subcategory';
 import UserProfile from './component/User/User-Profile';
 import OfferPage from './component/User/OfferPage';
 import OrdersList from './component/User/Order-List';
+import BookTable from './component/User/Book-table';
 
 import Admin from './component/Admin/Admin-login';
 import AdminReset from './component/Admin/Admin-reset';
@@ -115,6 +116,7 @@ function App() {
         <Route path='/orders' component={Orders} />
         <Route path='/cart' component={Cart} />
         <Route path='/menudata' component={MenuData} />
+        <Route path='/booktable' component={BookTable} />
     
       </Switch>
       </Router>

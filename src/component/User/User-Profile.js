@@ -132,6 +132,7 @@ class Usersection extends Component {
                         <img height="200px" width="200px" src={Profile} />
                     </div>
                 </div>
+                <div className="profile-flex">
                 <div className="activity-section">
                 <div className="activity-data">
                     <div className="activity-type">Activity</div>
@@ -155,8 +156,20 @@ class Usersection extends Component {
           </div>
 
           <div className="btn-section">
-            <button className="offer-button" >Sign Out</button>
+            <Link >
+            <button className="offer-button" >View Complaint</button>
+            </Link>
           </div>
+
+          <div className="btn-section">
+            <Link to='/'>
+            <button className="offer-button" >Sign Out</button>
+            </Link>
+          </div>
+          </div>
+
+            <div></div>
+
           </div>
       </div>
     )

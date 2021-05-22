@@ -2,6 +2,7 @@
  .Profile_section{
   background-color: cornsilk;
   padding: 120px;
+  margin-bottom: 20px;
 }
 
 .Profile-title{
@@ -28,6 +29,7 @@
   width: 300px;
   text-align: center;
   margin-left: 50px;
+  margin-bottom: 30px;
 }
 
 .activity-data{
@@ -192,4 +194,10 @@
       border-radius: 4px;
       margin-bottom: 31px;
       transition: all 250ms ease-in-out;
+    }
+
+    .profile-flex{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
     }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../Button';
-import PopUp from './Pop-up';
+import PopUp from './Book-table';
 import * as RiIcons from 'react-icons/ri';
 import { RiTableFill } from "react-icons/ri";
 import { HashLink as Link } from 'react-router-hash-link';
@@ -69,8 +69,9 @@ function Navbar() {
 
             <li className='nav-item'>
               <Link
+              to='booktable'
                 className='nav-links'
-                onClick={togglePopup}>
+                onClick={closeMobileMenu}>
                   Book Table
               </Link>
             </li>
