@@ -150,7 +150,7 @@ class Usersection extends Component {
           </div>
 
           <div className="btn-section">
-            <Link to='/orders'>
+            <Link to='/orderslist'>
             <button className="offer-button" >Order History</button>
             </Link>
           </div>

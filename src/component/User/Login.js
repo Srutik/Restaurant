@@ -15,7 +15,6 @@ import "../Login.scss";
     let data={email,password}
     console.log(data)
   
-    
     try {
     let result = await fetch("http://localhost:8020/all/login" , {
       method:'POST',

@@ -1,11 +1,12 @@
-.booktable_title{
+.booktable_title {
     color: black;
     text-align: center;
     font-size: 30px;
     font-weight: bold;
     margin: 15px;
 }
-  .add-table{
+
+  .add-table {
      padding: 30px;
     display: flex;
     justify-content: center;
@@ -16,8 +17,8 @@
     transition: 0.3s;
     width: 50%;
     text-align: center;
-   
   }
+
   .add-table1:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
@@ -75,7 +76,7 @@
     border-radius: 5px;
   }
   
-  .phone_field{
+  .phone_field {
       text-align: center;
   }
   .handle_submit {
@@ -95,7 +96,7 @@
     background-color: rgb(211, 211, 211);
   }
 
-  .submit_booktable{
+  .submit_booktable {
       text-align: center;
       margin-bottom: 30px;
   }

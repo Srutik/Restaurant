@@ -98,12 +98,6 @@ class OrderList extends Component {
                                                 View Order
                                             </button>
                                         </div>
-
-                                        <div className='complaint-table_btn'>
-                                            <button className="sb sb1" onClick={() => this.togglePopup(order1._id)}>
-                                                View Order
-                                            </button>
-                                        </div>
                                         
                                     </td>
                                 </tr>

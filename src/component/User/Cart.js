@@ -177,6 +177,25 @@ class Cart extends Component {
 
     }
 
+    async parcelOrder() {
+        try {
+            const response = await fetch("http://localhost:8020/order/parcel/makeorder", {
+                method: "PUT",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ` + localStorage.getItem("token")
+                },
+            })
+            let data = await response.json()
+            alert("Your Parcel Order is Submit !")
+            console.log(data)
+            window.location.reload(false)
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
 
     render() {
 
@@ -190,10 +209,18 @@ class Cart extends Component {
                         <div className="state">Opps ! Your cart is Empty</div>
                         <div className="state">Please Visit Our Menu First.</div>
                     </div>
+                    <div className="emptycart_btn">
                     <div className="buttons">
                         <Link to='/menu'>
                             <button className="cart-menu">Menu</button>
                         </Link>
+                    </div>
+
+                    <div className="buttons">
+                        <Link to='/orders'>
+                            <button className="cart-order">View Order</button>
+                        </Link>
+                    </div>
                     </div>
                 </div>
 
@@ -246,6 +273,8 @@ class Cart extends Component {
                         }
 
                         <button className="cart-button" onClick={this.placeOrder.bind(this)}>Place Order</button>
+
+                        <button className="cart-button" onClick={this.parcelOrder.bind(this)}>Parcel Order</button>
 
                     </div>
                 </div>

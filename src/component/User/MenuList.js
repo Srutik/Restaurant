@@ -84,7 +84,7 @@ class MenuList extends React.Component {
             <h1 className="titles">Menu List</h1>
           </div>
           <div className="card-menus" >
-            {this.state.cart.map(person => (
+            {this.state.cart.filter(person => person.categoryId === '6076527faf90d151f4d513f1').map(person => (
               <div key={person._id}>
                 <div className="cardItem-menus">
                   <div classname="image" >
@@ -117,6 +117,43 @@ class MenuList extends React.Component {
               </div>
             ))}
           </div>
+
+
+          <div className="card-menus" >
+            {this.state.cart.filter(person => person.categoryId === '607652bfaf90d151f4d513f3').map(person => (
+              <div key={person._id}>
+                <div className="cardItem-menus">
+                  <div classname="image" >
+                    <img width="230px" height="230px" src={person.imageUrl} />
+                  </div>
+                  <div className="content-data">
+                    <div className="menu-data">{person.name}</div>
+                    <div className="menu-description">Description :- {person.description}</div>
+                    <div className="price">
+                      <div className="menu-price">price :- {person.originalPrice} ₹ </div>
+                    </div>
+                    <div >
+                      <div className="priority-set">
+                        <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                        <div classNam="p-data">Priority : {this.state.priority}</div>
+                        <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                      </div>
+
+                      <div className="Quantity-set">
+                        <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                        <div className="q-data">Quantity : {this.state.quantity}</div>
+                        <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                      </div>
+
+                    </div>
+                    <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
+                  </div>
+
+                </div>
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     );

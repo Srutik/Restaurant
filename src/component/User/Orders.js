@@ -126,7 +126,7 @@ export class Orders extends Component {
                     <h1 className="order-title">Your Orders</h1>
                 </div>
                 <div>
-                    {this.state.AllOrder.map(order => (
+                    {this.state.AllOrder.filter(order => order.OrderIs === 'Pending').map(order => (
                      <div className="order-card">
                         <div key={order._id}>
                             <div className="head-order">

@@ -1,139 +1,201 @@
-import React, { Component } from "react";
-import "./Order-List.css";
-
-export class OrdersHistory extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      people: [],
-      id: "",
-      showPopup: false,
-      loading: true,
-    };
-    this.togglePopup = this.togglePopup.bind(this);
-  }
-
-  async componentDidMount() {
-    const url = "http://localhost:8020/order/getorders";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ people: data.orders, loading: false });
-    this.searchArray = data;
-  }
-
-  togglePopup(order) {
-    this.setState({
-      showPopup: !this.state.showPopup,
-      id: order._id,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Orders History</h1>
-        <div>
-          <table className="ot">
-            <td>Name</td>
-            <td>Payment-Method</td>
-            <td>Time</td>
-
-            <td>
-              <div className="oht">Total(Rs) </div>
-            </td>
-          </table>
-          {this.state.people.map((order) => (
-            <div key={order._id}>
-              <div>
-                <div>
-                  <table className="ot1">
-                    <tr>
-                      <td> {order.name}</td>
-                      <td>{order.paymentMethod}</td>
-                      <td> {order.createdAt}</td>
-
-                      <td>
-                        <div className="oht"> {order.grandTotal.toFixed()} </div>
-                      </td>
-
-                     
-                    </tr>
-                  </table>
-
-                  {this.state.showPopup ? (
-                    <Popup
-                      _id={this.state.id}
-                      closePopup={() => this.togglePopup(order)}
-                    />
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-}
-
-export default OrdersHistory;
+import React, { Component } from 'react'
+import UserNav from './User-Nav';
+import './Orders.css'
 
 class Popup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      order: [],
-    };
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: null,
+            description: null,
+        }
+    }
 
-  async componentDidMount() {
-    try {
-      const url = "http://localhost:8020/order/getorder/" + this.props._id;
-      const response = await fetch(url, {
-        method: "GET",
-      });
-      const data = await response.json();
-      this.setState({ order: data.order.items, loading: false });
-      this.searchArray = data;
-    } catch (err) {}
-  }
+    handleComplain(e) {
+        let title = e.target.value
+        this.setState({ title: title })
+        console.log(title);
+    }
 
-  render() {
-    
-    return (
-        
-      <div className="ohp">
+    handleComplainData(e) {
+        let description = e.target.value
+        this.setState({ description: description })
+        console.log(description);
+    }
 
-        <div className="ohp1">
 
-          <div className="ohpb">
-            <button className="ohpb1" onClick={this.props.closePopup}>X</button>
-          </div>
+    async handleSubmit(title, description) {
+        try {
 
-          <label className="odn">Order Details</label>
+            const response = await fetch("http://localhost:8020/complaint/complaint/" + this.props._id, {
+                method: "POST",
+                body: JSON.stringify({
+                    title: title,
+                    message: description
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ` + localStorage.getItem("token")
+                },
+            })
+            let data = await response.json()
+            alert("Your Complain is Submit !")
+            console.log(data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
-          <table className="ot">
-            <td>Name</td>
-            <td>Quantity</td>
-            <td><div className="oht">Price(Rs)</div></td>
-            <td><div className="oht">Total(Rs)</div></td>
-          </table>
 
-          {this.state.order.map((order1) => (
-            <div key={order1._id}>
-              <table className="ot1">
-                <tr>
-                  <td>{order1.product_id.name}</td>
-                  <td>{order1.qty}</td>
-                  <td><div className="oht">{order1.productPrice}</div></td>
-                  <td><div className="oht">{order1.total.toFixed()}</div> </td>
-                </tr>
-              </table>
+    render() {
+        return (
+            <div className='complainbox-popup'>
+
+                <div className='complainbox-popup_inner'>
+                    <h1>{this.props.text}</h1>
+                    <div className="close-set">
+                        <button className="close-btn" onClick={this.props.closePopup}>X</button>
+                    </div>
+
+                    <div>
+                        <div className="form-group">
+                            <label htmlFor="Order-Name">Title</label>
+                            <div>
+                                <input className="input" type="text" name="title" placeholder="Enter Complain Title" onChange={(e) => this.handleComplain(e)} />
+                            </div>
+
+                            <label htmlFor="Order-Name">Enter Complain</label>
+                            <div>
+                                <textarea className="textarea" type="text" name="description" placeholder="Explain please ! what you dislike." onChange={(e) => this.handleComplainData(e)} />
+
+                            </div>
+                            <div className="order-btn">
+                                <button className="cart-button" onClick={() => this.handleSubmit(this.state.title, this.state.description)}>Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
+
+
+export class OrderList extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            loading: true,
+            AllOrder: [],
+            quantity: 0,
+            activeItemId: null,
+            showPopup: false
+        };
+        this.togglePopup = this.togglePopup.bind(this)
+
+    }
+
+    togglePopup(order) {
+        this.setState({
+            showPopup: !this.state.showPopup,
+            activeItemId: order._id
+        });
+    }
+
+    async componentDidMount() {
+        try {
+            const url = "http://localhost:8020/order/myorders";
+            const response = await fetch(url, {
+                headers: {
+                    Authorization: `Bearer ` + localStorage.getItem("token")
+                },
+            });
+            const data = await response.json();
+            this.setState({ AllOrder: data.data.orders });
+            console.log(this.state.AllOrder)
+        } catch (err) {
+        }
+    }
+
+
+    render() {
+        return (
+            <div>
+                <UserNav />
+                <div className="order-List">
+                    <h1 className="order-title">Orders History</h1>
+                </div>
+                <div>
+                    {this.state.AllOrder.filter(order => order.OrderIs === 'Served').map(order => (
+                     <div className="order-card">
+                        <div key={order._id}>
+                            <div className="head-order">
+                                <div className="order-total">Name : {order.name}</div>
+                                <div className="order-total">Order Status :- {order.OrderIs}</div>
+                                <div className="order-total">Date : {order.createdAt} </div>
+
+                            </div>
+
+                            <table className="order_t">
+                                <td>Image</td>
+                                <td>Name</td>
+                                <td>Quantity</td>
+                                <td>Price</td>
+                                <td>Status</td>
+                                <td>
+                                    <div>Total(Rs) </div>
+                                </td>
+                            </table>
+
+                            <div>
+                                {order.items.map((suborder) =>
+                                    <div key={suborder._id}>
+                                        <table className="orders_t1">
+                                            <tr>
+                                                <td>
+                                                    <div classname="cart-images">
+                                                        <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
+                                                    </div>
+                                                </td>
+                                                <td>{suborder.product_id.name}</td>
+                                                <td>{suborder.qty} x</td>
+                                                <td>
+                                                    <div className="table-Originaltotal"> {suborder.product_id.originalPrice} ₹</div>
+                                                </td>
+                                                <td>{suborder.progress}</td>
+                                                <td>
+                                                    <div className="table-total"> {suborder.total.toFixed(2)} ₹</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div>
+
+                                        </div>
+                                    </div>)}
+                                <div className="All_order-Total">
+                                    <div className="order-grandtotal"> Total : {order.grandTotal.toFixed(2)} ₹ </div>
+                                </div>
+
+                                <div className="complaints-center">
+                                    <button className="feedback-btn" onClick={() => this.togglePopup(order)}>Complain</button>
+                                    {this.state.showPopup ?
+                                        <Popup _id={this.state.activeItemId}
+                                            text='Close Me'
+                                            closePopup={() => this.togglePopup(order)}
+                                        />
+                                        : null
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    ))}
+                </div>
+
+
+            </div>
+        )
+    }
+}
+
+export default OrderList;
