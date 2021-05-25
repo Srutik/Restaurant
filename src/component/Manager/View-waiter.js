@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import './View-waiter.css';
 import Sidesection from './Sidesection';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 class Popup extends React.Component {
 
@@ -193,7 +196,17 @@ class viewWaiter extends Component {
                       <td>{cook.phone}</td>
                       <td>{cook.created_At}</td>
                       <td>
-                        <button className="s-b s-b1" onClick={() => this.togglePopup(cook)}>
+                      <IconButton aria-label="edit">
+                          <EditIcon onClick={() => this.togglePopup(cook)} color="primary" fontSize="small" />
+                        </IconButton>
+                        {/* <button className="sb sb1" onClick={() => this.togglePopup(cook)}>
+                          Edit item
+                        </button> */}
+
+                        <IconButton aria-label="delete">
+                          <DeleteIcon color="secondary" fontSize="small" onClick={() => this.delete(cook._id)}/>
+                        </IconButton>
+                        {/* <button className="s-b s-b1" onClick={() => this.togglePopup(cook)}>
                           Edit item
                         </button>
 
@@ -202,7 +215,7 @@ class viewWaiter extends Component {
                           variant="danger"
                         >
                           Delete
-                        </button>
+                        </button> */}
                       </td>
                     </tr>
                     </table>

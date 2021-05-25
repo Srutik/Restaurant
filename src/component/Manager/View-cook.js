@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import './View-cook.css';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import Sidesection from './Sidesection';
 
 class Popup extends React.Component {
@@ -63,7 +66,7 @@ class Popup extends React.Component {
 
           <label className="label-cook">Edit Cook Details</label>
 
-            <div className="dtl">
+          <div className="dtl">
             <div className="title-cook">Name</div>
             <div className="text1-cook">
               <input
@@ -80,7 +83,7 @@ class Popup extends React.Component {
                 className="email2-cook"
                 type="text"
                 name="email"
-               
+
                 onChange={(e) => this.handleEmail(e)}
               />
             </div>
@@ -101,12 +104,12 @@ class Popup extends React.Component {
               </button>
             </div>
 
-        <div className="popbtn2-cook">
-            <button className="pop-cook" onClick={this.props.closePopup}>X</button>
+            <div className="popbtn2-cook">
+              <button className="pop-cook" onClick={this.props.closePopup}>X</button>
             </div>
           </div>
-          </div>
         </div>
+      </div>
     );
   }
 }
@@ -170,43 +173,44 @@ class viewCook extends Component {
     }
     return (
       <div>
-         <Sidesection />
+        <Sidesection />
         <h1 className="view-Data">All Cook</h1>
         <div>
-        <table className="wt1">
-         
-         <td>Name</td>
-         <td>Email</td>
-         <td>Phone</td>
-         <td>Date</td>
-         <td>Action</td>
-      
-       </table>
+          <table className="wt1">
+
+            <td>Name</td>
+            <td>Email</td>
+            <td>Phone</td>
+            <td>Date</td>
+            <td>Action</td>
+
+          </table>
           {this.state.people.map((cook) => (
             <div key={cook._id}>
               <div>
                 <div>
-                <table className="wt">
+                  <table className="wt">
                     <tr>
                       <td> {cook.name}</td>
                       <td> {cook.email}</td>
                       <td>{cook.phone}</td>
                       <td>{cook.created_At}</td>
                       <td>
-                        <button className="sb sb1" onClick={() => this.togglePopup(cook)}>
+                        <IconButton aria-label="edit">
+                          <EditIcon onClick={() => this.togglePopup(cook)} color="primary" fontSize="small" />
+                        </IconButton>
+                        {/* <button className="sb sb1" onClick={() => this.togglePopup(cook)}>
                           Edit item
-                        </button>
+                        </button> */}
 
-                        <button className="sb sb1"
-                          onClick={() => this.delete(cook._id)}
-                          variant="danger"
-                        >
-                          Delete
-                        </button>
+                        <IconButton aria-label="delete">
+                          <DeleteIcon color="secondary" fontSize="small" onClick={() => this.delete(cook._id)}/>
+                        </IconButton>
+
                       </td>
                     </tr>
-                    </table>
-                
+                  </table>
+
                 </div>
 
                 {this.state.showPopup ? (
@@ -218,7 +222,7 @@ class viewCook extends Component {
               </div>
             </div>
           ))}
-        
+
         </div>
       </div>
     );
@@ -227,7 +231,7 @@ class viewCook extends Component {
 export default viewCook;
 
 
-/* 
+/*
 import React, { Component } from 'react'
 import './View-cook.css';
 import Sidesection from './Sidesection';
@@ -238,7 +242,7 @@ export class viewCook extends Component {
           loading: true,
           people: [],
         };
-      } 
+      }
 
       async componentDidMount() {
         const url = "http://localhost:8020/all/get"

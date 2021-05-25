@@ -59,7 +59,7 @@ export class AddCategory extends Component {
       (res) => {
         this.componentDidMount();
       },
-      (err) => {}
+      (err) => { }
     );
   }
 
@@ -84,7 +84,7 @@ export class AddCategory extends Component {
   render() {
     return (
       <div>
-          <Sidesection />
+        <Sidesection />
         <div>
           <h1 className="Addcategory-title">Add Category</h1>
 
@@ -262,7 +262,7 @@ class Popup extends React.Component {
       (res) => {
         this.componentDidMount();
       },
-      (err) => {}
+      (err) => { }
     );
   }
 
@@ -300,7 +300,7 @@ class Popup extends React.Component {
               <div className="add-c">
                 <div className="add-c1">
                   <div className="add-c2">
-                  <div className="category-title">Image</div>
+                    <div className="category-title">Image</div>
                     <div className="category-text1">
                       <input
                         type="file"
@@ -504,10 +504,8 @@ class SecondPopup extends React.Component {
     }).then(
       (res) => {
         this.setState({ showSecondPopup: !this.state.showSecondPopup });
-        this.componentDidMount();
-
       },
-      (err) => {}
+      (err) => { }
     );
   }
 
@@ -530,82 +528,79 @@ class SecondPopup extends React.Component {
               X
             </button>
           </div>
-
-
-
           <div>
-    <label className="mn">Edit Item</label>
-    <div>
-      <div className="add-c">
-        <div className="add-c1">
-          <div className="add-c2">
-          <div className="category-title">Image</div>
-            <div className="category-text1">
-              <input
-                type="file"
-                name="file"
-                onChange={(e) => this.EditItemFile(e)}
-                />
-            </div>
+            <label className="mn">Edit Item</label>
+            <div>
+              <div className="add-c">
+                <div className="add-c1">
+                  <div className="add-c2">
+                    <div className="category-title">Image</div>
+                    <div className="category-text1">
+                      <input
+                        type="file"
+                        name="file"
+                        onChange={(e) => this.EditItemFile(e)}
+                      />
+                    </div>
 
-            <div className="category-title">Sub-Title</div>
-            <div className="text1">
-              <input
-                className="text2"
-                type="text"
-                name="name"
-                onChange={(e) => this.EditItemName(e)}
-                />
-            </div>
+                    <div className="category-title">Sub-Title</div>
+                    <div className="text1">
+                      <input
+                        className="text2"
+                        type="text"
+                        name="name"
+                        onChange={(e) => this.EditItemName(e)}
+                      />
+                    </div>
 
-            <div className="category-title">Price (RS)</div>
-            <div className="price2">
-              <input
-                className="price3"
-                type="number"
-                name="originalPrice"
-                min="1"
-                onChange={(e) => this.EditItemPrice(e)}
-                />
-            </div>
+                    <div className="category-title">Price (RS)</div>
+                    <div className="price2">
+                      <input
+                        className="price3"
+                        type="number"
+                        name="originalPrice"
+                        min="1"
+                        onChange={(e) => this.EditItemPrice(e)}
+                      />
+                    </div>
 
-            <div className="category-title">Offer</div>
-            <div className="price2">
-              <input
-                className="price3"
-                type="number"
-                name="offer"
-                min="1"
-                onChange={(e) => this.EditItemOffer(e)}
-                />
-            </div>
+                    <div className="category-title">Offer</div>
+                    <div className="price2">
+                      <input
+                        className="price3"
+                        type="number"
+                        name="offer"
+                        min="1"
+                        onChange={(e) => this.EditItemOffer(e)}
+                      />
+                    </div>
 
-            <div className="category-title">Description</div>
-            <div className="dsc1">
-              <textarea
-                className="dsc2"
-                type="text"
-                name="description"
-                onChange={(e) => this.EditItemDescription(e)}
-                />
-            </div>
+                    <div className="category-title">Description</div>
+                    <div className="dsc1">
+                      <textarea
+                        className="dsc2"
+                        type="text"
+                        name="description"
+                        onChange={(e) => this.EditItemDescription(e)}
+                      />
+                    </div>
 
-            <div className="upload-button1">
-              <button
-                className="upload-btn1"
-                onClick={(e) => this.handleItemEdit(e)}>
-                Upload
-              </button>
+                    <div className="upload-button1">
+                      <button
+                        className="upload-btn1"
+                        onClick={(e) => this.handleItemEdit(e)}>
+                        Upload
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+
         </div>
       </div>
-    </div>
-  </div>
-
- 
-</div>
-</div>
-);
-}
+    );
+  }
 }

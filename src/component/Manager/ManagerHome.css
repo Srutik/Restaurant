@@ -10,6 +10,18 @@
     text-align: center;
 }
 
+.dash_icon-title{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.dash-icons{
+  margin-top: 20px;
+}
+.dash-titles{
+  margin-top: 5px;
+}
 body {
     scroll-behavior: smooth;
   }

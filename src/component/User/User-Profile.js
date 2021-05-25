@@ -179,38 +179,3 @@ class Usersection extends Component {
 export default Usersection;
 
 
-/* 
-
-<button className="offer-button" onClick={this.togglePopup.bind(this)} >See Offers</button>
-{this.state.showPopup ?
-  <Popup
-    text='Close Me'
-    closePopup={this.togglePopup.bind(this)}
-  />
-  : null
-}
-
-
-class Popup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: null
-    }
-  }
-
-  render() {
-    return (
-      <div className='popup-offer'>
-        <div className='popup-offer_inner'>
-          <h1>{this.props.text}</h1>
-          <div className="closeoffer-set">
-            <button className="closeoffer-btn" onClick={this.props.closePopup}>X</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
- */

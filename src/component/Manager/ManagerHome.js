@@ -38,10 +38,12 @@ export class Dashboard extends Component {
           <div className="flex-category2">
 
           <Link className="link" to="/category">
-            <h2>TOTAL CATEGORY
+            <div className="dash_icon-title">
+          <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+            <h2 className="dash-titles">TOTAL CATEGORY
               <div>{this.state.category}</div>
             </h2>
-            <h3> <FaClipboardList style={{ fontSize: 40 }} /> </h3>
+            </div>
             </Link>
           </div>
         </div>
@@ -79,58 +81,13 @@ export class Dashboard1 extends Component {
         <div className="flex-category1">
           <div className="flex-category2">
 
-            <Link className="link" to="/all-order" >
-            <h2>TOTAL ORDER
+          <Link className="link" to="/all-order" >
+            <div className="dash_icon-title">
+            <h3> <HiShoppingCart className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+            <h2 className="dash-titles">TOTAL ORDER
               <div>{this.state.order}</div>
             </h2>
-            
-
-
-            <h3> <HiShoppingCart style={{ fontSize: 40 }} /> </h3>
-            </Link>
-          </div>
-        </div>
-         
-      </div>         
-    )
-  }
-}
-
-export class Dashboard2 extends Component {
-
-  constructor(props) {
-
-    super(props);
-    this.state = {
-
-      complaints: "",
-
-    }
-  }
-
-  async componentDidMount() {
-
-    const url = "http://localhost:8020/complaint/complaints"
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ complaints: data.totalItems });
-    this.searchArray = data
-  }
-
-  render() {
-    return (
-      <div>
-        <div className="flex-category1">
-          <div className="flex-category2">
-
-            <Link className="link" to="/complaint" >
-            <h2>TOTAL COMPLAINT
-              <div>{this.state.complaints}</div>
-            </h2>
-            
-
-
-            <h3> <FaClipboardList style={{ fontSize: 40 }} /> </h3>
+            </div>
             </Link>
           </div>
         </div>
@@ -141,6 +98,131 @@ export class Dashboard2 extends Component {
 }
 
 export class Dashboard3 extends Component {
+
+  constructor(props) {
+
+    super(props);
+    this.state = {
+
+      people: "",
+
+    }
+  }
+
+  async componentDidMount() {
+    const url = "http://localhost:8020/all/get";
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        activerole: "cook",
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const data = await response.json();
+    this.setState({ people: data.totalPersons, });
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="flex-category1">
+          <div className="flex-category2">
+
+          <Link className="link" to="/viewCook" >
+            <div className="dash_icon-title">
+            <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+            <h2 className="dash-titles">VIEW COOK
+              <div>{this.state.people}</div>
+            </h2>
+            </div>
+            </Link>
+          </div>
+        </div>
+         
+      </div>         
+    )
+  }
+}
+
+export class Dashboard4 extends Component {
+
+  constructor(props) {
+
+    super(props);
+    this.state = {
+
+      people: "",
+
+    }
+  }
+
+  async componentDidMount() {
+    const url = "http://localhost:8020/all/get";
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        activerole: "Waiter",
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+    const data = await response.json();
+    this.setState({ people: data.totalPersons });
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="flex-category1">
+          <div className="flex-category2">
+
+          <Link className="link" to="/viewWaiter" >
+            <div className="dash_icon-title">
+            <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+            <h2 className="dash-titles">VIEW WAITER
+              <div>{this.state.people}</div>
+            </h2>
+            </div>
+            </Link>
+          </div>
+        </div>
+         
+      </div>         
+    )
+  }
+}
+
+export class Dashboard5 extends Component {
+
+  constructor(props) {
+
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="flex-category1">
+          <div className="flex-category2">
+
+          <Link className="link" to="/revenue" >
+            <div className="dash_icon-title">
+            <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+            <h2 className="dash-titles">VIEW REVENUE</h2>
+            </div>
+            </Link>
+          </div>
+        </div>
+         
+      </div>         
+    )
+  }
+}
+
+export class Dashboard6 extends Component {
 
   constructor(props) {
 
@@ -176,17 +258,20 @@ export class Dashboard3 extends Component {
 
         <Dashboard />
         <Dashboard1 />
-        <Dashboard2 />
+        <Dashboard3 />
+        <Dashboard4 />
+        <Dashboard5 />
 
         <div className="flex-category3">
           <div className="flex-category4">
 
-          <Link className="link" to="/review">
-            <h2>AVERAGE RATTING
+          <Link className="link" to="/review" >
+            <div className="dash_icon-title">
+            <h3> <FaStar className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+            <h2 className="dash-titles">AVERAGE RATTING
               <div>{this.state.rating}</div>
             </h2>
-
-            <h3> <FaStar style={{ fontSize: 40 }} /> </h3>
+            </div>
             </Link>
           </div>
         </div>
@@ -198,7 +283,7 @@ export class Dashboard3 extends Component {
 
 }
 
-export default Dashboard3;
+export default Dashboard6;
 
 
 /* 
