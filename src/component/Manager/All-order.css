@@ -10,6 +10,28 @@
       margin-bottom: 15px;
 }
 
+.btn_performance{
+  height: 40px;
+  width: 120px;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: transparent;
+  border: 1px solid black;
+}
+
+.btn_performance:hover {
+  color: white;
+  background-color: rgb(53, 50, 50);
+  border: white solid 1px;
+  cursor: pointer;
+}
+
+.icon_btn-view{
+  justify-content: center;
+  margin: auto;
+}
+
 .data-table {
     width: 100%;
   }
@@ -28,6 +50,7 @@
     width: 200px;
     border-bottom: 1px solid #ddd;
     text-align: left;
+    max-width: 200px;
   }
   
   .data-table tr:hover {
@@ -38,6 +61,7 @@
     padding: 10px;
     width: 200px;
     border-bottom: 1px solid #ddd;
+    max-width: 200px;
   }
   
   .orders-table {
@@ -106,4 +130,17 @@
   display: flex;
   float: right;
   margin-top: -50px;
+}
+
+.order_btn_set{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: auto;
+}
+
+.complaint-table_btns{
+  text-align: center;
+  margin-top: 10px;
 }

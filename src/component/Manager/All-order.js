@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import './All-order.css';
+import IconButton from '@material-ui/core/IconButton';
 import Sidesection from './Sidesection';
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+
 
 class OrderList extends Component {
     constructor(props) {
@@ -13,6 +16,7 @@ class OrderList extends Component {
             loading: true,
             orders: [],
             id: '',
+            id1: '',
             showPopup: false,
         };
         this.togglePopup = this.togglePopup.bind(this);
@@ -36,10 +40,17 @@ class OrderList extends Component {
         }
     }
 
-    togglePopup(_id) {
+    togglePopup1(_id) {
+        this.setState({
+            showPopup1: !this.state.showPopup1,
+            id1: _id,
+        });
+    }
+
+    togglePopup(order1) {
         this.setState({
             showPopup: !this.state.showPopup,
-            id: _id,
+            id: order1._id,
         });
     }
 
@@ -93,12 +104,24 @@ class OrderList extends Component {
                                         <div className="table-data">{order1.paymentMethod}</div>
                                     </td>
                                     <td>
-                                        <div className='complaint-table_btn'>
-                                            <button className="sb sb1" onClick={() => this.togglePopup(order1._id)}>
+                                        <div className="order_btn_set">
+                                            <div className='complaint-table_btns'>
+
+                                                <IconButton aria-label="edit">
+                                                    <VisibilityOutlinedIcon onClick={() => this.togglePopup(order1)} color="primary" fontSize="small" />
+                                                </IconButton>
+                                                {/* <button className="sb sb1" onClick={() => this.togglePopup(order1)}>
                                                 View Order
+                                            </button> */}
+                                            </div>
+
+                                            <div className='complaint-table_btn'>
+                                                <button className="btn_performance" onClick={() => this.togglePopup1(order1._id)}>
+                                                    Performance
                                             </button>
+                                            </div>
                                         </div>
-                                        
+
                                     </td>
                                 </tr>
                             </table>
@@ -106,7 +129,15 @@ class OrderList extends Component {
                             {this.state.showPopup ? (
                                 <Popup
                                     _id={this.state.id}
-                                    closePopup={() => this.togglePopup(order1._id)}
+                                    closePopup={() => this.togglePopup(order1)}
+                                />
+                            ) : null}
+
+
+                            {this.state.showPopup1 ? (
+                                <Popup1
+                                    _id={this.state.id1}
+                                    closePopup1={() => this.togglePopup1(order1._id)}
                                 />
                             ) : null}
 
@@ -196,6 +227,43 @@ class Popup extends React.Component {
                         </div>
                     </div>
 
+                </div>
+            </div>
+        );
+    }
+}
+
+class Popup1 extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            message: "",
+        };
+    }
+
+    async componentDidMount() {
+        const url = "http://localhost:8020/order/howlong/" + this.props._id;
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({ message: data.message, loading: false });
+        this.searchArray = data;
+    }
+
+    render() {
+        return (
+            <div className="popuporder">
+                <div className="popuporder_inner">
+                    <div className="popbtn2-order">
+                        <button className="pop-order" onClick={this.props.closePopup1}>
+                            X
+              </button>
+                    </div>
+
+                    <div className="manager-List">
+                        <h1 className="manager-title">Order Performance</h1>
+                    </div>
+
+                    <div className="table-data"> {this.state.message}</div>
                 </div>
             </div>
         );
