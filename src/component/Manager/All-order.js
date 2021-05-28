@@ -271,6 +271,47 @@ class Popup1 extends React.Component {
 }
 
 
+
+
+// class Popup1 extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             message: "",
+//         };
+//     }
+
+//     async componentDidMount() {
+//         const url = "http://localhost:8020/order/howlong/" + this.props._id;
+//         const response = await fetch(url);
+//         const data = await response.json();
+//         this.setState({ message: data.message, loading: false });
+//         this.searchArray = data;
+//     }
+
+//     render() {
+//         return (
+//             <div className="popuporder">
+//                 <div className="popuporder_inner">
+//                     <div className="popbtn2-order">
+//                         <button className="pop-order" onClick={this.props.closePopup1}>
+//                             X
+//               </button>
+//                     </div>
+
+//                     <div className="manager-List">
+//                         <h1 className="manager-title">Order Performance</h1>
+//                     </div>
+
+//                     <div className="table-data"> {this.state.message}</div>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
+
+
+
 /*
   <div className="cookall-orderbtn">
                                     <div className="cookall-orders">

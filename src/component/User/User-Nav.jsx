@@ -85,7 +85,7 @@ function Navbar() {
                 to='/orders'
                 className='nav-links'
                 onClick={closeMobileMenu}>
-                 My Orders
+                 View Order
               </Link>
             </li>
 
