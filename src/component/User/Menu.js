@@ -95,7 +95,7 @@ class Menu extends React.Component {
             <div className="Lists">
               <h1 className="titles">Category List</h1>
             </div>
-            <div className="card">
+            <div className="category-card">
               {this.state.people.map(person => (
                 <div key={person._id}>
                   <div className="cardItems" onClick={() => this.handleClick(person._id)}>
@@ -128,9 +128,9 @@ class Menu extends React.Component {
             <div className="Lists">
               <h1 className="titles">Category List</h1>
             </div>
-            <div className="card">
-              {this.state.people.map(person => (
-                <div key={person._id}>
+            <div className="category-card">
+              {this.state.people.map(person => ( 
+              <div key={person._id}>
                   <div className="cardItems" onClick={() => this.handleClick(person._id)}>
                     <div className="content-data">
                       <div className="category-content">{person.categoryName}</div>

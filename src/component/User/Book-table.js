@@ -93,7 +93,7 @@ class BookTable extends Component {
                         <label >Enter Phone number</label>
                         </div>
                         <div className="phone_field">
-                            <input className="input_field" maxLength="10" type="text" name="PhoneNo" placeholder="Phone no." onChange={this.handleChange} />
+                            <input className="input_field"  maxLength="10" type="text" name="PhoneNo" placeholder="Phone no." onChange={this.handleChange} />
                         </div>
                         <div className="submit_booktable">
                             <button className="handle_submit" onClick={this.handleBook} > Submit </button>
