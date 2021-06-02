@@ -10,7 +10,9 @@ class MenuList extends React.Component {
       cart: [],
       counter: 0,
       priority: 1,
-      quantity: 1
+      quantity: 1,
+      name:'',
+      index:0,
     };
     this.incrementCount = this.incrementCount.bind(this);
     this.DecrementCount = this.DecrementCount.bind(this);
@@ -41,6 +43,8 @@ class MenuList extends React.Component {
         },
       })
       this.setState({ counter: this.state.counter + 1, priority: 1, quantity: 1 })
+      this.setState({index:this.state.index + 1})
+
       let data = await response.json()
       console.log(data)
     } catch (err) {
@@ -68,6 +72,12 @@ class MenuList extends React.Component {
     });
   }
 
+  handleName(e) {
+    let name = e.target.value
+    this.setState({ name: name })
+}
+
+
   DecrementQTY() {
     this.setState({
       quantity: this.state.quantity - 1
@@ -81,7 +91,7 @@ class MenuList extends React.Component {
       <div className="All-menu">
         <div className="flex2">
           <div className="Lists">
-            <h1 className="titles">Menu List</h1>
+            <h1 className="titles">Menu List<div>{this.state.index}</div></h1>
           </div>
           <div className="card-menus" >
             {this.state.cart.filter(person => person.categoryId === '609a0d3323025806dc494527').map(person => (
@@ -109,8 +119,13 @@ class MenuList extends React.Component {
                         <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
                       </div>
 
+                      <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
+                        <div>
+                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
+                        </div>
+
                     </div>
-                    <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity)}>Add to Cart</button>
+                    <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity,this.state.name)}>Add to Cart</button>
                   </div>
 
                 </div>

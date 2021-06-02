@@ -32,13 +32,16 @@
       justify-content: space-around;
       font-family: "Open Sans", sans-serif;
     }
+
+    .image-set{
+      text-align: center;
+    }
   
     .content {
       display: flex;
       flex-direction: column;
   
       .image {
-        width: 21em;
         align-items: center;
   
         img {

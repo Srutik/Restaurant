@@ -1,23 +1,23 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import {useHistory} from 'react-router-dom';
 import loginImg from "../login.svg";
 import { Link } from 'react-router-dom';
 import Sidesection from './Sidesection';
 import "../Login.scss";
 
- function Register() {
+ function RegisterWaiter() {
 
   const [name, setName] = useState();
   const [password, setPassword] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
   const [activerole,setactiverole] = useState();
-  const  [category,setcategory ]= useState({});
   const history = useHistory();
 
   async function signup() {
     let data={email,name,password,phone,activerole}
     console.warn(data)
+
     let result = await fetch("http://localhost:8020/all/register" , {
       method:'PUT',
       body:JSON.stringify(data),
@@ -28,39 +28,33 @@ import "../Login.scss";
     })
    result = await result.json()
    localStorage.setItem("user-info", JSON.stringify(result)) 
-   alert("Cook Created !")
+   alert("waiter Created !")
    history.push("/manager-home")
    }
-
-   React.useEffect(() => {
-    fetch('http://localhost:8020/categorypost/categories')
-      .then(results => results.json())
-      .then(results => setcategory({results}))
-  }, [setcategory]);
  
     return (
       <div>
         <Sidesection />
-        {/* <div>{JSON.stringify(category)}</div> */}
+
         <div className='link-set'>
-                        <div className="details-set_datavalue">
+                        <div className="details-set_data">
                             <Link to="/register-manager" className="link-effect">
-                                <div className="details-linkvalue">Add Cook</div>
+                                <div className="details-link">Add Cook</div>
                             </Link>
                         </div>
 
-                        <div className="details-set_data">
+                        <div className="details-set_datavalue">
                             <Link to="/register-waiter" className="link-effect">
-                                <div className="details-link">Add Waiter</div>
+                                <div className="details-linkvalue">Add Waiter</div>
                             </Link>
                         </div>
                     </div>
   
       <div className="base-container" >
-        <div className="header">Register Cook</div>
+        <div className="header">Register Waiter</div>
         <div className="content">
           <div className="image-set">
-            <img height="150px" width="200px" src={loginImg} alt={1}/>
+            <img src={loginImg} height="150px" width="200px" alt={1}/>
           </div>
           <div className="form">
             <div className="radio-btn">
@@ -101,4 +95,4 @@ import "../Login.scss";
     );
   }
 
-export default Register;
+export default RegisterWaiter;

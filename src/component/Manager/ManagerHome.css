@@ -4,24 +4,39 @@
     width: 100vw;
 }
 
-.dash-title{
+.wave-container > svg {
+  display: block;
+}
+
+.wave-container {
+  position: relative;
+  background: #09F;
+  color: #FFF;
+  text-align: center;
+  overflow: hidden;
+}
+
+
+.dash-title {
     font-size: 30px;
     font-weight: bold;
     text-align: center;
 }
 
-.dash_icon-title{
+.dash_icon-title {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
 }
-.dash-icons{
+.dash-icons {
   margin-top: 20px;
 }
-.dash-titles{
+
+.dash-titles {
   margin-top: 5px;
 }
+
 body {
     scroll-behavior: smooth;
   }

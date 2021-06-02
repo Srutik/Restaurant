@@ -38,6 +38,9 @@ import ManagerOrders from './component/Manager/All-order';
 import RevenuePage from './component/Manager/RevenuePage';
 import AddTable from './component/Manager/Add-Tabel';
 import SetOffers from './component/Manager/All-offer';
+import TableOrder from './component/Manager/Table-Order';
+import Parcels from './component/Manager/Live-parcel';
+import RegisterWaiter from './component/Manager/register-waiter';
 
 import Cook from './component/Cook/Cook-login';
 import CookHome from './component/Cook/Cook-home';
@@ -58,6 +61,7 @@ import MenuData from './component/User/MenuList';
 
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
 import './App.css';
+import parcelOrder from './component/Manager/Live-parcel';
 
 function App() {
   return (
@@ -94,6 +98,9 @@ function App() {
         <Route path='/revenue' component={RevenuePage} />
         <Route path='/add-table' component={AddTable} />
         <Route path='/set-offer' component={SetOffers} />
+        <Route path='/table-order' component={TableOrder} />
+        <Route path='/live-parcel' component={parcelOrder} />
+        <Route path='/register-waiter' component={RegisterWaiter} />
 
         <Route path='/cook-login' component={Cook} />
         <Route path='/cook-forgot' component={CookForgot} />

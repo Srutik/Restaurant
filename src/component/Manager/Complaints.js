@@ -227,7 +227,7 @@ class complaints extends Component {
                     <tr>
                       <td> {complaint.title}</td>
                       <td> {complaint.message}</td>
-                      <td>{complaint.created_At}</td>
+                      <td>{complaint.userId.created_At}</td>
                       <td>
                         <div className="complaint_actions">
                           <div className='complaint-table_btn'>

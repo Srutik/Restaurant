@@ -3,6 +3,9 @@
   background: radial-gradient(circle, rgba(56,56,56,1) 0%, rgba(25,25,25,1) 81%);   
    height: 80px;
    display: grid;
+   /* position: sticky;
+    top: 0;
+    z-index: 999; */
    align-items: center;
 }
 
@@ -103,6 +106,7 @@
   background: rgb(255, 255, 255);
   color: black;
  }
+
  .nav-menu-items {
    width: 100%;
  }
@@ -128,3 +132,12 @@
  span {
    margin-left: 16px;
  } 
+
+ .icons{
+   color: white;
+ }
+
+ .icons:hover {
+  color: black;
+}
+

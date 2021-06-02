@@ -107,7 +107,7 @@ export class Orders extends Component {
             const url = "http://localhost:8020/order/myorders";
             const response = await fetch(url, {
                 headers: {
-                    Authorization: `Bearer ` + localStorage.getItem("token")
+                    Authorization : `Bearer ` + localStorage.getItem("token")
                 },
             });
             const data = await response.json();
@@ -133,7 +133,6 @@ export class Orders extends Component {
                                 <div className="order-total">Name : {order.name}</div>
                                 <div className="order-total">Order Status :- {order.OrderIs}</div>
                                 <div className="order-total">Date : {order.createdAt} </div>
-
                             </div>
 
                             <table className="order_t">
@@ -191,8 +190,6 @@ export class Orders extends Component {
                         </div>
                     ))}
                 </div>
-
-
             </div>
         )
     }

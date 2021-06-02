@@ -6,7 +6,7 @@ import { RiTableFill } from "react-icons/ri";
 import { HashLink as Link } from 'react-router-hash-link';
 import './User-Nav.scss';
 
-function Navbar() {
+function Navbar(props) {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
@@ -94,7 +94,7 @@ function Navbar() {
                 to='/cart'
                 className='nav-links'
                 onClick={closeMobileMenu}>
-                 Cart
+                 Cart {props.index}
                  <div className="icon_link">
                     <i class="fas fa-shopping-cart"></i>
                  </div>

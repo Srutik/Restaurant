@@ -1,12 +1,13 @@
 import React, { Component } from "react";
+import "./All-offer.css";
 import axios from "axios";
-import './All-offer.css';
+import Sidesection from './Sidesection';
 
 class Offer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      offer: "0",
+      offer: "",
       products: [],
       defaultOffers:"0",
     };
@@ -61,17 +62,19 @@ class Offer extends Component {
       });
   }
 
+
   render() {
     return (
       <div>
-        <h1>Restaurant Offer Set</h1>
+        <Sidesection />
+        <h1 className="Addcategory-title">Restaurant Offer Set</h1>
 
         <div>
-          <div className="ct">
-            <div className="ct1">
-              <div className="ct2">
-                <div className="title">Set All Item Offer (%)</div>
-                <div className="text1">
+          <div className="ofr">
+            <div className="ofr1">
+              <div className="ofr2">
+                <div className="sio">Set All Item Offer (%)</div>
+                <div className="sio1">
                   <input
                     type="number"
                     className="text2"
@@ -83,9 +86,9 @@ class Offer extends Component {
                   />
                 </div>
 
-                <div className="button1">
+                <div className="ofrb">
                   <button
-                    className="btn1"
+                    className="ofrb1"
                     onClick={(e) => this.handleUpload(e)}
                   >
                     Done
@@ -93,11 +96,12 @@ class Offer extends Component {
                 </div>
               </div>
 
-              <div className="title">Remove All Item Offer (%)</div>
-              <div className="text1">
+              <div className="sio">Remove All Item Offer (%)</div>
+              <div className="sio1">
                 <input
                   type="number"
                   className="text2"
+                  
                   min="0"
                   max="0"
                   name="offer"
@@ -106,8 +110,8 @@ class Offer extends Component {
                 />
               </div>
 
-              <div className="button1">
-                <button className="btn1" onClick={(e) => this.handleRemoveUpload(e)}>
+              <div className="ofrb">
+                <button className="ofrb1" onClick={(e) => this.handleRemoveUpload(e)}>
                   Remove
                 </button>
               </div>
@@ -115,11 +119,11 @@ class Offer extends Component {
           </div>
         </div>
 
-        <table className="pot">
+        <table className="oft">
               <td>Name</td>
               <td>Original Price</td>
               <td>Offer</td>
-              <td>Offer Price</td>
+              <td> <div className="ofrp">Offer Price</div></td>
             </table>
 
 
@@ -127,7 +131,7 @@ class Offer extends Component {
           <div key={item._id}>
            
             <div>
-              <table className="pot1">
+              <table className="oft1">
                 <tr>
                   <td>
                     <div>{item.name}</div>
@@ -141,7 +145,7 @@ class Offer extends Component {
                   </td>
 
                   <td>
-                    <div >{item.offerPrice.toFixed()}</div>
+                    <div className="ofrp" >{item.offerPrice.toFixed()}</div>
                   </td>
                 </tr>
               </table>

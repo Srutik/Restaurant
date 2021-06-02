@@ -13,7 +13,7 @@ export class Dashboard extends Component {
     super(props);
     this.state = {
       category: "",
-      categoryposts:0
+      categoryposts: 0
 
     }
   }
@@ -37,13 +37,13 @@ export class Dashboard extends Component {
 
           <div className="flex-category2">
 
-          <Link className="link" to="/category">
-            <div className="dash_icon-title">
-          <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
-            <h2 className="dash-titles">TOTAL CATEGORY
+            <Link className="link" to="/category">
+              <div className="dash_icon-title">
+                <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+                <h2 className="dash-titles">TOTAL CATEGORY
               <div>{this.state.category}</div>
-            </h2>
-            </div>
+                </h2>
+              </div>
             </Link>
           </div>
         </div>
@@ -61,7 +61,7 @@ export class Dashboard1 extends Component {
     this.state = {
 
       order: "",
-      orders:0
+      orders: 0
 
     }
   }
@@ -80,19 +80,18 @@ export class Dashboard1 extends Component {
       <div>
         <div className="flex-category1">
           <div className="flex-category2">
-
-          <Link className="link" to="/all-order" >
-            <div className="dash_icon-title">
-            <h3> <HiShoppingCart className="dash-icons" style={{ fontSize: 40 }} /> </h3>
-            <h2 className="dash-titles">TOTAL ORDER
+            <Link className="link" to="/table-order" >
+              <div className="dash_icon-title">
+                <h3> <HiShoppingCart className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+                <h2 className="dash-titles">LIVE ORDER
               <div>{this.state.order}</div>
-            </h2>
-            </div>
+                </h2>
+              </div>
             </Link>
           </div>
         </div>
-         
-      </div>         
+
+      </div>
     )
   }
 }
@@ -130,18 +129,18 @@ export class Dashboard3 extends Component {
         <div className="flex-category1">
           <div className="flex-category2">
 
-          <Link className="link" to="/viewCook" >
-            <div className="dash_icon-title">
-            <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
-            <h2 className="dash-titles">VIEW COOK
+            <Link className="link" to="/viewCook" >
+              <div className="dash_icon-title">
+                <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+                <h2 className="dash-titles">VIEW COOK
               <div>{this.state.people}</div>
-            </h2>
-            </div>
+                </h2>
+              </div>
             </Link>
           </div>
         </div>
-         
-      </div>         
+
+      </div>
     )
   }
 }
@@ -179,18 +178,18 @@ export class Dashboard4 extends Component {
         <div className="flex-category1">
           <div className="flex-category2">
 
-          <Link className="link" to="/viewWaiter" >
-            <div className="dash_icon-title">
-            <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
-            <h2 className="dash-titles">VIEW WAITER
+            <Link className="link" to="/viewWaiter" >
+              <div className="dash_icon-title">
+                <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+                <h2 className="dash-titles">VIEW WAITER
               <div>{this.state.people}</div>
-            </h2>
-            </div>
+                </h2>
+              </div>
             </Link>
           </div>
         </div>
-         
-      </div>         
+
+      </div>
     )
   }
 }
@@ -208,16 +207,16 @@ export class Dashboard5 extends Component {
         <div className="flex-category1">
           <div className="flex-category2">
 
-          <Link className="link" to="/revenue" >
-            <div className="dash_icon-title">
-            <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
-            <h2 className="dash-titles">VIEW REVENUE</h2>
-            </div>
+            <Link className="link" to="/revenue" >
+              <div className="dash_icon-title">
+                <h3> <FaClipboardList className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+                <h2 className="dash-titles">VIEW REVENUE</h2>
+              </div>
             </Link>
           </div>
         </div>
-         
-      </div>         
+
+      </div>
     )
   }
 }
@@ -229,7 +228,7 @@ export class Dashboard6 extends Component {
     super(props);
     this.state = {
 
-      rating:""
+      rating: ""
 
     }
   }
@@ -246,47 +245,46 @@ export class Dashboard6 extends Component {
   render() {
 
     return (
-      <div>
-         <Sidesection />
+      <div classNam="wave-container">
+        <Sidesection />
 
-<h1 className='title-managerpage'>
-  Dashboard
+        <h1 className='title-managerpage'>
+          Dashboard
   </h1>
-      
 
-      <div className="DashView-Manager">
 
-        <Dashboard />
-        <Dashboard1 />
-        <Dashboard3 />
-        <Dashboard4 />
-        <Dashboard5 />
+        <div className="DashView-Manager">
 
-        <div className="flex-category3">
-          <div className="flex-category4">
+          <Dashboard />
+          <Dashboard1 />
+          <Dashboard3 />
+          <Dashboard4 />
+          <Dashboard5 />
 
-          <Link className="link" to="/review" >
-            <div className="dash_icon-title">
-            <h3> <FaStar className="dash-icons" style={{ fontSize: 40 }} /> </h3>
-            <h2 className="dash-titles">AVERAGE RATTING
+          <div className="flex-category3">
+            <div className="flex-category4">
+              <Link className="link" to="/review" >
+                <div className="dash_icon-title">
+                  <h3> <FaStar className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+                  <h2 className="dash-titles">AVERAGE RATTING
               <div>{this.state.rating}</div>
-            </h2>
+                  </h2>
+                </div>
+              </Link>
             </div>
-            </Link>
           </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#273033" fill-opacity="1" d="M0,256L48,240C96,224,192,192,288,149.3C384,107,480,53,576,58.7C672,64,768,128,864,170.7C960,213,1056,235,1152,218.7C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
         </div>
-
-      </div>
       </div>
     )
   }
-
 }
-
 export default Dashboard6;
 
 
-/* 
+/*
 import React, { Component } from 'react'
 import './ManagerHome.css';
 import { Link } from 'react-router-dom';
