@@ -247,36 +247,40 @@ export class Dashboard6 extends Component {
     return (
       <div classNam="wave-container">
         <Sidesection />
-
-        <h1 className='title-managerpage'>
-          Dashboard
+        <div className="overlap_items">
+        <div className="grid_item1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 180"><path fill="#273036" fill-opacity="1" d="M0,160L80,144C160,128,320,96,480,106.7C640,117,800,171,960,176C1120,181,1280,139,1360,117.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+        </div>
+        <div className="grid_item2" >
+          <h1 className='title-managerpage'>
+            Dashboard
   </h1>
 
 
-        <div className="DashView-Manager">
+          <div className="DashView-Manager">
 
-          <Dashboard />
-          <Dashboard1 />
-          <Dashboard3 />
-          <Dashboard4 />
-          <Dashboard5 />
+            <Dashboard />
+            <Dashboard1 />
+            <Dashboard3 />
+            <Dashboard4 />
+            <Dashboard5 />
 
-          <div className="flex-category3">
-            <div className="flex-category4">
-              <Link className="link" to="/review" >
-                <div className="dash_icon-title">
-                  <h3> <FaStar className="dash-icons" style={{ fontSize: 40 }} /> </h3>
-                  <h2 className="dash-titles">AVERAGE RATTING
+            <div className="flex-category3">
+              <div className="flex-category4">
+                <Link className="link" to="/review" >
+                  <div className="dash_icon-title">
+                    <h3> <FaStar className="dash-icons" style={{ fontSize: 40 }} /> </h3>
+                    <h2 className="dash-titles">AVERAGE RATTING
               <div>{this.state.rating}</div>
-                  </h2>
-                </div>
-              </Link>
+                    </h2>
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="#273033" fill-opacity="1" d="M0,256L48,240C96,224,192,192,288,149.3C384,107,480,53,576,58.7C672,64,768,128,864,170.7C960,213,1056,235,1152,218.7C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
         </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 100 1440 130"><path fill="#273036" fill-opacity="1" d="M0,160L80,144C160,128,320,96,480,106.7C640,117,800,171,960,176C1120,181,1280,139,1360,117.3L1440,96L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+      </div>
       </div>
     )
   }

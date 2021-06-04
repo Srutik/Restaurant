@@ -11,6 +11,7 @@ class Menu extends React.Component {
       loading: true,
       people: [],
       carts: [],
+      cart:[],
       counter: 0,
       count: 0,
       priority: 1,
@@ -30,6 +31,15 @@ class Menu extends React.Component {
     const response = await fetch(url);
     const data = await response.json();
     this.setState({ people: data.categoryposts });
+    this.menuitem();
+  }
+
+  async menuitem() {
+    const url = "http://localhost:8020/menu/menues";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ cart: data.products, loading: false });
+    this.searchArray = data
   }
 
   async handleClick(_id) {
@@ -130,7 +140,52 @@ class Menu extends React.Component {
             </select>
           </div>
 
-          <MenuList />
+
+          <div className="flex2">
+            <div className="Lists">
+              <h1 className="titles">Menu List</h1>
+            </div>
+            <div className="card-menus" >
+              {this.state.cart.map(person => (
+                <div key={person._id}>
+                  <div className="cardItem-menus">
+                    <div classname="image" >
+                      <img width="230px" height="230px" src={person.imageUrl} />
+                    </div>
+                    <div className="content-data">
+                      <div className="menu-data">{person.name}</div>
+                      <div className="menu-description">Description :- {person.description}</div>
+                      <div className="price">
+                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
+                      </div>
+                      <div >
+                        <div className="priority-set">
+                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                          <div classNam="p-data">Priority : {this.state.priority}</div>
+                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                        </div>
+
+                        <div className="Quantity-set">
+                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                          <div className="q-data">Quantity : {this.state.quantity}</div>
+                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                        </div>
+
+                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
+                        <div>
+                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
+                        </div>
+
+                      </div>
+                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
+
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* <MenuList /> */}
         </div>
 
       </div>
@@ -171,7 +226,7 @@ class Menu extends React.Component {
 
           <div className="flex2">
             <div className="Lists">
-              <h1 className="titles">Menu List <div>{this.state.index}</div></h1>
+              <h1 className="titles">Menu List </h1>
             </div>
 
             <div className="card-menus" >

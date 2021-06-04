@@ -91,7 +91,7 @@ class MenuList extends React.Component {
       <div className="All-menu">
         <div className="flex2">
           <div className="Lists">
-            <h1 className="titles">Menu List<div>{this.state.index}</div></h1>
+            <h1 className="titles">Menu List</h1>
           </div>
           <div className="card-menus" >
             {this.state.cart.filter(person => person.categoryId === '609a0d3323025806dc494527').map(person => (

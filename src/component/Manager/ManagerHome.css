@@ -1,3 +1,5 @@
+
+
 .manager-dashboard {
     background: url('./manager-dash1.jpg') center center/cover no-repeat;
     height: 100vh;
@@ -7,13 +9,27 @@
 .wave-container > svg {
   display: block;
 }
+.grid_item1{
+  grid-area: overlap;
+}
+
+.grid_item2{
+  grid-area: overlap;
+}
+
 
 .wave-container {
   position: relative;
-  background: #09F;
   color: #FFF;
   text-align: center;
   overflow: hidden;
+}
+
+.overlap_items{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "overlap";
 }
 
 
@@ -45,7 +61,7 @@ body {
     text-align: center;
     background-position-x: center;
     padding: 20px;
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
   }
   
   .flex-category1 {

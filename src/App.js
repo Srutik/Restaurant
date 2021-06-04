@@ -24,7 +24,7 @@ import Dashboard from './component/Manager/Dashboard';
 import ManagerForgot from './component/Manager/Manager-Forgot';
 import ManagerReset from './component/Manager/Manager-reset';
 import ManagerHome from './component/Manager/ManagerHome';
-import ManagersRegister from './component/Manager/register-manager';
+import ManagersRegister from './component/Manager/register-cook';
 import Review from './component/Manager/review';
 import Complaints from './component/Manager/Complaints';
 import viewCook from './component/Manager/View-cook';
