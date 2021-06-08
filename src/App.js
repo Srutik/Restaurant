@@ -34,7 +34,9 @@ import AddIngrediants from './component/Manager/Add-Ingrediants';
 import Waiter from './component/Waiter/Waiter-login';
 import WaiterForgot from './component/Waiter/Waiter-forgot';
 import WaiterReset from './component/Waiter/Waiter-reset';
-import ManagerOrders from './component/Manager/All-order';
+import PendingOrders from './component/Manager/Pending-order';
+import DoneOrders from './component/Manager/Done-Order';
+import ParcelOrders from './component/Manager/Parcel-order';
 import RevenuePage from './component/Manager/RevenuePage';
 import AddTable from './component/Manager/Add-Tabel';
 import SetOffers from './component/Manager/All-offer';
@@ -94,7 +96,9 @@ function App() {
         <Route path='/viewWaiter' component={viewWaiter} />
         <Route path='/category' component={AddCategory} />
         <Route path='/add-ingrediant' component={AddIngrediants} />
-        <Route path='/all-order' component={ManagerOrders} />
+        <Route path='/pending-order' component={PendingOrders} />
+        <Route path='/done-order' component={DoneOrders} />
+        <Route path='/parcel-order' component={ParcelOrders} />
         <Route path='/revenue' component={RevenuePage} />
         <Route path='/add-table' component={AddTable} />
         <Route path='/set-offer' component={SetOffers} />

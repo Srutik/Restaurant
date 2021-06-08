@@ -392,6 +392,7 @@
     font-weight: bold;
     margin-left: 25px;
     margin-right: 25px;
+
   }
 
   .link-set{
@@ -404,11 +405,19 @@
 
   .details-set_data{
     background-color: snow;
+    border: solid 2px black;
     margin: 10px;
   }
 
+  /* .details-set_data:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    margin: 10px;
+  } */
+
   .details-set_datavalue{
     background-color: rgb(0, 0, 0);
+    border:  solid 1px white;
     margin: 10px;
   }
 
@@ -420,5 +429,11 @@
     margin-left: 25px;
     margin-right: 25px;
   }
+
+  .link-effect{
+    text-decoration: none;
+  }
+
+  
 
   

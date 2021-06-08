@@ -38,17 +38,21 @@
     font-size: 1.8rem;
   }
   
-  .navmenu-menu {
+  .navmenu-menubar {
     display: grid;
-    grid-template-columns: repeat(6, auto);
-    grid-gap: 10px;
+    grid-template-columns: repeat(8, auto);
+    grid-gap: 5px;
     list-style: none;
     text-align: center;
     width: 60vw;
     justify-content: end;
-    margin-right: 2rem;
   }
   
+  .set-btn_ctr {
+  margin: auto;
+  margin-top: 13px; 
+ }
+
   .nav-item {
     height: 80px;
   }
@@ -85,7 +89,7 @@
       position: relative;
     }
   
-    .navmenu-menu {
+    .navmenu-menubar {
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -96,8 +100,12 @@
       opacity: 1;
       transition: all 0.5s ease;
     }
+
+    // .set-btn_ctr{
+    //   margin-top: 50px;
+    // }
   
-    .navmenu-menu.active {
+    .navmenu-menubar.active {
       background:black;
       left: 0;
       opacity: 1;
@@ -105,7 +113,7 @@
       z-index: 1;
     }
     
-  
+
     .nav-links {
       text-align: center;
       padding: 2rem;

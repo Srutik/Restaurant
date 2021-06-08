@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import './All-order.css';
+import './Pending-order.css';
+import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import Sidesection from './Sidesection';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
@@ -9,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 
-class OrderList extends Component {
+class ParcelOrder extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -75,9 +76,28 @@ class OrderList extends Component {
         return (
             <div>
                 <Sidesection />
+                <div className='link-set'>
+                        <div className="details-set_data">
+                            <Link to="/pending-order" className="link-effect">
+                                <div className="details-link">Pending</div>
+                            </Link>
+                        </div>
+
+                        <div className="details-set_data">
+                            <Link to="/done-order" className="link-effect">
+                                <div className="details-link">Done</div>
+                            </Link>
+                        </div>
+
+                        <div className="details-set_datavalue">
+                            <Link to="/parcel-order" className="link-effect">
+                                <div className="details-linkvalue">Parcel</div>
+                            </Link>
+                        </div>
+                    </div>
                 <div>
                     <div className="manager-List">
-                        <h1 className="manager-title">Order History</h1>
+                        <h1 className="manager-title">Parcel Order</h1>
                     </div>
                     <table className="orders-table">
 
@@ -88,7 +108,7 @@ class OrderList extends Component {
                         <td>Payment </td>
                         <td>Action</td>
                     </table>
-                    {this.state.orders.map(order1 => (
+                    {this.state.orders.filter(order1 => order1.OrderIs === "Parcel").map(order1 => (
                         <div key={order1._id}>
                             <table className="data-table">
                                 <tr>
@@ -149,7 +169,7 @@ class OrderList extends Component {
     }
 }
 
-export default OrderList;
+export default ParcelOrder;
 
 
 class Popup extends React.Component {

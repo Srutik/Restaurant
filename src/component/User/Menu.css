@@ -9,7 +9,7 @@ img {
     }
     
     .Allpage {
-       height: 100vh;
+       height: 100%;
         width: 100%;
         display: flex;
         margin: 2px;
@@ -183,7 +183,12 @@ img {
         font-weight: bold;
         padding: 5px;
     }
-    
+    .category_titles{
+        color: black;
+        font-weight: bold;
+        padding: 10px;
+        margin-left: 20px;
+    }
     .Lists {
         width: 100%;
         background: #EBCEBF;
@@ -191,7 +196,13 @@ img {
         text-align: center;
     
     }
-    
+    .category_head_set{
+        margin-top: 10px;
+        width: 100%;
+        background: #EBCEBF;
+        height: 50px;
+    }
+
     .addCart{
         height: 35px;
         width: 120px;

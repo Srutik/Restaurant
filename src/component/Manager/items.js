@@ -58,7 +58,7 @@ export const SidebarData = [
   {
     title: 'View Orders',
     // icon: <AccessTimeOutlinedIcon />,
-    path: '/all-order',
+    path: '/pending-order',
     cName: 'nav-text'
   },
   {

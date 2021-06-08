@@ -19,6 +19,7 @@ class Menu extends React.Component {
       name: '',
       category: '',
       index: 0,
+      categoryname:''
     };
     this.incrementCount = this.incrementCount.bind(this);
     this.DecrementCount = this.DecrementCount.bind(this);
@@ -38,7 +39,7 @@ class Menu extends React.Component {
     const url = "http://localhost:8020/menu/menues";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ cart: data.products, loading: false });
+    this.setState({ cart: data.products });
     this.searchArray = data
   }
 
@@ -46,8 +47,8 @@ class Menu extends React.Component {
     const url = "http://localhost:8020/menu/menu/" + _id;
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ carts: data.products, loading: false });
-    this.searchArray = data
+    this.setState({ carts: data.products, loading: false,});
+    this.searchArray = data;
   }
 
   async addCart(_id, priority, quantity, name) {
@@ -129,15 +130,15 @@ class Menu extends React.Component {
                 </div>
               ))}
             </div>
-            <select className="select" value={this.state.value} onChange={this.handleChange}>
+            {/* <select className="select" value={this.state.value} onChange={this.handleChange}>
 
               {this.state.people.map(person => (
                 <div key={person._id}>
                   <option className="category-content" value={person.categoryName}>{person.categoryName}</option>
-                  {/* <div className="category-content">{person.name}</div> */}
+                  <div className="category-content">{person.name}</div>
                 </div>
               ))}
-            </select>
+            </select> */}
           </div>
 
 
@@ -145,8 +146,140 @@ class Menu extends React.Component {
             <div className="Lists">
               <h1 className="titles">Menu List</h1>
             </div>
+            <div className="category_head_set">
+              <h2 className="category_titles">➤ Chinese</h2>
+            </div>
             <div className="card-menus" >
-              {this.state.cart.map(person => (
+              {this.state.cart.filter(person => person.categoryId._id === "609a0d0d23025806dc494525" ).map(person => (
+                <div key={person._id}>
+                  <div className="cardItem-menus">
+                    <div classname="image" >
+                      <img width="230px" height="230px" src={person.imageUrl} />
+                    </div>
+                    <div className="content-data">
+                      <div className="menu-data">{person.name}</div>
+                      <div className="menu-description">Description :- {person.description}</div>
+                      <div className="price">
+                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
+                      </div>
+                      <div >
+                        <div className="priority-set">
+                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                          <div classNam="p-data">Priority : {this.state.priority}</div>
+                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                        </div>
+
+                        <div className="Quantity-set">
+                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                          <div className="q-data">Quantity : {this.state.quantity}</div>
+                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                        </div>
+
+                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
+                        <div>
+                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
+                        </div>
+
+                      </div>
+                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
+
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="category_head_set">
+              <h2 className="category_titles">➤ Italian</h2>
+            </div>
+            <div className="card-menus" >
+              {this.state.cart.filter(person => person.categoryId._id === "609a0d2123025806dc494526" ).map(person => (
+                <div key={person._id}>
+                  <div className="cardItem-menus">
+                    <div classname="image" >
+                      <img width="230px" height="230px" src={person.imageUrl} />
+                    </div>
+                    <div className="content-data">
+                      <div className="menu-data">{person.name}</div>
+                      <div className="menu-description">Description :- {person.description}</div>
+                      <div className="price">
+                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
+                      </div>
+                      <div >
+                        <div className="priority-set">
+                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                          <div classNam="p-data">Priority : {this.state.priority}</div>
+                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                        </div>
+
+                        <div className="Quantity-set">
+                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                          <div className="q-data">Quantity : {this.state.quantity}</div>
+                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                        </div>
+
+                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
+                        <div>
+                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
+                        </div>
+
+                      </div>
+                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
+
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="category_head_set">
+              <h2 className="category_titles">➤ South-Indian</h2>
+            </div>
+            <div className="card-menus" >
+              {this.state.cart.filter(person => person.categoryId._id === "609a0d3323025806dc494527" ).map(person => (
+                <div key={person._id}>
+                  <div className="cardItem-menus">
+                    <div classname="image" >
+                      <img width="230px" height="230px" src={person.imageUrl} />
+                    </div>
+                    <div className="content-data">
+                      <div className="menu-data">{person.name}</div>
+                      <div className="menu-description">Description :- {person.description}</div>
+                      <div className="price">
+                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
+                      </div>
+                      <div >
+                        <div className="priority-set">
+                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                          <div classNam="p-data">Priority : {this.state.priority}</div>
+                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                        </div>
+
+                        <div className="Quantity-set">
+                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                          <div className="q-data">Quantity : {this.state.quantity}</div>
+                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                        </div>
+
+                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
+                        <div>
+                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
+                        </div>
+
+                      </div>
+                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
+
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="category_head_set">
+              <h2 className="category_titles">➤ Cold-Drinks</h2>
+            </div>
+            <div className="card-menus" >
+              {this.state.cart.filter(person => person.categoryId._id === "609a0d4423025806dc494528" ).map(person => (
                 <div key={person._id}>
                   <div className="cardItem-menus">
                     <div classname="image" >
@@ -216,19 +349,21 @@ class Menu extends React.Component {
                 </div>
               ))}
             </div>
-            <select className="select" value={this.state.value} onChange={this.handleChange}>
+            {/* <select className="select" value={this.state.value} onChange={this.handleChange}>
 
               {this.state.people.map(person => (
                 <option value={person.categoryName}>{person.categoryName}</option>
               ))}
-            </select>
+            </select> */}
           </div>
 
           <div className="flex2">
             <div className="Lists">
               <h1 className="titles">Menu List </h1>
             </div>
-
+            <div className="category_head_set">
+              <h2 className="category_titles">{this.props.category_name}</h2>
+            </div>
             <div className="card-menus" >
               {this.state.carts.map(person => (
                 <div key={person._id}>

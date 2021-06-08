@@ -259,11 +259,11 @@ class Popup extends React.Component {
                                                             <tr>
                                                                 <td>
                                                                     <div classname="cart-images">
-                                                                        <img height="100px" width="100px" src={suborder._id} />
+                                                                        <img height="100px" width="100px" src={suborder.product_id.imageUrl} />
                                                                     </div>
                                                                 </td>
-                                                                <td>{suborder._id}</td>
-                                                                <td>{suborder.qty} x</td>
+                                                                <td>{suborder.product_id.name}</td>
+                                                                <td>{suborder.qty} x </td>
                                                                 <td>
                                                                     <div className="table-Originaltotal"> {suborder.productPrice} ₹</div>
                                                                 </td>

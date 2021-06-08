@@ -4,6 +4,7 @@ import loginImg from "../login.svg";
 import { Link } from 'react-router-dom';
 import Sidesection from './Sidesection';
 import "../Login.scss";
+import axios from "axios";
 
  function Register() {
 
@@ -12,7 +13,7 @@ import "../Login.scss";
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
   const [activerole,setactiverole] = useState();
-  const  [category,setcategory ]= useState({});
+  const  [category,setcategory] = useState([]);
   const history = useHistory();
 
   async function signup() {
@@ -32,11 +33,23 @@ import "../Login.scss";
    history.push("/manager-home")
    }
 
-   React.useEffect(() => {
-    fetch('http://localhost:8020/categorypost/categories')
-      .then(results => results.json())
-      .then(results => setcategory({results}))
-  }, [setcategory]);
+   useEffect(() => {
+    fetch("http://localhost:8020/categorypost/categories").then(
+        res => setcategory(res.data.categoryposts)
+    )
+})
+
+//    useEffect(() => {
+//     const fetchUsers = async () => {
+//         try {
+//             const response = await axios.get("http://localhost:8020/categorypost/categories");
+//             setcategory({User: response.data.categoryposts});
+//         } catch (e) {
+//             console.log(e);
+//         }
+//     };
+//     fetchUsers();
+// }, []);
  
     return (
       <div>
@@ -63,6 +76,17 @@ import "../Login.scss";
             <img height="150px" width="200px" src={loginImg} alt={1}/>
           </div>
           <div className="form">
+
+              <select className="select">
+
+              {category.map(person => (
+                <div key={person._id}>
+                  <option className="category-content" value={person.categoryName}>{person.categoryName}</option>
+                  <div className="category-content">{person.name}</div>
+                </div>
+              ))}
+            </select>
+
             <div className="radio-btn">
 
               <input type="radio" className="radio" name="select" value="cook" onChange={e => setactiverole(e.target.value)} />
