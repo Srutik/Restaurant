@@ -196,7 +196,7 @@ class Menu extends React.Component {
               {this.state.cart.filter(person => person.categoryId._id === "609a0d2123025806dc494526" ).map(person => (
                 <div key={person._id}>
                   <div className="cardItem-menus">
-                    <div classname="image" >
+                    <div classname="image">
                       <img width="230px" height="230px" src={person.imageUrl} />
                     </div>
                     <div className="content-data">

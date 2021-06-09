@@ -4,6 +4,7 @@ import loginImg from "../login.svg";
 import { Link } from 'react-router-dom';
 import Sidesection from './Sidesection';
 import "../Login.scss";
+import { AlbumRounded } from "@material-ui/icons";
 
  function RegisterWaiter() {
 
@@ -11,11 +12,12 @@ import "../Login.scss";
   const [password, setPassword] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
-  const [activerole,setactiverole] = useState();
+  // const [activerole,setactiverole] = useState();
   const history = useHistory();
 
   async function signup() {
-    let data={email,name,password,phone,activerole}
+    try{
+    let data={email,name,password,phone,activerole:"Waiter"}
     console.warn(data)
 
     let result = await fetch("http://localhost:8020/all/register" , {
@@ -30,6 +32,10 @@ import "../Login.scss";
    localStorage.setItem("user-info", JSON.stringify(result)) 
    alert("waiter Created !")
    history.push("/manager-home")
+  }
+  catch(err){
+    alert(err);
+  }
    }
  
     return (
@@ -57,15 +63,15 @@ import "../Login.scss";
             <img src={loginImg} height="150px" width="200px" alt={1}/>
           </div>
           <div className="form">
-            <div className="radio-btn">
+            {/* <div className="radio-btn">
 
               <input type="radio" className="radio" name="select" value="cook" onChange={e => setactiverole(e.target.value)} />
               <label className="label-register" for="cook">Cook</label>
 
-              <input type="radio" className="radio" name="select" value="Waiter" onChange={e => setactiverole(e.target.value)} />
+              <input type="radio" className="radio" name="select" value="waiter" onChange={e => setactiverole(e.target.value)} />
               <label className="label-register" for="Waiter">Waiter</label>
 
-            </div>
+            </div> */}
             <div className="form-group">
               <label htmlFor="username">Username</label>
               <input type="text" name="name" placeholder="username" onChange={e => setName(e.target.value)} />

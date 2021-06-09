@@ -174,3 +174,22 @@
       margin-bottom: 40px;
     }
   }
+
+  .select-field{
+    width: 150px;
+    height: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+
+  .select-setfield{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .select-lable_category{
+    color: white;
+    font-weight: bolder;
+    margin: 5px;
+  }
