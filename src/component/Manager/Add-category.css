@@ -143,6 +143,7 @@ background-color: white;
   text-align: center;
   background-color: rgb(120, 187, 187);
   font-size: 25px;
+  max-width: 200px;
 }
 
 .am1 {
@@ -153,6 +154,7 @@ background-color: white;
   padding: 10px;
   border-bottom: 1px solid #ddd;
   text-align: left;
+  max-width: 200px;
 }
 
 .am1 tr:hover {
@@ -579,4 +581,10 @@ cursor: pointer;
   justify-content: flex-end;
   margin-top: 10px;
   margin-right: 20px;
+}
+
+.POPUP-set_button{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

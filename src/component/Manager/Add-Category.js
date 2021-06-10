@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Link } from 'react-router-dom';
 import './Add-category.css';
 import Sidesection from './Sidesection';
+import { data } from 'jquery';
 
 
 export class AddCategory extends Component {
@@ -147,20 +152,16 @@ export class AddCategory extends Component {
                           />
                         </td>
                         <td>
-                          <button
-                            className="add-menu-btn"
-                            onClick={() => this.togglePopup(data)}
-                          >
-                            Add Menu
-                          </button>
+                          <div className="POPUP-set_button">
 
-                          <button
-                            className="add-menu-btn"
-                            onClick={() => this.delete(data._id)}
-                            variant="danger"
-                          >
-                            Delete
-                          </button>
+                            <IconButton aria-label="delete">
+                              <AddBoxIcon color="primary" fontSize="large" onClick={() => this.togglePopup(data)} />
+                            </IconButton>
+
+                            <IconButton aria-label="delete">
+                              <DeleteIcon color="secondary" fontSize="large" onClick={() => this.delete(data._id)} />
+                            </IconButton>
+                          </div>
                         </td>
                       </tr>
                     </table>
@@ -193,12 +194,14 @@ class Popup extends React.Component {
       name: null,
       people: [],
       showSecondPopup: false,
+      showThirdPopup: false,
       loading: true,
       imageUrl: "",
       originalPrice: "",
       description: "",
       offer: "",
       activeId1: null,
+      activeId2: null,
     };
     this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
   }
@@ -270,6 +273,13 @@ class Popup extends React.Component {
     this.setState({
       showSecondPopup: !this.state.showSecondPopup,
       activeId1: data._id,
+    });
+  }
+
+  toggleThirdPopup(data) {
+    this.setState({
+      showThirdPopup: !this.state.showThirdPopup,
+      activeId2: data._id
     });
   }
 
@@ -376,7 +386,7 @@ class Popup extends React.Component {
                 <td>Offer</td>
                 <td>OfferPrice</td>
                 <td>Description</td>
-                <td>Action</td>
+                <td className="action-set">Action</td>
               </table>
 
               {this.state.people.map((data) => (
@@ -401,20 +411,22 @@ class Popup extends React.Component {
                           <td>{data.description}</td>
 
                           <td>
-                            <button
-                              className="ectb ectb1"
-                              onClick={() => this.toggleSecondPopup(data)}
-                            >
-                              Edit Item
-                            </button>
+                            <div className="POPUP-set_button">
+                              <IconButton aria-label="edit">
+                                <EditIcon onClick={() => this.toggleSecondPopup(data)} color="primary" fontSize="small" />
+                              </IconButton>
 
-                            <button
-                              className="ectb ectb1"
-                              onClick={() => this.delete(data._id)}
-                              variant="danger"
-                            >
-                              Delete
+                              <IconButton aria-label="delete">
+                                <DeleteIcon color="secondary" fontSize="small" onClick={() => this.delete(data._id)} />
+                              </IconButton>
+
+                              <button
+                                className="ectb ectb1"
+                                onClick={() => this.toggleThirdPopup(data)}
+                              >
+                                Add Ingredients
                             </button>
+                            </div>
                           </td>
                         </tr>
                       </table>
@@ -423,7 +435,14 @@ class Popup extends React.Component {
                     {this.state.showSecondPopup ? (
                       <SecondPopup
                         id1={this.state.activeId1}
-                        closeSecondPopup={() => this.toggleSecondPopup(data)}
+                        closeSecondPopup={() => this.toggleSecondPopup()}
+                      />
+                    ) : null}
+
+                    {this.state.showThirdPopup ? (
+                      <ThirdPopup
+                         id2={this.state.activeId2}
+                        closeThirdPopup={() => this.toggleThirdPopup(data)}
                       />
                     ) : null}
                   </div>
@@ -597,6 +616,147 @@ class SecondPopup extends React.Component {
               </div>
             </div>
           </div>
+
+
+        </div>
+      </div>
+    );
+  }
+}
+
+
+
+
+class ThirdPopup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showThirdPopup: false,
+      loading: true,
+      Ingredient: [],
+    };
+    this.toggleThirdPopup = this.toggleThirdPopup.bind(this);
+    // this.handleAdd = this.handleAdd.bind(this);
+  }
+
+
+  async componentDidMount() {
+    const url = "http://localhost:8020/ingredients/getIngredients";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ Ingredient: data.ingredients, loading: false });
+    this.searchArray = data;
+  }
+
+  handleAdd(_id) {
+    fetch("http://localhost:8020/ingredients/inginproduct/" + this.props.id2 + "/" + _id, {
+      method: "POST",
+    }).then((data) => {
+      data.json().then((resp) => {
+        alert("Ingredient add sucessfully !");
+      });
+    });
+  }
+
+
+  // async handleItemEdit(e) {
+  //   e.preventDefault();
+
+  //   let file = this.state.file;
+  //   let name = this.state.name;
+  //   let offer = this.state.offer;
+  //   let description = this.state.description;
+
+  //   let formdata = new FormData();
+
+  //   formdata.append("imageUrl", file);
+  //   formdata.append("name", name);
+  //   formdata.append("offer", offer);
+  //   formdata.append("description", description);
+
+  //   axios({
+  //     url: `http://localhost:8020/menu/update/` + this.props.id1,
+  //     method: "PUT",
+  //     headers: {
+  //       authorization: `your token`,
+  //     },
+  //     data: formdata,
+  //   }).then(
+  //     (res) => {
+  //       this.setState({ showSecondPopup: !this.state.showSecondPopup });
+  //     },
+  //     (err) => { }
+  //   );
+  // }
+
+  toggleThirdPopup(data) {
+    this.setState({
+      showThirdPopup: !this.state.showThirdPopup,
+      activeId1: data._id,
+    });
+  }
+
+  render() {
+    return (
+      <div className="add-cp">
+        <div className="add-cp1">
+          <div className="secondcloseItem-set">
+            <button
+              className="secondcloseItem-btn"
+              onClick={this.props.closeThirdPopup}
+            >
+              X
+            </button>
+          </div>
+
+          <div>
+            <label className="itn"> Ingredients</label>
+
+            <div>
+              <table className="ai">
+                <td>Title</td>
+                <td>Image</td>
+                <td>Price</td>
+                <td>Description</td>
+                <td>Action</td>
+              </table>
+
+              {this.state.Ingredient.map((data) => (
+                <div key={data._id}>
+                  <div>
+                    <div>
+                      <table className="ai1">
+                        <tr>
+                          <td> {data.IngredientName}</td>
+                          <td>
+                            <img
+                              height="80px"
+                              width="80px"
+                              className="img"
+                              src={data.imageUrl}
+                            />
+                          </td>
+
+                          <td>{data.price} ₹</td>
+                          <td>{data.description}</td>
+
+                          <td>
+
+                          <IconButton aria-label="delete">
+                             Add <AddBoxIcon color="primary" fontSize="large" onClick={() => this.handleAdd(data._id)}/>
+                            </IconButton>
+
+
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
 
 
         </div>

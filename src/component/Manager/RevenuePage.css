@@ -143,3 +143,8 @@
 .rns {
   text-align: right;
 }
+
+.date_view-set{
+  text-align: center;
+  margin-top: 10px;
+}

@@ -85,7 +85,7 @@ class BookTable extends Component {
                                 name="startDate"
                                 timeIntervals={20}
                                 timeCaption="time"
-                                dateFormat="MMMM dd, yyyy h:mm aa"
+                                dateFormat="yyyy-MM-dd"
                             />
                         </div>
 

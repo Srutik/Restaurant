@@ -1,29 +1,57 @@
 import axios from "axios";
 import Sidesection from './Sidesection';
 import React, { Component } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./RevenuePage.css";
 
 class Revenue extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startdate: "",
-      enddate: "",
+      startdate: new Date(),
+      enddate: new Date(),
       result: [],
-      
+
       loading: true,
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitEnd = this.handleSubmitEnd.bind(this);
+
   }
 
-  handleStartDate(e) {
-    let startdate = e.target.value;
-    this.setState({ startdate: startdate });
+  handleSubmit(date) {
+    this.setState({
+      startdate: date
+    })
   }
 
-  handleEndDate(e) {
-    let enddate = e.target.value;
-    this.setState({ enddate: enddate });
+  // onFormSubmit(e) {
+  //   e.preventDefault();
+  //   console.log(this.state.startdate)
+  // }
+
+  handleSubmitEnd(date) {
+    this.setState({
+      enddate: date
+    })
   }
+
+  // onFormSubmitEnd(e) {
+  //   e.preventDefault();
+  //   console.log(this.state.enddate)
+  // }
+
+
+  // handleStartDate(e) {
+  //   let startdate = e.target.value;
+  //   this.setState({ startdate: startdate });
+  // }
+
+  // handleEndDate(e) {
+  //   let enddate = e.target.value;
+  //   this.setState({ enddate: enddate });
+  // }
 
   handleUpload(e) {
     let startdate = this.state.startdate;
@@ -54,29 +82,39 @@ class Revenue extends Component {
 
     return (
       <div>
-          <Sidesection />
+        <Sidesection />
         <h1 className="revenue-label">Revenue</h1>
 
         <div className="rn">
           <div className="rn1">
             <div className="rn2">
               <div className="sd">Start-Date</div>
-              <div className="sd1">
-                <input
-                  type="text"
-                  className="sd2"
+
+              <div className="date_view-set">
+                <DatePicker
+                  className="picker"
+                  selected={this.state.startdate}
+                  onChange={this.handleSubmit}
+                  showTimeSelect
                   name="startdate"
-                  onChange={(e) => this.handleStartDate(e)}
+                  timeIntervals={20}
+                  timeCaption="time"
+                  dateFormat="yyyy-MM-dd"
                 />
               </div>
 
               <div className="ed">End-Date</div>
-              <div className="ed1">
-                <input
-                  type="text"
-                  className="ed2"
+
+              <div className="date_view-set">
+                <DatePicker
+                  className="picker"
+                  selected={this.state.enddate}
+                  onChange={this.handleSubmitEnd}
+                  showTimeSelect
                   name="enddate"
-                  onChange={(e) => this.handleEndDate(e)}
+                  timeIntervals={20}
+                  timeCaption="time"
+                  dateFormat="yyyy-MM-dd"
                 />
               </div>
 
@@ -99,14 +137,14 @@ class Revenue extends Component {
                     <td><div className="rns">Sum(Rs)</div></td>
                   </table>
                   <div>
-                  <table className="rnt1">
-                    <tr>
-                    <td>{item._id}</td>
+                    <table className="rnt1">
+                      <tr>
+                        <td>{item._id}</td>
 
-                    <td>{item.COUNT}</td>
-                    <td><div className="rns">{item.SUM}</div></td>
-                    </tr>
-                  </table>
+                        <td>{item.COUNT}</td>
+                        <td><div className="rns">{item.SUM}</div></td>
+                      </tr>
+                    </table>
                   </div>
                 </div>
               </div>

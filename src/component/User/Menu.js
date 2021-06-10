@@ -150,7 +150,7 @@ class Menu extends React.Component {
               <h2 className="category_titles">➤ Chinese</h2>
             </div>
             <div className="card-menus" >
-              {this.state.cart.filter(person => person.categoryId._id === "609a0d0d23025806dc494525" ).map(person => (
+              {this.state.cart.filter(person => person.categoryId._id === "609a0d0d23025806dc494525").map(person => (
                 <div key={person._id}>
                   <div className="cardItem-menus">
                     <div classname="image" >
