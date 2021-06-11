@@ -43,6 +43,7 @@ import SetOffers from './component/Manager/All-offer';
 import TableOrder from './component/Manager/Table-Order';
 import Parcels from './component/Manager/Live-parcel';
 import RegisterWaiter from './component/Manager/register-waiter';
+import ParcelDone from './component/Manager/Parcel-DoneOrder';
 
 import Cook from './component/Cook/Cook-login';
 import CookHome from './component/Cook/Cook-home';
@@ -105,6 +106,7 @@ function App() {
         <Route path='/table-order' component={TableOrder} />
         <Route path='/live-parcel' component={parcelOrder} />
         <Route path='/register-waiter' component={RegisterWaiter} />
+        <Route path='/parcel-doneorder' component={ParcelDone} />
 
         <Route path='/cook-login' component={Cook} />
         <Route path='/cook-forgot' component={CookForgot} />

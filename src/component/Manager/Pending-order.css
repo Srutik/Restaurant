@@ -144,3 +144,15 @@
   text-align: center;
   margin-top: 10px;
 }
+
+.payment-details_lable{
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.set_containt{
+margin: auto;
+margin-left: 10px;
+margin-right: 10px;
+}

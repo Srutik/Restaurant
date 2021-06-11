@@ -4,6 +4,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Sidesection from './Sidesection';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css' 
 
 class Popup extends React.Component {
 
@@ -121,6 +123,7 @@ class viewCook extends Component {
       loading: true,
       people: [],
       showPopup: false,
+      id2:"",
     };
     this.togglePopup = this.togglePopup.bind(this);
   }
@@ -147,16 +150,32 @@ class viewCook extends Component {
     this.setState({ people: data.list, loading: false });
   }
 
-  delete(_id) {
-    fetch("http://localhost:8020/all/delete/" + _id, {
+  delete() {
+    fetch("http://localhost:8020/all/delete/" + this.state.id2, {
       method: "DELETE",
     }).then((data) => {
       data.json().then((resp) => {
-        alert("Are You Sure Delete");
         this.componentDidMount();
       });
     });
   }
+
+  submit = (cook) => {
+    this.setState({id2: cook._id})
+    confirmAlert({
+      title: 'Confirm to Delete',
+      message: 'Are you sure to delete this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.delete()
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  };
 
   render() {
     const url = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
@@ -204,7 +223,7 @@ class viewCook extends Component {
                         </button> */}
 
                         <IconButton aria-label="delete">
-                          <DeleteIcon color="secondary" fontSize="small" onClick={() => this.delete(cook._id)}/>
+                          <DeleteIcon color="secondary"  onClick={() => this.submit(cook)} fontSize="small"/>
                         </IconButton>
 
                       </td>

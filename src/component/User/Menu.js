@@ -362,7 +362,7 @@ class Menu extends React.Component {
               <h1 className="titles">Menu List </h1>
             </div>
             <div className="category_head_set">
-              <h2 className="category_titles">{this.props.category_name}</h2>
+              <h2 className="category_titles">➤ Indian</h2>
             </div>
             <div className="card-menus" >
               {this.state.carts.map(person => (

@@ -122,15 +122,15 @@ class ParcelOrder extends Component {
                         </div>
                         </div>
 
-                        <div className="details-set_datavalue">
+                        <div className="details-set_data">
                             <Link to="/parcel-order" className="link-effect">
-                                <div className="details-linkvalue">Pending</div>
+                                <div className="details-link">Pending</div>
                             </Link>
                         </div>
 
-                        <div className="details-set_data">
+                        <div className="details-set_datavalue">
                             <Link to="/parcel-doneorder" className="link-effect">
-                                <div className="details-link">Done</div>
+                                <div className="details-linkvalue">Done</div>
                             </Link>
                         </div>
                     </div>
@@ -143,8 +143,9 @@ class ParcelOrder extends Component {
                         <td>Status</td>
                         <td>Payment </td>
                         <td>Action</td>
+                        
                     </table>
-                    {this.state.Parcel.filter(order1 => order1.PaymentStatus === "Pending").map(order1 => (
+                    {this.state.Parcel.filter(order1 => order1.PaymentStatus === "Done").map(order1 => (
                         <div key={order1._id}>
                             <table className="data-table">
                                 <tr>
@@ -325,143 +326,3 @@ class Popup1 extends React.Component {
         );
     }
 }
-
-
-
-
-// class Popup1 extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             message: "",
-//         };
-//     }
-
-//     async componentDidMount() {
-//         const url = "http://localhost:8020/order/howlong/" + this.props._id;
-//         const response = await fetch(url);
-//         const data = await response.json();
-//         this.setState({ message: data.message, loading: false });
-//         this.searchArray = data;
-//     }
-
-//     render() {
-//         return (
-//             <div className="popuporder">
-//                 <div className="popuporder_inner">
-//                     <div className="popbtn2-order">
-//                         <button className="pop-order" onClick={this.props.closePopup1}>
-//                             X
-//               </button>
-//                     </div>
-
-//                     <div className="manager-List">
-//                         <h1 className="manager-title">Order Performance</h1>
-//                     </div>
-
-//                     <div className="table-data"> {this.state.message}</div>
-//                 </div>
-//             </div>
-//         );
-//     }
-// }
-
-
-
-/*
-  <div className="cookall-orderbtn">
-                                    <div className="cookall-orders">
-                                        {order1.items.map((suborder) =>
-                                            <div key={suborder._id}>
-                                                <div className="cooksingle-order">
-                                                    <div classname="cookcart-images">
-                                                        <img height="100px" width="100px" src={suborder.productId} />
-                                                    </div>
-                                                    <div className="cookorder-data">Quantity:{suborder.qty}</div>
-                                                    <div className="cookorder-data">Priority:{suborder.priority}</div>
-                                                    <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
-                                                    <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
-                                                </div>
-                                            </div>)}
-                                    </div>
-                                </div>
-                                 */
-
-/*
-import { render } from 'node-sass';
-import React, { Component } from 'react'
-import Sidesection from './Sidesection';
-import { components } from 'react-select';
-import './All-order.css';
-
-class Allorder extends components{
-    constructor(props) {
-        super(props);
-        this.state = {
-          people: [],
-          loading: true,
-        };
-    }
-
-    async componentDidMount() {
-        const url = "http://localhost:8020/order/getorders";
-        const response = await fetch(url);
-        const data = await response.json();
-        this.setState({ people: data.orders, loading: false });
-        this.searchArray = data;
-      }
-
-render()  {
-    const url = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
-
-    if (this.state.loading) {
-      return (
-        <div>
-          <div className="logo">
-            <img height="100px" width="100px" src={url} />
-          </div>
-          <div className="state">loading...</div>
-        </div>
-      );
-    }
-
-    return(
-        <div>
-            <Sidesection />
-            <div className="order-head">Order List</div>
-            <div className="cookorder-card">
-                        {this.state.people.map(order1 => (
-                            <div key={order1._id}>
-                                <div className="order-head">
-                                    <div className="cookorder-total">Name : {order1.name}</div>
-                                    <div className="cookorder-total">Grand Total : {order1.grandTotal}</div>
-                                    <div className="cookorder-total">Status : {order1.OrderIs}</div>
-                                    <div className="cookorder-total">Date : {order1.createdAt}</div>
-                                </div>
-                                <div className="cookall-orderbtn">
-                                    <div className="cookall-orders">
-                                        {order1.items.map((suborder) =>
-                                            <div key={suborder._id}>
-                                                <div className="cooksingle-order">
-                                                    <div classname="cookcart-images">
-                                                        <img height="100px" width="100px" src={suborder.productId} />
-                                                    </div>
-                                                    <div className="cookorder-data">Quantity:{suborder.qty}</div>
-                                                    <div className="cookorder-data">Priority:{suborder.priority}</div>
-                                                    <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
-                                                    <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
-                                                </div>
-                                            </div>)}
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-        </div>
-
-    )
-
-}
-}
-
-export default Allorder; */
