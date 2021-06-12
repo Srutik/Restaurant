@@ -133,7 +133,6 @@ export class OrderList extends Component {
                                 <div className="order-total">Name : {order.name}</div>
                                 <div className="order-total">Order Status :- {order.OrderIs}</div>
                                 <div className="order-total">Date : {order.createdAt} </div>
-
                             </div>
 
                             <table className="order_t">

@@ -35,8 +35,8 @@ import "../Login.scss";
       <div className="base-container" >
         <div className="header">Register</div>
         <div className="content">
-          <div className="image">
-            <img src={loginImg} alt={1}/>
+          <div className="image-set">
+            <img height="150px" width="150px" src={loginImg} alt={1}/>
           </div>
           <div className="form">
             <div className="form-group">

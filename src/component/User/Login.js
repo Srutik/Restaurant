@@ -52,8 +52,8 @@ else if(result.role=="cook"){
       <div className="base-container" >
         <div className="header">Login</div>
         <div className="content">
-          <div className="image">
-            <img src={loginImg} alt={1} />
+          <div className="image-set">
+            <img height="150px" width="150px" src={loginImg} alt={1} />
           </div>
           <div className="form">
             <div className="form-group">

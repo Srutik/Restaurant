@@ -26,7 +26,7 @@
 }
   
     .header {
-     margin: 20px;
+     margin: 10px;
      color: white;
       font-size: 28px;
       justify-content: space-around;
@@ -35,20 +35,22 @@
 
     .image-set{
       text-align: center;
+      margin-top: -20px;
+      margin-bottom: -20px;
     }
   
     .content {
       display: flex;
       flex-direction: column;
   
-      .image {
-        align-items: center;
+      // .image {
+      //   align-items: center;
   
-        img {
-          width: 60%;
-          height: 60%;
-        }
-      }
+      //   img {
+      //     width: 60%;
+      //     height: 60%;
+      //   }
+      // }
   
       .form {
         margin-top: 1em;
