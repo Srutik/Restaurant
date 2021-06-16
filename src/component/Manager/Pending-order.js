@@ -100,7 +100,6 @@ class OrderList extends Component {
                         <h1 className="manager-title">Order History</h1>
                     </div>
                     <table className="orders-table">
-
                         <td>Name</td>
                         <td>Date</td>
                         <td>GrandTotal</td>

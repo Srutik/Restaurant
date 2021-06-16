@@ -91,8 +91,8 @@ class Popup extends React.Component {
 
     render() {
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
+            <div className='pop-up'>
+                <div className='pop-up_inner'>
                     <h1>{this.props.text}</h1>
                     <div className="close-set">
                         <button className="close-btn" onClick={this.props.closePopup}>X</button>
@@ -157,8 +157,8 @@ class TablePopup extends React.Component {
 
     render() {
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
+            <div className='pop-up'>
+                <div className='pop-up_inner'>
                     <h1>{this.props.text}</h1>
                     <div className="close-set">
                         <button className="close-btn" onClick={this.props.closeTablePopup}>X</button>
@@ -221,8 +221,8 @@ class PopupParcel extends React.Component {
 
     render() {
         return (
-            <div className='popup'>
-                <div className='popup_inner'>
+            <div className='pop-up'>
+                <div className='pop-up_inner'>
                     <h1>{this.props.text}</h1>
                     <div className="close-set">
                         <button className="close-btn" onClick={this.props.closeParcelPopup}>X</button>

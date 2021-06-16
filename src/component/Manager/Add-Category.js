@@ -25,6 +25,8 @@ export class AddCategory extends Component {
     };
 
     this.togglePopup = this.togglePopup.bind(this);
+    this.toggleEditPopup = this.toggleEditPopup.bind(this);
+
   }
 
   async componentDidMount() {
@@ -82,6 +84,13 @@ export class AddCategory extends Component {
   togglePopup(data) {
     this.setState({
       showPopup: !this.state.showPopup,
+      activeId: data._id,
+    });
+  }
+
+  toggleEditPopup(data) {
+    this.setState({
+      showEditPopup: !this.state.showEditPopup,
       activeId: data._id,
     });
   }
@@ -158,6 +167,10 @@ export class AddCategory extends Component {
                               <AddBoxIcon color="primary" fontSize="large" onClick={() => this.togglePopup(data)} />
                             </IconButton>
 
+                            <IconButton aria-label="edit">
+                              <EditIcon color="primary" fontSize="large" onClick={() => this.toggleEditPopup(data)} />
+                            </IconButton>
+
                             <IconButton aria-label="delete">
                               <DeleteIcon color="secondary" fontSize="large" onClick={() => this.delete(data._id)} />
                             </IconButton>
@@ -172,6 +185,15 @@ export class AddCategory extends Component {
                       _id={this.state.activeId}
                       text="Close Me"
                       closePopup={() => this.togglePopup(data)}
+                    />
+                  ) : null}
+
+
+                  {this.state.showEditPopup ? (
+                    <Popup
+                      _id={this.state.activeId}
+                      text="Close Me"
+                      closePopup={() => this.toggleEditPopup(data)}
                     />
                   ) : null}
                 </div>
@@ -203,7 +225,7 @@ class Popup extends React.Component {
       activeId1: null,
       activeId2: null,
     };
-    this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
+    // this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
   }
 
   async componentDidMount() {
@@ -425,7 +447,7 @@ class Popup extends React.Component {
                                 onClick={() => this.toggleThirdPopup(data)}
                               >
                                 Add Ingredients
-                            </button>
+                              </button>
                             </div>
                           </td>
                         </tr>
@@ -435,13 +457,13 @@ class Popup extends React.Component {
                     {this.state.showSecondPopup ? (
                       <SecondPopup
                         id1={this.state.activeId1}
-                        closeSecondPopup={() => this.toggleSecondPopup()}
+                        closeSecondPopup={() => this.toggleSecondPopup(data)}
                       />
                     ) : null}
 
                     {this.state.showThirdPopup ? (
                       <ThirdPopup
-                         id2={this.state.activeId2}
+                        id2={this.state.activeId2}
                         closeThirdPopup={() => this.toggleThirdPopup(data)}
                       />
                     ) : null}
@@ -470,7 +492,7 @@ class SecondPopup extends React.Component {
       offer: "",
       activeId1: null,
     };
-    this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
+    // this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
   }
 
   EditItemName(e) {
@@ -522,18 +544,18 @@ class SecondPopup extends React.Component {
       data: formdata,
     }).then(
       (res) => {
-        this.setState({ showSecondPopup: !this.state.showSecondPopup });
+        // this.setState({ });
       },
       (err) => { }
     );
   }
 
-  toggleSecondPopup(data) {
-    this.setState({
-      showSecondPopup: !this.state.showSecondPopup,
-      activeId1: data._id,
-    });
-  }
+  // toggleSecondPopup(data) {
+  //   this.setState({
+  //     showSecondPopup: !this.state.showSecondPopup,
+  //     activeId1: data._id,
+  //   });
+  // }
 
   render() {
     return (
@@ -635,7 +657,7 @@ class ThirdPopup extends React.Component {
       loading: true,
       Ingredient: [],
     };
-    this.toggleThirdPopup = this.toggleThirdPopup.bind(this);
+    // this.toggleThirdPopup = this.toggleThirdPopup.bind(this);
     // this.handleAdd = this.handleAdd.bind(this);
   }
 
@@ -689,12 +711,12 @@ class ThirdPopup extends React.Component {
   //   );
   // }
 
-  toggleThirdPopup(data) {
-    this.setState({
-      showThirdPopup: !this.state.showThirdPopup,
-      activeId1: data._id,
-    });
-  }
+  // toggleThirdPopup(data) {
+  //   this.setState({
+  //     showThirdPopup: !this.state.showThirdPopup,
+  //     activeId1: data._id,
+  //   });
+  // }
 
   render() {
     return (
@@ -739,11 +761,9 @@ class ThirdPopup extends React.Component {
 
                           <td>{data.price} ₹</td>
                           <td>{data.description}</td>
-
                           <td>
-
-                          <IconButton aria-label="delete">
-                             Add <AddBoxIcon color="primary" fontSize="large" onClick={() => this.handleAdd(data._id)}/>
+                            <IconButton aria-label="delete">
+                              Add <AddBoxIcon color="primary" fontSize="large" onClick={() => this.handleAdd(data._id)} />
                             </IconButton>
 
 

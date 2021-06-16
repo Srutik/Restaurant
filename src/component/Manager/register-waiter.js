@@ -12,7 +12,6 @@ import { AlbumRounded } from "@material-ui/icons";
   const [password, setPassword] = useState();
   const [phone, setPhone] = useState();
   const [email, setEmail] = useState();
-  // const [activerole,setactiverole] = useState();
   const history = useHistory();
 
   async function signup() {
@@ -41,7 +40,6 @@ import { AlbumRounded } from "@material-ui/icons";
     return (
       <div>
         <Sidesection />
-
         <div className='link-set'>
                         <div className="details-set_data">
                             <Link to="/register-manager" className="link-effect">

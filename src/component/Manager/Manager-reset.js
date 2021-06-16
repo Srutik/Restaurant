@@ -56,7 +56,6 @@ import "../Login.scss";
           <button type="button" onClick={submit} className="btns">
             Submit
           </button>
-          
         </div>
       </div>
     );

@@ -21,13 +21,15 @@ class Menu extends React.Component {
       category: '',
       index: 0,
       categoryname: '',
-      cartItem: []
+      cartItem: [],
+      Title: "",
     };
 
     this.incrementCount = this.incrementCount.bind(this);
     this.DecrementCount = this.DecrementCount.bind(this);
     this.incrementQTY = this.incrementQTY.bind(this);
-    this.DecrementQTY = this.DecrementQTY.bind(this)
+    this.DecrementQTY = this.DecrementQTY.bind(this);
+    this.togglePopup = this.togglePopup.bind(this);
 
   }
   async componentDidMount() {
@@ -103,9 +105,10 @@ class Menu extends React.Component {
     });
   }
 
-  togglePopup() {
+  togglePopup(person) {
     this.setState({
-      showPopup: !this.state.showPopup
+      showPopup: !this.state.showPopup,
+      Title: person.name
     });
   }
 
@@ -209,7 +212,18 @@ class Menu extends React.Component {
                         </div>
 
                       </div>
+                      <div className="add-cartBtn_set">
+                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
+                        {this.state.showPopup ?
+                          <Popup
+                            title={this.state.Title}
+                            text='Close Me'
+                            closePopup={this.togglePopup.bind(this)}
+                          />
+                          : null
+                        }
                       <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
                     </div>
 
                   </div>
@@ -252,7 +266,18 @@ class Menu extends React.Component {
                         </div>
 
                       </div>
+                      <div className="add-cartBtn_set">
+                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
+                        {this.state.showPopup ?
+                          <Popup
+                            title={this.state.Title}
+                            text='Close Me'
+                            closePopup={this.togglePopup.bind(this)}
+                          />
+                          : null
+                        }
                       <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
                     </div>
 
                   </div>
@@ -295,7 +320,18 @@ class Menu extends React.Component {
                         </div>
 
                       </div>
+                      <div className="add-cartBtn_set">
+                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
+                        {this.state.showPopup ?
+                          <Popup
+                            title={this.state.Title}
+                            text='Close Me'
+                            closePopup={this.togglePopup.bind(this)}
+                          />
+                          : null
+                        }
                       <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
                     </div>
 
                   </div>
@@ -338,7 +374,18 @@ class Menu extends React.Component {
                         </div>
 
                       </div>
+                      <div className="add-cartBtn_set">
+                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
+                        {this.state.showPopup ?
+                          <Popup
+                            title={this.state.Title}
+                            text='Close Me'
+                            closePopup={this.togglePopup.bind(this)}
+                          />
+                          : null
+                        }
                       <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                    </div>
                     </div>
 
                   </div>
@@ -356,20 +403,20 @@ class Menu extends React.Component {
                     <div className="cartItemAdd">
                       <div classname="cart-images">
                         <img height="50px" width="50px" src={item.product_id.imageUrl} />
-                        </div>
-                        <div className="fontS">{item.product_id.name}</div>
-                        <div className="fontS">{item.productPrice} ₹ 🗙 {item.qty}</div>
+                      </div>
+                      <div className="fontS">{item.product_id.name}</div>
+                      <div className="fontS">{item.productPrice} ₹ 🗙 {item.qty}</div>
                       <div className="fontS-total">{item.total} ₹ </div>
                     </div>
-                      {/* <div className="fontS">Priority:{item.priority}</div> */}
-                      <div className="itemdata-set">
-                      
+                    {/* <div className="fontS">Priority:{item.priority}</div> */}
+                    <div className="itemdata-set">
+
                     </div>
                   </div>
                 ))}
                 <div className="btn-set">
                   <Link to="/cart" >
-                  <button className="checkout_btn"> Checkout ➜ </button>
+                    <button className="checkout_btn"> Checkout ➜ </button>
                   </Link>
                 </div>
               </div>
@@ -454,9 +501,10 @@ class Menu extends React.Component {
 
                       </div>
                       <div className="add-cartBtn_set">
-                        <button className="addCart" onClick={this.togglePopup.bind(this)}>Add Ingredients</button>
+                        <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
                         {this.state.showPopup ?
                           <Popup
+                            title={this.state.Title}
                             text='Close Me'
                             closePopup={this.togglePopup.bind(this)}
                           />
@@ -481,19 +529,21 @@ class Menu extends React.Component {
                     <div className="cartItemAdd">
                       <div classname="cart-images">
                         <img height="50px" width="50px" src={item.product_id.imageUrl} />
-                        </div>
-                        <div className="fontS">{item.product_id.name}</div>
-                        <div className="fontS">{item.productPrice} ₹ 🗙 {item.qty}</div>
+                      </div>
+                      <div className="fontS">{item.product_id.name}</div>
+                      <div className="fontS">{item.productPrice} ₹ 🗙 {item.qty}</div>
                       <div className="fontS-total">{item.total} ₹ </div>
                     </div>
-                      {/* <div className="fontS">Priority:{item.priority}</div> */}
-                      <div className="itemdata-set">
-                      
+                    {/* <div className="fontS">Priority:{item.priority}</div> */}
+                    <div className="itemdata-set">
+
                     </div>
                   </div>
                 ))}
                 <div className="btn-set">
-                  <button className="checkout_btn">Checkout ➜</button>
+                  <Link to='/cart'>
+                    <button className="checkout_btn">Checkout ➜</button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -511,7 +561,7 @@ class Popup extends React.Component {
     super(props);
     this.state = {
       loading: true,
-      Ingredients: [],
+      ingredients: [],
     }
   }
 
@@ -519,8 +569,9 @@ class Popup extends React.Component {
     const url = "http://localhost:8020/ingredients/getIngredients";
     const response = await fetch(url);
     const data = await response.json();
-    this.setState({ Ingredients: data.ingredients, loading: false });
+    this.setState({ ingredients: data.ingredients, loading: false });
     this.searchArray = data;
+    console.log(this.props.title)
   }
 
   // async handleSubmit(name) {
@@ -552,61 +603,37 @@ class Popup extends React.Component {
 
   render() {
     return (
-      <div className='popup'>
-        <div className='popup_inner'>
-          <div className="close-set">
-            <button className="close-btn" onClick={this.props.closePopup}>X</button>
-          </div>
+      <div className='popup-ingredient'>
+        <div className='popup-ingredient_inner'>
           <div>
-            <label className="itn"> Ingredients</label>
+            <h1 className="Title-ingeredients">Ingredients</h1>
+            {/* <h1>{this.props.title}</h1> */}
 
-            <div>
-              <table className="ai">
-                <td>Title</td>
-                <td>Image</td>
-                <td>Price</td>
-                <td>Description</td>
-                <td>Action</td>
-              </table>
-
-              {this.state.Ingredients.map((data) => (
-                <div key={data._id}>
+            {this.state.ingredients.map((person) => (
+              <div key={person._id}>
+                <div className="checkbox-menu">
+                  <label>
+                    <input type="checkbox" className="checkbox-size"
+                      defaultChecked={this.state.isChecked}
+                      onChange={this.toggleChange}
+                    />
+                    {person.IngredientName}
+                  </label>
                   <div>
-                    <div>
-                      <table className="ai1">
-                        <tr>
-                          <td> {data.IngredientName}</td>
-                          <td>
-                            <img
-                              height="80px"
-                              width="80px"
-                              className="img"
-                              src={data.imageUrl}
-                            />
-                          </td>
-
-                          <td>{data.price} ₹</td>
-                          <td>{data.description}</td>
-
-                          <td>
-
-                            {/* <button
-                              className="eitb eitb1"
-                              onClick={() => this.delete(data._id)}
-                              variant="danger"
-                            >
-                              Delete
-                            </button> */}
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
+                    <div className="price-ingredient">{person.price} ₹</div>
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
+            <div className="Ingredient_btn-set">
+            <div className="close_btn">
+              <button className="close-popup_ingredient">Add</button>
+            </div>
+            <div className="close_btn">
+              <button className="close-popup_ingredient" onClick={this.props.closePopup}>Close</button>
             </div>
           </div>
-
+          </div>
 
         </div>
       </div>

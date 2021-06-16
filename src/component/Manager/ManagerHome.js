@@ -188,7 +188,6 @@ export class Dashboard4 extends Component {
             </Link>
           </div>
         </div>
-
       </div>
     )
   }

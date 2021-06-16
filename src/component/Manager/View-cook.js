@@ -13,17 +13,14 @@ class Popup extends React.Component {
 
     super(props);
     this.state = {
-
-      name: "",
-      email: "",
-      phone: "",
-
+      name: this.props.name,
+      email: this.props.email,
+      phone: this.props.phone,
     };
   }
 
   update(e) {
     e.preventDefault();
-
     fetch("http://localhost:8020/all/update/all/" + this.props._id, {
       method: "PUT",
       headers: {
@@ -74,7 +71,7 @@ class Popup extends React.Component {
               <input
                 className="text2-cook"
                 type="text"
-                name="name"
+                value={this.state.name}
                 onChange={(e) => this.handleName(e)}
               />
             </div>
@@ -84,8 +81,7 @@ class Popup extends React.Component {
               <input
                 className="email2-cook"
                 type="text"
-                name="email"
-
+                value={this.state.email}
                 onChange={(e) => this.handleEmail(e)}
               />
             </div>
@@ -95,7 +91,7 @@ class Popup extends React.Component {
               <input
                 className="phone2-cook"
                 type="text"
-                name="phone"
+                value={this.state.phone}
                 onChange={(e) => this.handlePhone(e)}
               />
             </div>
@@ -124,6 +120,9 @@ class viewCook extends Component {
       people: [],
       showPopup: false,
       id2:"",
+      name:"",
+      email:"",
+      phone:"",
     };
     this.togglePopup = this.togglePopup.bind(this);
   }
@@ -132,6 +131,9 @@ class viewCook extends Component {
     this.setState({
       showPopup: !this.state.showPopup,
       id: cook._id,
+      name: cook.name,
+      email: cook.email,
+      phone: cook.phone
     });
   }
 
@@ -218,6 +220,7 @@ class viewCook extends Component {
                         <IconButton aria-label="edit">
                           <EditIcon onClick={() => this.togglePopup(cook)} color="primary" fontSize="small" />
                         </IconButton>
+                        
                         {/* <button className="sb sb1" onClick={() => this.togglePopup(cook)}>
                           Edit item
                         </button> */}
@@ -225,15 +228,16 @@ class viewCook extends Component {
                         <IconButton aria-label="delete">
                           <DeleteIcon color="secondary"  onClick={() => this.submit(cook)} fontSize="small"/>
                         </IconButton>
-
                       </td>
                     </tr>
                   </table>
-
                 </div>
 
                 {this.state.showPopup ? (
                   <Popup
+                    name={this.state.name}
+                    email={this.state.email}
+                    phone={this.state.phone}
                     _id={this.state.id}
                     closePopup={() => this.togglePopup(cook)}
                   />
@@ -248,71 +252,3 @@ class viewCook extends Component {
   }
 }
 export default viewCook;
-
-
-/*
-import React, { Component } from 'react'
-import './View-cook.css';
-import Sidesection from './Sidesection';
-export class viewCook extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          loading: true,
-          people: [],
-        };
-      }
-
-      async componentDidMount() {
-        const url = "http://localhost:8020/all/get"
-        const response = await fetch(url,{
-            method: "POST",
-            body: JSON.stringify({
-                activerole:"cook"
-              }),
-              headers: {
-                "Content-type": "application/json; charset=UTF-8",
-              },
-        });
-        const data = await response.json();
-        this.setState({ people: data.list, loading: false });
-      }
-
-    render() {
-
-        const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
-
-        if (this.state.loading) {
-          return <div>
-            <div className="logo">
-              <img height="100px" width="100px" src={url} />
-            </div>
-            <div className="state">loading...</div>
-          </div>
-        }
-        return (
-            <div>
-                <Sidesection />
-                <div className="head-cook">All Cook</div>
-                <div className="cook-data">
-                {this.state.people.map(cook => (
-                <div key={cook._id}>
-                  <div >
-                    <div className="Single-cook">
-                      <div className="cook-info">UserId :- {cook._id}</div>
-                      <div className="cook-info">Name :- {cook.name}</div>
-                      <div className="cook-info">Email :- {cook.email}</div>
-                      <div className="cook-info">PhoneNo :- {cook.phone}</div>
-                      <div className="cook-info">Created At :- {cook.created_At}</div>
-                    </div>
-                  </div>
-                  <div>__________________________________________________________________________________________________________________________</div>
-                </div>
-              ))}
-                </div>
-            </div>
-        )
-    }
-}
-
-export default viewCook; */
