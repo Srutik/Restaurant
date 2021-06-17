@@ -3,6 +3,12 @@ import axios from "axios";
 import "./Add-Table.css";
 import Sidesection from './Sidesection';
 
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css' 
+
 class Popup extends React.Component {
   constructor(props) {
     super(props);
@@ -149,16 +155,32 @@ export class CreateTable extends Component {
     );
   }
 
-  delete(id) {
-    fetch("http://localhost:8020/book/delete/" + id, {
+  delete() {
+    fetch("http://localhost:8020/book/delete/" + this.state.delete_id, {
       method: "DELETE",
     }).then((data) => {
       data.json().then((resp) => {
-        alert("Are You Sure Delete");
         this.componentDidMount();
       });
     });
   }
+
+  deletepopup = (table) => {
+    this.setState({delete_id: table._id})
+    confirmAlert({
+      title: 'Confirm to Delete',
+      message: 'Are you sure to delete this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.delete()
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  };
 
   render() {
     return (
@@ -220,20 +242,15 @@ export class CreateTable extends Component {
                         <td> {table.table}</td>
                         <td> {table.size}</td>
                         <td>
-                          <button
-                            className="teb teb1"
-                            onClick={() => this.togglePopup(table)}
-                          >
-                            Edit item
-                          </button>
 
-                          <button
-                            className="teb teb1"
-                            onClick={() => this.delete(table._id)}
-                            variant="danger"
-                          >
-                            Delete
-                          </button>
+                        <IconButton aria-label="edit">
+                              <EditIcon color="primary" fontSize="medium" onClick={() => this.togglePopup(table)} />
+                            </IconButton>
+
+                            <IconButton aria-label="delete">
+                              <DeleteIcon color="secondary" fontSize="medium" onClick={() => this.deletepopup(table)}
+ />
+                            </IconButton>
                         </td>
                       </tr>
                     </table>

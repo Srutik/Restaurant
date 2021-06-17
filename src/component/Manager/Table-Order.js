@@ -273,7 +273,6 @@ class Popup extends React.Component {
                                                             </tr>
                                                         </table>
                                                         <div>
-
                                                         </div>
                                                     </div>)}
                                                 <div className="All_orders-Total">

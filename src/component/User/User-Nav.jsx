@@ -28,7 +28,7 @@ function Navbar(props) {
           Authorization: `Bearer ` + localStorage.getItem("token")
         },
       })
-      alert(" You are successfully registered ! ")
+      alert(" You are successfully completed reservation ! ")
     }
     catch (error) {
       alert(error)

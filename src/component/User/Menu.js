@@ -22,7 +22,7 @@ class Menu extends React.Component {
       index: 0,
       categoryname: '',
       cartItem: [],
-      Title: "",
+      menu: [],
     };
 
     this.incrementCount = this.incrementCount.bind(this);
@@ -105,10 +105,10 @@ class Menu extends React.Component {
     });
   }
 
-  togglePopup(person) {
+  togglePopup() {
     this.setState({
       showPopup: !this.state.showPopup,
-      Title: person.name
+      // Title: data.name
     });
   }
 
@@ -177,221 +177,62 @@ class Menu extends React.Component {
             <div className="Lists">
               <h1 className="titles">Menu List</h1>
             </div>
-            <div className="category_head_set">
-              <h2 className="category_titles">➤ Chinese</h2>
-            </div>
-            <div className="card-menus" >
-              {this.state.cart.filter(person => person.categoryId._id === "609a0d0d23025806dc494525").map(person => (
-                <div key={person._id}>
-                  <div className="cardItem-menus">
-                    <div classname="image" >
-                      <img width="230px" height="230px" src={person.imageUrl} />
-                    </div>
-                    <div className="content-data">
-                      <div className="menu-data">{person.name}</div>
-                      <div className="menu-description">Description :- {person.description}</div>
-                      <div className="price">
-                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
-                      </div>
-                      <div >
-                        <div className="priority-set">
-                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
-                          <div classNam="p-data">Priority : {this.state.priority}</div>
-                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
-                        </div>
-
-                        <div className="Quantity-set">
-                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
-                          <div className="q-data">Quantity : {this.state.quantity}</div>
-                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
-                        </div>
-
-                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
-                        <div>
-                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
-                        </div>
-
-                      </div>
-                      <div className="add-cartBtn_set">
-                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
-                        {this.state.showPopup ?
-                          <Popup
-                            title={this.state.Title}
-                            text='Close Me'
-                            closePopup={this.togglePopup.bind(this)}
-                          />
-                          : null
-                        }
-                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
-                    </div>
-                    </div>
-
-                  </div>
+            {this.state.people.map(person => (
+              <div key={person._id}>
+                <div className="category_head_set">
+                  <h2 className="category_titles">➤ {person.categoryName}</h2>
                 </div>
-              ))}
-            </div>
+                <div className="card-menus" >
+                  {person.products.map(data => (
+                    <div key={data._id}>
+                      <div className="cardItem-menus">
+                        <div classname="image" >
+                          <img width="230px" height="230px" src={data.imageUrl} />
+                        </div>
+                        <div className="content-data">
+                          <div className="menu-data">{data.name}</div>
+                          <div className="menu-description">Description :- {data.description}</div>
+                          <div className="price">
+                            <div className="menu-price">price :- {data.originalPrice} ₹ </div>
+                          </div>
+                          <div>
+                            <div className="priority-set">
+                              <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
+                              <div classNam="p-data">Priority : {this.state.priority}</div>
+                              <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
+                            </div>
 
-            <div className="category_head_set">
-              <h2 className="category_titles">➤ Italian</h2>
-            </div>
-            <div className="card-menus" >
-              {this.state.cart.filter(person => person.categoryId._id === "609a0d2123025806dc494526").map(person => (
-                <div key={person._id}>
-                  <div className="cardItem-menus">
-                    <div classname="image">
-                      <img width="230px" height="230px" src={person.imageUrl} />
-                    </div>
-                    <div className="content-data">
-                      <div className="menu-data">{person.name}</div>
-                      <div className="menu-description">Description :- {person.description}</div>
-                      <div className="price">
-                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
+                            <div className="Quantity-set">
+                              <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
+                              <div className="q-data">Quantity : {this.state.quantity}</div>
+                              <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
+                            </div>
+
+                            <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
+                            <div>
+                              <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
+                            </div>
+
+                          </div>
+                          <div className="add-cartBtn_set">
+                            <button className="addCart" onClick={this.togglePopup.bind(data)}>Add Ingredients</button>
+                            {this.state.showPopup ?
+                              <Popup
+                                title={this.state.Title}
+                                text='Close Me'
+                                closePopup={this.togglePopup.bind(this)}
+                              />
+                              : null
+                            }
+                            <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
+                          </div>
+                        </div>
                       </div>
-                      <div >
-                        <div className="priority-set">
-                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
-                          <div classNam="p-data">Priority : {this.state.priority}</div>
-                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
-                        </div>
-
-                        <div className="Quantity-set">
-                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
-                          <div className="q-data">Quantity : {this.state.quantity}</div>
-                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
-                        </div>
-
-                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
-                        <div>
-                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
-                        </div>
-
-                      </div>
-                      <div className="add-cartBtn_set">
-                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
-                        {this.state.showPopup ?
-                          <Popup
-                            title={this.state.Title}
-                            text='Close Me'
-                            closePopup={this.togglePopup.bind(this)}
-                          />
-                          : null
-                        }
-                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
                     </div>
-                    </div>
-
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            <div className="category_head_set">
-              <h2 className="category_titles">➤ South-Indian</h2>
-            </div>
-            <div className="card-menus" >
-              {this.state.cart.filter(person => person.categoryId._id === "609a0d3323025806dc494527").map(person => (
-                <div key={person._id}>
-                  <div className="cardItem-menus">
-                    <div classname="image" >
-                      <img width="230px" height="230px" src={person.imageUrl} />
-                    </div>
-                    <div className="content-data">
-                      <div className="menu-data">{person.name}</div>
-                      <div className="menu-description">Description :- {person.description}</div>
-                      <div className="price">
-                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
-                      </div>
-                      <div >
-                        <div className="priority-set">
-                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
-                          <div classNam="p-data">Priority : {this.state.priority}</div>
-                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
-                        </div>
-
-                        <div className="Quantity-set">
-                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
-                          <div className="q-data">Quantity : {this.state.quantity}</div>
-                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
-                        </div>
-
-                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
-                        <div>
-                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
-                        </div>
-
-                      </div>
-                      <div className="add-cartBtn_set">
-                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
-                        {this.state.showPopup ?
-                          <Popup
-                            title={this.state.Title}
-                            text='Close Me'
-                            closePopup={this.togglePopup.bind(this)}
-                          />
-                          : null
-                        }
-                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
-                    </div>
-                    </div>
-
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="category_head_set">
-              <h2 className="category_titles">➤ Cold-Drinks</h2>
-            </div>
-            <div className="card-menus" >
-              {this.state.cart.filter(person => person.categoryId._id === "609a0d4423025806dc494528").map(person => (
-                <div key={person._id}>
-                  <div className="cardItem-menus">
-                    <div classname="image" >
-                      <img width="230px" height="230px" src={person.imageUrl} />
-                    </div>
-                    <div className="content-data">
-                      <div className="menu-data">{person.name}</div>
-                      <div className="menu-description">Description :- {person.description}</div>
-                      <div className="price">
-                        <div className="menu-price">price :- {person.originalPrice} ₹ </div>
-                      </div>
-                      <div >
-                        <div className="priority-set">
-                          <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
-                          <div classNam="p-data">Priority : {this.state.priority}</div>
-                          <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
-                        </div>
-
-                        <div className="Quantity-set">
-                          <button type="button" className="Quantity-btn" onClick={this.incrementQTY}>+</button>
-                          <div className="q-data">Quantity : {this.state.quantity}</div>
-                          <button type="button" className="Quantity-btn" onClick={this.DecrementQTY}>-</button>
-                        </div>
-
-                        <div className="Order-Note" htmlFor="Order-Name">Add Notes</div>
-                        <div>
-                          <input className="input-notes" type="text" name="name" placeholder="Enter Order Note" onChange={(e) => this.handleName(e)} />
-                        </div>
-
-                      </div>
-                      <div className="add-cartBtn_set">
-                      <button className="addCart" onClick={this.togglePopup.bind(person)}>Add Ingredients</button>
-                        {this.state.showPopup ?
-                          <Popup
-                            title={this.state.Title}
-                            text='Close Me'
-                            closePopup={this.togglePopup.bind(this)}
-                          />
-                          : null
-                        }
-                      <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.name)}>Add to Cart</button>
-                    </div>
-                    </div>
-
-                  </div>
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           <div className="flex3">
@@ -408,7 +249,6 @@ class Menu extends React.Component {
                       <div className="fontS">{item.productPrice} ₹ 🗙 {item.qty}</div>
                       <div className="fontS-total">{item.total} ₹ </div>
                     </div>
-                    {/* <div className="fontS">Priority:{item.priority}</div> */}
                     <div className="itemdata-set">
 
                     </div>
@@ -422,7 +262,6 @@ class Menu extends React.Component {
               </div>
             </div>
           </div>
-          {/* <MenuList /> */}
         </div>
 
       </div>
@@ -481,7 +320,7 @@ class Menu extends React.Component {
                       <div className="price">
                         <div className="menu-price">price :- {person.originalPrice} ₹ </div>
                       </div>
-                      <div >
+                      <div>
                         <div className="priority-set">
                           <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
                           <div classNam="p-data">Priority : {this.state.priority}</div>
@@ -534,7 +373,6 @@ class Menu extends React.Component {
                       <div className="fontS">{item.productPrice} ₹ 🗙 {item.qty}</div>
                       <div className="fontS-total">{item.total} ₹ </div>
                     </div>
-                    {/* <div className="fontS">Priority:{item.priority}</div> */}
                     <div className="itemdata-set">
 
                     </div>
@@ -626,13 +464,13 @@ class Popup extends React.Component {
               </div>
             ))}
             <div className="Ingredient_btn-set">
-            <div className="close_btn">
-              <button className="close-popup_ingredient">Add</button>
+              <div className="close_btn">
+                <button className="close-popup_ingredient">Add</button>
+              </div>
+              <div className="close_btn">
+                <button className="close-popup_ingredient" onClick={this.props.closePopup}>Close</button>
+              </div>
             </div>
-            <div className="close_btn">
-              <button className="close-popup_ingredient" onClick={this.props.closePopup}>Close</button>
-            </div>
-          </div>
           </div>
 
         </div>

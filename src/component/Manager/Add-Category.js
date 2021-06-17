@@ -7,7 +7,9 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Link } from 'react-router-dom';
 import './Add-category.css';
 import Sidesection from './Sidesection';
-import { data } from 'jquery';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css' 
+
 
 
 export class AddCategory extends Component {
@@ -22,6 +24,7 @@ export class AddCategory extends Component {
       activeOrderId: null,
       loading: true,
       imageUrl: "",
+      C_id:null,
     };
 
     this.togglePopup = this.togglePopup.bind(this);
@@ -70,16 +73,32 @@ export class AddCategory extends Component {
     );
   }
 
-  delete(id) {
-    fetch("http://localhost:8020/categorypost/delete/" + id, {
+  delete() {
+    fetch("http://localhost:8020/categorypost/delete/" + this.state.delete_id, {
       method: "DELETE",
     }).then((data) => {
       data.json().then((resp) => {
-        alert("Are You Sure Delete");
         this.componentDidMount();
       });
     });
   }
+
+  deletepopup = (data) => {
+    this.setState({delete_id: data._id})
+    confirmAlert({
+      title: 'Confirm to Delete',
+      message: 'Are you sure to delete this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.delete()
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  };
 
   togglePopup(data) {
     this.setState({
@@ -91,7 +110,7 @@ export class AddCategory extends Component {
   toggleEditPopup(data) {
     this.setState({
       showEditPopup: !this.state.showEditPopup,
-      activeId: data._id,
+      C_id: data._id,
     });
   }
 
@@ -172,7 +191,7 @@ export class AddCategory extends Component {
                             </IconButton>
 
                             <IconButton aria-label="delete">
-                              <DeleteIcon color="secondary" fontSize="large" onClick={() => this.delete(data._id)} />
+                              <DeleteIcon color="secondary" fontSize="large" onClick={() => this.deletepopup(data)} />
                             </IconButton>
                           </div>
                         </td>
@@ -190,10 +209,10 @@ export class AddCategory extends Component {
 
 
                   {this.state.showEditPopup ? (
-                    <Popup
-                      _id={this.state.activeId}
+                    <EditPopup
+                      category_id={this.state.C_id}
                       text="Close Me"
-                      closePopup={() => this.toggleEditPopup(data)}
+                      closeEditPopup={() => this.toggleEditPopup(data)}
                     />
                   ) : null}
                 </div>
@@ -306,15 +325,31 @@ class Popup extends React.Component {
   }
 
   delete(_id) {
-    fetch("http://localhost:8020/menu/delete/" + _id, {
+    fetch("http://localhost:8020/menu/delete/" + this.state.delete_id, {
       method: "DELETE",
     }).then((data) => {
       data.json().then((resp) => {
-        alert("Are You Sure Delete");
         this.componentDidMount();
       });
     });
   }
+
+  deletepopup = (data) => {
+    this.setState({delete_id: data._id})
+    confirmAlert({
+      title: 'Confirm to Delete',
+      message: 'Are you sure to delete this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.delete()
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  };
 
   render() {
     return (
@@ -439,7 +474,7 @@ class Popup extends React.Component {
                               </IconButton>
 
                               <IconButton aria-label="delete">
-                                <DeleteIcon color="secondary" fontSize="small" onClick={() => this.delete(data._id)} />
+                                <DeleteIcon color="secondary" fontSize="small" onClick={() => this.deletepopup(data)} />
                               </IconButton>
 
                               <button
@@ -472,6 +507,182 @@ class Popup extends React.Component {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+
+class EditPopup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: null,
+      name: null,
+      loading: true,
+    };
+    // this.toggleSecondPopup = this.toggleSecondPopup.bind(this);
+  }
+
+  EditItemName(e) {
+    let name = e.target.value;
+    this.setState({ name: name });
+  }
+
+  EditItemFile(e) {
+    let file = e.target.files[0];
+    this.setState({ file: file });
+  }
+
+  // EditItemPrice(e) {
+  //   let originalPrice = e.target.value;
+  //   this.setState({ originalPrice: originalPrice });
+  // }
+
+  // EditItemOffer(e) {
+  //   let offer = e.target.value;
+  //   this.setState({ offer: offer });
+  // }
+
+  // EditItemDescription(e) {
+  //   let description = e.target.value;
+  //   this.setState({ description: description });
+  // }
+
+  async handleItemEditCategory(e) {
+    e.preventDefault();
+
+    let file = this.state.file;
+    let name = this.state.name;
+    // let offer = this.state.offer;
+    // let description = this.state.description;
+
+    let formdata = new FormData();
+
+    formdata.append("imageUrl", file);
+    formdata.append("categoryName", name);
+    // formdata.append("offer", offer);
+    // formdata.append("description", description);
+
+    axios({
+      url: `http://localhost:8020/categorypost/update/` + this.props.category_id,
+      method: "PUT",
+      headers: {
+        authorization: `your token`,
+      },
+      data: formdata,
+    }).then(
+      (res) => {
+        this.submit()
+      },
+      (err) => { }
+    );
+  }
+
+  submit = () => {
+    confirmAlert({
+      title: 'Set Message',
+      message: 'Category is updated successfully !',
+      buttons: [
+        {
+          label: 'ok',
+          onClick: () => window.location.reload(false)
+        }
+      ]
+    })
+  };
+
+  // toggleSecondPopup(data) {
+  //   this.setState({
+  //     showSecondPopup: !this.state.showSecondPopup,
+  //     activeId1: data._id,
+  //   });
+  // }
+
+  render() {
+    return (
+      <div className="add-cp">
+        <div className="add-cp1">
+          <div className="secondcloseItem-set">
+            <button
+              className="secondcloseItem-btn"
+              onClick={this.props.closeEditPopup}
+            >
+              X
+            </button>
+          </div>
+          <div>
+            <label className="mn">Edit Category</label>
+            <div>
+              <div className="add-c">
+                <div className="add-c1">
+                  <div className="add-c2">
+                    <div className="category-title">Image</div>
+                    <div className="category-text1">
+                      <input
+                        type="file"
+                        name="file"
+                        onChange={(e) => this.EditItemFile(e)}
+                      />
+                    </div>
+
+                    <div className="category-title">Title</div>
+                    <div className="text1">
+                      <input
+                        className="text2"
+                        type="text"
+                        name="name"
+                        onChange={(e) => this.EditItemName(e)}
+                      />
+                    </div>
+{/* 
+                    <div className="category-title">Price (RS)</div>
+                    <div className="price2">
+                      <input
+                        className="price3"
+                        type="number"
+                        name="originalPrice"
+                        min="1"
+                        onChange={(e) => this.EditItemPrice(e)}
+                      />
+                    </div>
+
+                    <div className="category-title">Offer</div>
+                    <div className="price2">
+                      <input
+                        className="price3"
+                        type="number"
+                        name="offer"
+                        min="1"
+                        onChange={(e) => this.EditItemOffer(e)}
+                      />
+                    </div>
+
+                    <div className="category-title">Description</div>
+                    <div className="dsc1">
+                      <textarea
+                        className="dsc2"
+                        type="text"
+                        name="description"
+                        onChange={(e) => this.EditItemDescription(e)}
+                      />
+                    </div> */}
+
+                    <div className="upload-button1">
+                      <button
+                        className="upload-btn1"
+                        onClick={(e) => this.handleItemEditCategory(e)}>
+                        Upload
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
     );

@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Link } from 'react-router-dom';
 import './Add-ingrediants.css';
 import Sidesection from './Sidesection';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css' 
 
 class Ingrediants extends React.Component {
   constructor(props) {
@@ -93,15 +99,31 @@ class Ingrediants extends React.Component {
   }
 
   delete(_id) {
-    fetch("http://localhost:8020/ingredients/delete/" + _id, {
+    fetch("http://localhost:8020/ingredients/delete/" + this.state.delete_id, {
       method: "DELETE",
     }).then((data) => {
       data.json().then((resp) => {
-        alert("Are You Sure Delete");
         this.componentDidMount();
       });
     });
   }
+
+  deletepopup = (data) => {
+    this.setState({delete_id: data._id})
+    confirmAlert({
+      title: 'Confirm to Delete',
+      message: 'Are you sure to delete this.',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.delete()
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  };
 
   render() {
     return (
@@ -199,20 +221,14 @@ class Ingrediants extends React.Component {
                           <td>{data.description}</td>
 
                           <td>
-                            <button
-                              className="eitb eitb1"
-                              onClick={() => this.toggleSecondPopup(data)}
-                            >
-                              Edit Item
-                            </button>
 
-                            <button
-                              className="eitb eitb1"
-                              onClick={() => this.delete(data._id)}
-                              variant="danger"
-                            >
-                              Delete
-                            </button>
+                          <IconButton aria-label="edit">
+                              <EditIcon color="primary" fontSize="medium" onClick={() => this.toggleSecondPopup(data)} />
+                            </IconButton>
+
+                            <IconButton aria-label="delete">
+                              <DeleteIcon color="secondary" fontSize="medium" onClick={() => this.deletepopup(data)} />
+                            </IconButton>
                           </td>
                         </tr>
                       </table>
