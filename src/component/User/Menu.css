@@ -51,20 +51,25 @@ img {
     .flex1 {
         flex: 1;
         margin: 5px;
-        /* position: fixed;
-        display: inline-block;
-        flex-direction: row;
-        flex-wrap: nowrap; */
+        position: fixed;
+        top: 20;
+        z-index: 999;
     }
     
     .flex2 {
         flex: 3;
         margin: 5px;
+        margin-left: 350px;
+        margin-right: 350px;
     }
 
     .flex3 {
-        flex: 1.2;
-        margin:5px
+        width: 340px;
+        margin:5px;
+        position: fixed;
+        top: 20;
+        z-index: 999;
+        right: 0%;
     }
     
     .category-card {

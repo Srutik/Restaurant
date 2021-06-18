@@ -52,7 +52,6 @@ function Sidesection() {
             </ul>
           </Scrollbars>
         </nav>
-
       </IconContext.Provider>
     </>
   );
