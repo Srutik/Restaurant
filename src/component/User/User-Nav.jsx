@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../Button';
+// import Modal from 'react-modal';
 import PopUp from './Book-table';
 import * as RiIcons from 'react-icons/ri';
 import { RiTableFill } from "react-icons/ri";
@@ -14,10 +15,9 @@ function Navbar(props) {
   const closeMobileMenu = () => setClick(false);
   const [isOpen, setIsOpen] = useState(false);
 
-
   const togglePopup = () => {
     setIsOpen(!isOpen);
-  }
+  };
 
   async function handleReservation() {
     try {
@@ -92,10 +92,6 @@ function Navbar(props) {
               </Link>
             </li>
 
-            {isOpen && <PopUp
-              handleClose={togglePopup}
-            />}
-
             <li className='nav-item'>
               <Link
                 to='/orders'
@@ -129,12 +125,12 @@ function Navbar(props) {
             <li>
               <Link
                 className='nav-links-mobile'
-                onClick={handleReservation}>
+                onClick={togglePopup}>
                 Reservation
               </Link>
             </li>
             <div className="set-btn_ctr">
-              {button && <Button onClick={handleReservation} buttonStyle='btn--outline'>Reservation</Button>}
+              {button && <Button onClick={togglePopup} buttonStyle='btn--outline'>Reservation</Button>}
             </div>
 
             <li>

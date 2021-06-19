@@ -95,3 +95,16 @@
     background-color:whitesmoke;
     color: rgb(0, 0, 0);
 }
+
+.flex-categorys {
+    width: 340px;
+    margin: 5px;
+    /* position: fixed;
+    top: 20;
+    z-index: 999; */
+}
+
+.flex-menus {
+    width: 820px;
+    margin: 5px;
+}

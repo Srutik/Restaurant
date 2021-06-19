@@ -16,7 +16,7 @@ function CookSidesection() {
   return (
     <>
       <IconContext.Provider value={{ color: '#fff' }}>
-      <div className='navbar2'>
+      <div className='navbar-cook'>
           <div className="managerbar-alldata">
             <div className="navItem-title">
               <Link to='#' className='menu-bar'>

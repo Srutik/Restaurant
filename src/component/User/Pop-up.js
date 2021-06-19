@@ -89,12 +89,3 @@ alert("Your Detail is Saved!")
 }
 
 export default Popup
-
-
-
-   
- 
-
-
-
-

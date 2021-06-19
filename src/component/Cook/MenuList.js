@@ -82,7 +82,7 @@ class MenuList extends React.Component {
 
         <div className="Allpage">
 
-          <div className="flex1">
+          <div className="flex-category">
             <div className="Lists">
               <h1 className="titles">Category List</h1>
             </div>
@@ -100,7 +100,7 @@ class MenuList extends React.Component {
           </div>
 
 
-          <div className="flex2">
+          <div className="flex-menu">
             <div className="Lists">
               <h1 className="titles">Menu List</h1>
             </div>
@@ -148,7 +148,7 @@ class MenuList extends React.Component {
         <CookSidesection />
 
         <div className="Allpage">
-          <div className="flex1">
+          <div className="flex-categorys">
             <div className="Lists">
               <h1 className="titles">Category List</h1>
             </div>
@@ -171,7 +171,7 @@ class MenuList extends React.Component {
             </select> */}
           </div>
 
-          <div className="flex2">
+          <div className="flex-menus">
             <div className="Lists">
               <h1 className="titles">Menu List </h1>
             </div>

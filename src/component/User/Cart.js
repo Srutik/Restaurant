@@ -322,6 +322,29 @@ class Cart extends Component {
         }
     }
 
+
+    async handleSubmit() {
+        try {
+            const response = await fetch("http://localhost:8020/order/makeorder", {
+                method: "PUT",
+                // body: JSON.stringify({
+                //     name: name,
+                // }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    Authorization: `Bearer ` + localStorage.getItem("token")
+                },
+            })
+            let data = await response.json()
+            alert("Your Order is Submit !")
+            console.log(data)
+            window.location.reload(false)
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+
     // async parcelOrder() {
     //     try {
     //         const response = await fetch("http://localhost:8020/order/parcel/makeorder", {
@@ -407,14 +430,14 @@ class Cart extends Component {
                                 : null
                             }
 
-                        <button className="cart-button" onClick={this.togglePopup.bind(this)}>Place Order</button>
-                        {this.state.showPopup ?
+                        <button className="cart-button" onClick={() => this.handleSubmit(this)}>Place Order</button>
+                        {/* {this.state.showPopup ?
                                 <Popup
                                     text='Close Me'
                                     closePopup={this.togglePopup.bind(this)}
                                 />
                                 : null
-                            }
+                            } */}
 
 
                             {/* <button className="cart-button" onClick={this.togglePopup.bind(this)}>Make Note</button>

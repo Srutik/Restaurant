@@ -29,6 +29,7 @@
     "react-dom": "^17.0.2",
     "react-dropdown": "^1.9.2",
     "react-icons": "^4.2.0",
+    "react-model": "^4.0.1",
     "react-phone-number-input": "^3.1.18",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^5.2.0",
