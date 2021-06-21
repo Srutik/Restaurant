@@ -1,26 +1,20 @@
 import React, { Component } from "react";
-import './View-cook.css';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import Sidesection from './Sidesection';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css' 
+import "./ViewStaff.scss";
+import Sidebar from "../Admin-sidebar/Sidebar";
 
 class Popup extends React.Component {
-
   constructor(props) {
-
     super(props);
     this.state = {
-      name: this.props.name,
-      email: this.props.email,
-      phone: this.props.phone,
+      name: "",
+      email: "",
+      phone: "",
     };
   }
 
   update(e) {
     e.preventDefault();
+
     fetch("http://localhost:8020/all/update/all/" + this.props._id, {
       method: "PUT",
       headers: {
@@ -59,51 +53,51 @@ class Popup extends React.Component {
 
   render() {
     return (
-      <div className="popupcook">
-
-        <div className="popupcook_inner">
-
-          <label className="label-cook">Edit Cook Details</label>
+      <div className="aspp">
+        <div className="aspp1">
+          <label className="label">Edit Staff Details</label>
 
           <div className="dtl">
-            <div className="title-cook">Name</div>
-            <div className="text1-cook">
+            <div className="title">Name</div>
+            <div className="text1">
               <input
-                className="text2-cook"
+                className="text2"
                 type="text"
-                value={this.state.name}
+                name="name"
                 onChange={(e) => this.handleName(e)}
               />
             </div>
 
-            <div className="email-cook">Email</div>
-            <div className="email1-cook">
+            <div className="email">Email</div>
+            <div className="email1">
               <input
-                className="email2-cook"
+                className="email2"
                 type="text"
-                value={this.state.email}
+                name="email"
                 onChange={(e) => this.handleEmail(e)}
               />
             </div>
 
-            <div className="phone-cook">Phone</div>
-            <div className="phone1-cook">
+            <div className="phone">Phone</div>
+            <div className="phone1">
               <input
-                className="phone2-cook"
+                className="phone2"
                 type="text"
-                value={this.state.phone}
+                name="phone"
                 onChange={(e) => this.handlePhone(e)}
               />
             </div>
 
-            <div className="popbtn-cook">
-              <button className="popbtn1-cook" onClick={(e) => this.update(e)}>
+            <div className="popbtn">
+              <button className="popbtn1" onClick={(e) => this.update(e)}>
                 Update
               </button>
             </div>
 
-            <div className="popbtn2-cook">
-              <button className="pop-cook" onClick={this.props.closePopup}>X</button>
+            <div className="popbtn2">
+              <button className="popbtn3" onClick={this.props.closePopup}>
+                X
+              </button>
             </div>
           </div>
         </div>
@@ -112,28 +106,21 @@ class Popup extends React.Component {
   }
 }
 
-class viewCook extends Component {
+class viewManager extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       people: [],
       showPopup: false,
-      id2:"",
-      name:"",
-      email:"",
-      phone:"",
     };
     this.togglePopup = this.togglePopup.bind(this);
   }
 
-  togglePopup(cook) {
+  togglePopup(manager) {
     this.setState({
       showPopup: !this.state.showPopup,
-      id: cook._id,
-      name: cook.name,
-      email: cook.email,
-      phone: cook.phone
+      id: manager._id,
     });
   }
 
@@ -142,7 +129,7 @@ class viewCook extends Component {
     const response = await fetch(url, {
       method: "POST",
       body: JSON.stringify({
-        activerole: "cook",
+        activerole: "manager",
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
@@ -152,32 +139,16 @@ class viewCook extends Component {
     this.setState({ people: data.list, loading: false });
   }
 
-  delete() {
-    fetch("http://localhost:8020/all/delete/" + this.state.id2, {
+  delete(_id) {
+    fetch("http://localhost:8020/all/delete/" + _id, {
       method: "DELETE",
     }).then((data) => {
       data.json().then((resp) => {
+        alert("Are You Sure Delete");
         this.componentDidMount();
       });
     });
   }
-
-  submit = (cook) => {
-    this.setState({id2: cook._id})
-    confirmAlert({
-      title: 'Confirm to Delete',
-      message: 'Are you sure to delete this.',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () => this.delete()
-        },
-        {
-          label: 'No',
-        }
-      ]
-    })
-  };
 
   render() {
     const url = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
@@ -194,40 +165,41 @@ class viewCook extends Component {
     }
     return (
       <div>
-        <Sidesection />
-        <h1 className="view-Data">All Cook</h1>
+        <Sidebar />
+        <h1>All Manager</h1>
         <div>
           <table className="wt1">
-
             <td>Name</td>
             <td>Email</td>
             <td>Phone</td>
-            <td>Date</td>
+            <td>Time</td>
             <td>Action</td>
-
           </table>
-          {this.state.people.map((cook) => (
-            <div key={cook._id}>
+          {this.state.people.map((manager) => (
+            <div key={manager._id}>
               <div>
                 <div>
                   <table className="wt">
                     <tr>
-                      <td> {cook.name}</td>
-                      <td> {cook.email}</td>
-                      <td>{cook.phone}</td>
-                      <td>{cook.created_At}</td>
+                      <td> {manager.name}</td>
+                      <td> {manager.email}</td>
+                      <td>{manager.phone}</td>
+                      <td>{manager.created_At}</td>
                       <td>
-                        <IconButton aria-label="edit">
-                          <EditIcon onClick={() => this.togglePopup(cook)} color="primary" fontSize="small" />
-                        </IconButton>
-                        
-                        {/* <button className="sb sb1" onClick={() => this.togglePopup(cook)}>
+                        <button
+                          className="sb sb1"
+                          onClick={() => this.togglePopup(manager)}
+                        >
                           Edit item
-                        </button> */}
+                        </button>
 
-                        <IconButton aria-label="delete">
-                          <DeleteIcon color="secondary" onClick={() => this.submit(cook)} fontSize="small"/>
-                        </IconButton>
+                        <button
+                          className="sb sb1"
+                          onClick={() => this.delete(manager._id)}
+                          variant="danger"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   </table>
@@ -235,20 +207,16 @@ class viewCook extends Component {
 
                 {this.state.showPopup ? (
                   <Popup
-                    name={this.state.name}
-                    email={this.state.email}
-                    phone={this.state.phone}
                     _id={this.state.id}
-                    closePopup={() => this.togglePopup(cook)}
+                    closePopup={() => this.togglePopup(manager)}
                   />
                 ) : null}
               </div>
             </div>
           ))}
-
         </div>
       </div>
     );
   }
 }
-export default viewCook;
+export default viewManager;

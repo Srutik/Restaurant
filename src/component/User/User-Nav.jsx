@@ -19,21 +19,44 @@ function Navbar(props) {
     setIsOpen(!isOpen);
   };
 
-  async function handleReservation() {
-    try {
-      await fetch("http://localhost:8020/book/reservation", {
-        method: 'POST',
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ` + localStorage.getItem("token")
-        },
-      })
-      alert(" You are successfully completed reservation ! ")
+  const Popup = props => {
+    const [person, setPerson] = useState();
+
+    async function handleReservation() {
+      let data = { person }
+      try {
+        await fetch("http://localhost:8020/book/reservation", {
+          method: 'POST',
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+            Authorization: `Bearer ` + localStorage.getItem("token")
+          },
+          body: JSON.stringify(data),
+        })
+        alert(" You are successfully completed reservation ! ")
+      }
+      catch (error) {
+        alert(error)
+      }
     }
-    catch (error) {
-      alert(error)
-    }
-  }
+    
+    return (
+      <div className="popup-box">
+        <div className="box">
+          <div className="form-group">
+            <label htmlFor="phone">Enter Person</label>
+            <input maxLength="3" type="text" name="person" placeholder="Total Person" onChange={e => setPerson(e.target.value)}/>
+            <button onClick={handleReservation}>Test button</button>
+          </div>
+          
+          <span className="close-icon" onClick={props.handleClose}>x</span>
+          {props.content}
+        </div>
+      </div>
+    );
+  };
+
+
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -59,7 +82,7 @@ function Navbar(props) {
 
           <Link to='#UserSection' smooth duration={2000} className='navbar-logo' onClick={closeMobileMenu}>
             Dine Fine
-        </Link>
+          </Link>
 
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -132,6 +155,15 @@ function Navbar(props) {
             <div className="set-btn_ctr">
               {button && <Button onClick={togglePopup} buttonStyle='btn--outline'>Reservation</Button>}
             </div>
+            {isOpen && (
+              <Popup
+                content={
+                  <>
+                  </>
+                }
+                handleClose={togglePopup}
+              />
+            )}
 
             <li>
               <Link

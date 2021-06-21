@@ -142,7 +142,6 @@ class TablePopup extends React.Component {
             let data = await response.json()
             alert("Your Table is Booked !")
             console.log(data)
-            window.location.reload(false)
         }
         catch(err) {
             alert(err)
@@ -316,7 +315,7 @@ class Cart extends Component {
             let data = await response.json()
             alert("Your Order is Submit !")
             console.log(data)
-            window.location.reload(false)
+            window.location.reload(false);
         } catch (err) {
             console.log(err)
         }

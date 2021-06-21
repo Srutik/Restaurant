@@ -1,0 +1,70 @@
+h1 {
+  text-align: center;
+  background-color: #483d8b;
+  background-position-x: center;
+  padding: 20px;
+  color: white;
+  background-image: linear-gradient(180deg, black, rgb(88, 88, 92));
+}
+
+.manager-dashboard {
+  height: 100vh;
+  width: 100vw;
+}
+
+.dash-title{
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+.title-managerpage {
+  text-align: center;
+  background-position-x: center;
+  padding: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.flex-category1 {
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.flex-category1 > .flex-category2 {
+  background-color: #f1f1f1;
+  width: 500px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+}
+
+.flex-category3 {
+  flex-wrap: nowrap;
+  justify-content: center;
+
+}
+
+.flex-category3 > .flex-category4 {
+  background-color: #f1f1f1;
+  width: 500px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+}
+
+.DashView-Manager{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.link{
+  text-decoration: none;
+  color: black;
+}

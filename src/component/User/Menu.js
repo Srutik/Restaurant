@@ -314,7 +314,7 @@ class Menu extends React.Component {
                 <div key={person._id}>
                   <div className="cardItem-menus">
                     <div classname="image" >
-                      <img width="230px" height="230px" src={person.imageUrl} />
+                      <img width="150px" height="150px" src={person.imageUrl} />
                     </div>
                     <div className="content-data">
                       <div className="menu-data">{person.name}</div>
@@ -322,8 +322,8 @@ class Menu extends React.Component {
                       <div className="price">
                         <div className="menu-price">price :- {person.originalPrice} ₹ </div>
                       </div>
-                      <div>
-                        <div className="priority-set">
+                      </div>
+                      <div className="flex-second">                        <div className="priority-set">
                           <button type="button" className="priority-btn" onClick={this.DecrementCount}>-</button>
                           <div classNam="p-data">Priority : {this.state.priority}</div>
                           <button type="button" className="priority-btn" onClick={this.incrementCount}>+</button>
@@ -353,7 +353,7 @@ class Menu extends React.Component {
                         }
                         <button className="addCart" onClick={() => this.addCart(person._id, this.state.priority, this.state.quantity, this.state.notes)}>Add to Cart</button>
                       </div>
-                    </div>
+                  
 
                   </div>
                 </div>

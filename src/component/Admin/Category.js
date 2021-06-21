@@ -5,8 +5,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Link } from 'react-router-dom';
-import './Add-category.css';
-import Sidesection from './Sidesection';
+import '../Manager/Add-category.css';
+import Sidebar from '../Admin-sidebar/Sidebar';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
@@ -117,9 +117,9 @@ export class AddCategory extends Component {
   render() {
     return (
       <div>
-        <Sidesection />
+        <Sidebar />
         <div>
-          <h1 className="Addcategory-title">Add Category</h1>
+          <h1>Add Category</h1>
 
           <div className="add-c">
             <div className="add-c1">

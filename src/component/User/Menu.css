@@ -53,26 +53,26 @@ img {
         margin: 5px;
         background-color: whitesmoke;
         height: 100vh;
-        position: fixed;
+        /* position: fixed;
         top: 20;
-        z-index: 999;
+        z-index: 999; */
     }
     
     .flex2 {
         width: 820px;
         margin: 5px;
         background-color: whitesmoke;
-        margin-left: 350px;
-        margin-right: 350px;
+        /* margin-left: 350px;
+        margin-right: 350px; */
     }
 
     .flex3 {
         width: 340px;
         margin:5px;
-        position: fixed;
+        /* position: fixed;
         top: 20;
         z-index: 999;
-        right: 0%;
+        right: 0%; */
     }
     
     .category-card {

@@ -31,7 +31,7 @@ import "../Login.scss";
      history.push("/menu")
    }
    else if(result.role=="admin"){
-      history.push("/admin-home")
+      history.push("/Admin-home")
    }
    else if(result.role=="manager"){
     history.push("/manager-home")

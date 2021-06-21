@@ -18,6 +18,24 @@ import BookTable from './component/User/Book-table';
 import Admin from './component/Admin/Admin-login';
 import AdminReset from './component/Admin/Admin-reset';
 import AdminForgot from './component/Admin/Admin-Forgot';
+import Sidebar from './component/Admin-sidebar/Sidebar';
+import AdminDashboard from './component/Admin/Dashboard';
+import Category from './component/Admin/Category';
+import OrdersHistory from './component/Admin/OrdersHistory';
+import ViewCook from './component/Admin/ViewCook';
+import ViewUser from './component/Admin/ViewUser';
+import ViewWaiter from './component/Admin/ViewWaiter';
+import ViewManager from './component/Admin/ViewManager';
+import Ratings from './component/Admin/Ratings';
+import AddStaff from './component/Admin/AddStaff';
+import Complaint from './component/Admin/Complaints';
+import Revenue from './component/Admin/Revenue';
+import CreateTable from './component/Admin/CreateTable';
+import RDetails from './component/Admin/RDetails';
+import Offer from './component/Admin/Offer';
+// import Payment from './Pages/Payment';
+import Ingredients from './component/Admin/Ingredients';
+
 
 import Manager from './component/Manager/Manager-login';
 import Dashboard from './component/Manager/Dashboard';
@@ -84,6 +102,26 @@ function App() {
         <Route path='/admin-login' component={Admin} />
         <Route path='/admin-forgot' component={AdminForgot} />
         <Route path='/admin-reset' component={AdminReset} />
+
+
+        <Route path='/Admin-home' exact component={AdminDashboard} />
+        <Route path='/Category' component={Category} />
+        <Route path='/Ingredients' component={Ingredients} />
+        <Route path='/CreateTable' component={CreateTable} />
+        <Route path='/OrdersHistory' component={OrdersHistory} />
+        <Route path='/ViewManager/ViewCook' component={ViewCook} />
+        <Route path='/ViewManager/ViewUser' component={ViewUser} />
+        <Route path='/ViewManager/ViewWaiter' component={ViewWaiter} />
+        <Route path='/ViewManager' component={ViewManager} />
+        <Route path='/Ratings' component={Ratings} />
+        <Route path='/AddStaff' component={AddStaff} />
+        <Route path='/Complaints' component={Complaints} />
+        {/* <Route path='/Payment' component={Payment} /> */}
+        <Route path='/Revenue' component={Revenue} />
+        <Route path='/RDetails' component={RDetails} />
+        <Route path='/Offer' component={Offer} />
+
+
 
         <Route path='/manager-login' component={Manager} />
         <Route path='/manager-forgot' component={ManagerForgot} />
