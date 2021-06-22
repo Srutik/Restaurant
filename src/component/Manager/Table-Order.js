@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { SidebarData } from './items';
 import Sidesection from './Sidesection';
 import './Table-Order.css';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import { IconContext } from 'react-icons';
 
 class CreateTable extends Component {
@@ -36,51 +38,6 @@ class CreateTable extends Component {
         this.setState({ people: data.tables, loading: false });
         this.searchArray = data;
     }
-
-    // handleTable(e) {
-    //   let table = e.target.value;
-    //   this.setState({ table: table });
-    // }
-
-    // handleSize(e) {
-    //   let size = e.target.value;
-    //   this.setState({ size: size });
-    // }
-
-    // handleUpload(e) {
-    //   let table = this.state.table;
-    //   let size = this.state.size;
-
-    //   let formdata = new FormData();
-
-    //   formdata.append("table", table);
-    //   formdata.append("size", size);
-
-    //   axios({
-    //     url: `http://localhost:8020/book/table`,
-    //     method: "POST",
-    //     headers: {
-    //       authorization: `your token`,
-    //     },
-    //     data: formdata,
-    //   }).then(
-    //     (res) => {
-    //       this.componentDidMount();
-    //     },
-    //     (err) => {}
-    //   );
-    // }
-
-    // delete(id) {
-    //   fetch("http://localhost:8020/book/delete/" + id, {
-    //     method: "DELETE",
-    //   }).then((data) => {
-    //     data.json().then((resp) => {
-    //       alert("Are You Sure Delete");
-    //       this.componentDidMount();
-    //     });
-    //   });
-    // }
 
     render() {
         return (
@@ -146,6 +103,81 @@ class CreateTable extends Component {
 export default CreateTable;
 
 
+class CheckoutPopup extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            phone: null
+        }
+    }
+
+
+    async handleOnCheckout(phone) {
+        try {
+            const response = await fetch("http://localhost:8020/book/checkout", {
+                method: "POST",
+                body: JSON.stringify({
+                    phone: phone,
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+            })
+            let data = await response.json()
+            this.submit();
+            console.log(data)
+        }
+        catch (err) {
+            alert(err)
+        }
+    }
+
+
+    submit = () => {
+        confirmAlert({
+            message: 'User Sucessfully Checkout !',
+            buttons: [
+                {
+                    label: 'ok',
+                }
+            ]
+        })
+        window.location.reload(false)
+    };
+
+    handlePhoneNumber(e) {
+        let phone = e.target.value
+        this.setState({ phone:phone })
+    }
+
+    render() {
+        return (
+            <div className='pop-up'>
+                <div className='pop-up_inner'>
+                    <div className="close-set">
+                        <button className="close-btn" onClick={this.props.closePaymentPopup}>X</button>
+                    </div>
+
+                    <div>
+                        <div className="form-group">
+                            <label htmlFor="Order-Name">Phone Number</label>
+                            <div>
+                                <input className="input" maxLength="10" type="number" phone="phone" placeholder="Enter Mobile Number" onChange={(e) => this.handlePhoneNumber(e)} />
+
+                            </div>
+                            <div className="order-btn">
+                                <button className="cart-button" onClick={() => this.handleOnCheckout(this.state.phone)}>Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
+
+
 class Popup extends React.Component {
     constructor(props) {
         super(props);
@@ -153,8 +185,20 @@ class Popup extends React.Component {
             table: "",
             size: "",
             People: [],
+            showPaymentPopup: false
         };
+        this.togglePaymentPopup = this.togglePaymentPopup.bind(this);
     }
+
+
+
+
+    togglePaymentPopup() {
+        this.setState({
+            showPaymentPopup: !this.state.showPaymentPopup
+        });
+    }
+
 
 
     async componentDidMount() {
@@ -164,39 +208,6 @@ class Popup extends React.Component {
         this.setState({ People: data.list.orders, loading: false });
         this.searchArray = data;
     }
-
-
-    // update(e) {
-    //   let table = this.state.table;
-    //   let size = this.state.size;
-
-    //   let formdata = new FormData();
-
-    //   formdata.append("table", table);
-    //   formdata.append("size", size);
-
-    //   axios({
-    //     url: `http://localhost:8020/order/orderlist/` + this.props._id,
-    //     method: "GET",
-    //     headers: {
-    //       authorization: `your token`,
-    //     },
-    //     data: formdata,
-    //   }).then(
-    //     (res) => {},
-    //     (err) => {}
-    //   );
-    // }
-
-    // handleTable1(e) {
-    //   let table = e.target.value;
-    //   this.setState({ table: table });
-    // }
-
-    // handleSize1(e) {
-    //   let size = e.target.value;
-    //   this.setState({ size: size });
-    // }
 
     render() {
         const url = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
@@ -225,7 +236,7 @@ class Popup extends React.Component {
                         <div className="closeItem-set">
                             <button className="closeItem-btn" onClick={this.props.closePopup}>
                                 X
-            </button>
+                            </button>
                         </div>
 
                         <div>
@@ -280,7 +291,13 @@ class Popup extends React.Component {
                                                 </div>
 
                                                 <div className="payment-center">
-                                                    <button className="payment-btn">Payment</button>
+                                                    <button className="payment-btn" onClick={this.togglePaymentPopup.bind(this)}>Check Out</button>
+                                                    {this.state.showPaymentPopup ?
+                                                        <CheckoutPopup
+                                                            closePaymentPopup={this.togglePaymentPopup.bind(this)}
+                                                        />
+                                                        : null
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

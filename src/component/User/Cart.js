@@ -1,56 +1,55 @@
 import React, { Component } from 'react'
 import { Button } from '../Button';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import { Link } from 'react-router-dom';
 import img from './carts.png';
 import './Cart.css';
 import './Pop-up.css';
 
-class DeletePopup extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-        }
-    }
+// class DeletePopup extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         this.state = {
+//             loading: true,
+//         }
+//     }
 
-    handleDelete() {
-        fetch("http://localhost:8020/cart/emptycart", {
-            method: "DELETE",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                Authorization: `Bearer ` + localStorage.getItem("token")
-            },
-        }).then((data) => {
-            data.json().then((response) => {
-                window.location.reload(false)
-            })
-        })
-    }
+//     handleDelete() {
+//         fetch("http://localhost:8020/cart/emptycart", {
+//             method: "DELETE",
+//             headers: {
+//                 "Content-type": "application/json; charset=UTF-8",
+//                 Authorization: `Bearer ` + localStorage.getItem("token")
+//             },
+//         }).then((data) => {
+//             data.json().then((response) => {
+//                 window.location.reload(false)
+//             })
+//         })
+//     }
 
-    render() {
-        return (
-            <div className='Deletepopup'>
-                <div className='Deletepopup_inner'>
-                    <h1>{this.props.text}</h1>
-                    <div className="close-set">
-                        <button className="close-btn" onClick={this.props.closePopup}>X</button>
-                    </div>
+//     render() {
+//         return (
+//             <div className='Deletepopup'>
+//                 <div className='Deletepopup_inner'>
+//                     <div className="close-set">
+//                         <button className="close-btn" onClick={this.props.closePopup}>X</button>
+//                     </div>
 
-                    <div>
-                        <div className="form-group">
-                            <div>Are You Sure to Delete Cart !</div>
-                            <div className="order-btn">
-                                <button className="cart-button" onClick={this.handleDelete}>Confirm</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-
+//                     <div>
+//                         <div className="form-group">
+//                             <div>Are You Sure to Delete Cart !</div>
+//                             <div className="order-btn">
+//                                 <button className="cart-button" onClick={this.handleDelete}>Confirm</button>
+//                             </div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         );
+//     }
+// }
 
 class Popup extends React.Component {
     constructor(props) {
@@ -81,7 +80,6 @@ class Popup extends React.Component {
         } catch (err) {
             console.log(err)
         }
-
     }
 
     handleName(e) {
@@ -132,7 +130,7 @@ class TablePopup extends React.Component {
             const response = await fetch("http://localhost:8020/book/checkin", {
                 method: "POST",
                 body: JSON.stringify({
-                    table:table,
+                    table: table,
                 }),
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -140,25 +138,36 @@ class TablePopup extends React.Component {
                 },
             })
             let data = await response.json()
-            alert("Your Table is Booked !")
+            this.submit()
             console.log(data)
+            this.props.closeTablePopup()
         }
-        catch(err) {
+        catch (err) {
             alert(err)
             window.location.reload(false)
         }
     }
 
+    submit = () => {
+        confirmAlert({
+            message: 'Sucessfully Booked Table !',
+            buttons: [
+                {
+                    label: 'ok',
+                }
+            ]
+        })
+    };
+
     handleNumber(e) {
         let table = e.target.value
-        this.setState({ table:table })
+        this.setState({ table: table })
     }
 
     render() {
         return (
             <div className='pop-up'>
                 <div className='pop-up_inner'>
-                    <h1>{this.props.text}</h1>
                     <div className="close-set">
                         <button className="close-btn" onClick={this.props.closeTablePopup}>X</button>
                     </div>
@@ -210,7 +219,6 @@ class PopupParcel extends React.Component {
         } catch (err) {
             console.log(err)
         }
-
     }
 
     handleName(e) {
@@ -222,7 +230,6 @@ class PopupParcel extends React.Component {
         return (
             <div className='pop-up'>
                 <div className='pop-up_inner'>
-                    <h1>{this.props.text}</h1>
                     <div className="close-set">
                         <button className="close-btn" onClick={this.props.closeParcelPopup}>X</button>
                     </div>
@@ -245,8 +252,6 @@ class PopupParcel extends React.Component {
     }
 }
 
-
-
 class Cart extends Component {
     constructor(props) {
         super(props)
@@ -255,12 +260,11 @@ class Cart extends Component {
             cartItem: [],
             quantity: 0,
             subTotal: null,
-            showPopup:false,
+            showPopup: false,
             showTablePopup: false,
             showParcelPopup: false,
             showDeletePopup: false
         };
-
     }
 
     togglePopup() {
@@ -321,7 +325,6 @@ class Cart extends Component {
         }
     }
 
-
     async handleSubmit() {
         try {
             const response = await fetch("http://localhost:8020/order/makeorder", {
@@ -341,27 +344,36 @@ class Cart extends Component {
         } catch (err) {
             console.log(err)
         }
-
     }
 
-    // async parcelOrder() {
-    //     try {
-    //         const response = await fetch("http://localhost:8020/order/parcel/makeorder", {
-    //             method: "PUT",
-    //             headers: {
-    //                 "Content-type": "application/json; charset=UTF-8",
-    //                 Authorization: `Bearer ` + localStorage.getItem("token")
-    //             },
-    //         })
-    //         let data = await response.json()
-    //         alert("Your Parcel Order is Submit !")
-    //         console.log(data)
-    //         window.location.reload(false)
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
+    ConfirmDelete() {
+        fetch("http://localhost:8020/cart/emptycart", {
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                Authorization: `Bearer ` + localStorage.getItem("token")
+            },
+        }).then((data) => {
+            data.json().then((response) => {
+                window.location.reload(false)
+            })
+        })
+    }
 
-    // }
+    delete = () => {
+        confirmAlert({
+            message: 'Are you sure to delete this Cart.',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => this.ConfirmDelete()
+                },
+                {
+                    label: 'No',
+                }
+            ]
+        })
+    };
 
     render() {
 
@@ -389,7 +401,6 @@ class Cart extends Component {
                         </div>
                     </div>
                 </div>
-
             </div>
         }
 
@@ -420,8 +431,8 @@ class Cart extends Component {
 
                         <div className="Buttons">
 
-                                <button className="cart-button" onClick={this.toggleTablePopup.bind(this)}>Book Table</button>
-                                {this.state.showTablePopup ?
+                            <button className="cart-button" onClick={this.toggleTablePopup.bind(this)}>Book Table</button>
+                            {this.state.showTablePopup ?
                                 <TablePopup
                                     text='Close Me'
                                     closeTablePopup={this.toggleTablePopup.bind(this)}
@@ -429,33 +440,10 @@ class Cart extends Component {
                                 : null
                             }
 
-                        <button className="cart-button" onClick={() => this.handleSubmit(this)}>Place Order</button>
-                        {/* {this.state.showPopup ?
-                                <Popup
-                                    text='Close Me'
-                                    closePopup={this.togglePopup.bind(this)}
-                                />
-                                : null
-                            } */}
+                            <button className="cart-button" onClick={() => this.handleSubmit(this)}>Place Order</button>
 
+                            <button className="cart-button" onClick={() => this.delete()}>Delete Cart</button>
 
-                            {/* <button className="cart-button" onClick={this.togglePopup.bind(this)}>Make Note</button>
-                        {this.state.showPopup ?
-                            <Popup
-                                text='Close Me'
-                                closePopup={this.togglePopup.bind(this)}
-                            />
-                            : null
-                        } */}
-
-                            <button className="cart-button" onClick={this.toggleDeletePopup.bind(this)}>Delete Cart</button>
-                            {this.state.showDeletePopup ?
-                                <DeletePopup
-                                    text='Close Me'
-                                    closePopup={this.toggleDeletePopup.bind(this)}
-                                />
-                                : null
-                            }
 
                             <button className="cart-button" onClick={this.toggleParcelPopup.bind(this)}>Parcel Order</button>
                             {this.state.showParcelPopup ?
@@ -470,7 +458,6 @@ class Cart extends Component {
                     </div>
                 </div>
             </div>
-
         );
     };
 }

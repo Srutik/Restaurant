@@ -5,7 +5,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import Sidesection from './Sidesection';
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css' 
+import 'react-confirm-alert/src/react-confirm-alert.css';
+import ReactPaginate from 'react-paginate';
 
 class Popup extends React.Component {
 
@@ -195,7 +196,7 @@ class viewCook extends Component {
     return (
       <div>
         <Sidesection />
-        <h1 className="view-Data">All Cook</h1>
+        <div className="view-Data">All Cook</div>
         <div>
           <table className="wt1">
 

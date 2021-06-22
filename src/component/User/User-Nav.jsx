@@ -4,6 +4,8 @@ import { Button } from '../Button';
 import PopUp from './Book-table';
 import * as RiIcons from 'react-icons/ri';
 import { RiTableFill } from "react-icons/ri";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import { HashLink as Link } from 'react-router-hash-link';
 import './User-Nav.scss';
 
@@ -20,10 +22,10 @@ function Navbar(props) {
   };
 
   const Popup = props => {
-    const [person, setPerson] = useState();
+    const [persons, setPerson] = useState();
 
     async function handleReservation() {
-      let data = { person }
+      let data = { persons }
       try {
         await fetch("http://localhost:8020/book/reservation", {
           method: 'POST',
@@ -33,23 +35,38 @@ function Navbar(props) {
           },
           body: JSON.stringify(data),
         })
-        alert(" You are successfully completed reservation ! ")
+        setIsOpen(!isOpen)
+        submit();
       }
       catch (error) {
         alert(error)
       }
     }
-    
+
+   function submit() {
+      confirmAlert({
+          message: 'User Sucessfully Reserved !',
+          buttons: [
+              {
+                  label: 'ok',
+              }
+          ]
+      })
+  };
+
     return (
       <div className="popup-box">
-        <div className="box">
+        <div className="boxes">
           <div className="form-group">
-            <label htmlFor="phone">Enter Person</label>
-            <input maxLength="3" type="text" name="person" placeholder="Total Person" onChange={e => setPerson(e.target.value)}/>
-            <button onClick={handleReservation}>Test button</button>
+            <label className="reservation_label" htmlFor="phone">Enter Person</label>
+            <input maxLength="3" type="text" name="person" placeholder="Total Person" onChange={e => setPerson(e.target.value)} />
+            <div className="reservation-btn_set">
+              <button className="reservation_btn" onClick={handleReservation}>Submit</button>
+            </div>
           </div>
-          
-          <span className="close-icon" onClick={props.handleClose}>x</span>
+          <div className="close_btn-set">
+            <span className="close-icons" onClick={props.handleClose}>x</span>
+          </div>
           {props.content}
         </div>
       </div>

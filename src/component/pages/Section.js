@@ -4,7 +4,7 @@ import './Section.css';
 function Section() {
   return (
     <div className='hero-container' id=''>
-      <h1>--- Welcome To ---</h1>
+      <div className="section-title">--- Welcome To ---</div>
       <p> Dine Fine </p>
 
     </div>
