@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import Sidesection from './Sidesection';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import ReactPaginate from 'react-paginate';
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -20,35 +21,53 @@ class ParcelOrder extends Component {
             id1: '',
             Parcel: [],
             showPopup: false,
+            offset: 0,
+            tableData: [],
+            orgtableData: [],
+            perPage: 5,
+            currentPage: 0
         };
         this.togglePopup = this.togglePopup.bind(this);
-
+        this.handlePageClick = this.handlePageClick.bind(this);
 
     }
-    // async componentDidMount() {
-    //     try {
-    //         const url = "http://localhost:8020/order/getorders";
-    //         const response = await fetch(url, {
-    //             method: "GET",
-    //             /* headers: {
-    //                  "Content-type": "application/json; charset=UTF-8",
-    //                  Authorization: `Bearer ` + localStorage.getItem("token")
-    //              }, */
-    //         });
-    //         const data = await response.json();
-    //         this.setState({ orders: data.orders, loading: false, });
-    //         this.searchArray = data
-    //     } catch (err) {
-    //     }
-    // }
+
+
+    handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset
+        }, () => {
+            this.loadMoreData()
+        });
+    };
+
+    loadMoreData() {
+        const data = this.state.orgtableData;
+
+        const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+        this.setState({
+            pageCount: Math.ceil(data.length / this.state.perPage),
+            Parcel: slice
+        })
+
+    }
 
     async componentDidMount() {
         try{
         const url = "http://localhost:8020/order/parcelorders";
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({ Parcel: data.orders, loading: false });
-        this.searchArray = data;
+        var slice = data.orders.slice(this.state.offset, this.state.offset + this.state.perPage)
+            this.setState({
+                pageCount: Math.ceil(data.orders.length / this.state.perPage),
+                orgtableData: data.orders,
+                loading: false,
+                Parcel: slice
+            })
         }
         catch(err){
             alert(err)
@@ -199,6 +218,18 @@ class ParcelOrder extends Component {
 
                         </div>
                     ))}
+                    <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
                 </div>
             </div>
         )

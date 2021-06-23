@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import './OrderList.css';
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CookSidesection from './Cook-sidesection';
-
+import ReactPaginate from 'react-paginate';
 
 
 export class OrderList extends Component {
@@ -17,10 +18,40 @@ export class OrderList extends Component {
             showDeletePopup: false,
             activeOrderId: null,
             AllOrder: [],
+            offset: 0,
+            tableData: [],
+            orgtableData: [],
+            perPage: 5,
+            currentPage: 0
         };
 
-        this.toggleDeletePopup = this.toggleDeletePopup.bind(this)
-        this.accept = this.accept.bind(this)
+        this.toggleDeletePopup = this.toggleDeletePopup.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
+        this.accept = this.accept.bind(this);
+    }
+
+
+
+    handlePageClick = (e) => {
+        const selectedPage = e.selected;
+        const offset = selectedPage * this.state.perPage;
+
+        this.setState({
+            currentPage: selectedPage,
+            offset: offset
+        }, () => {
+            this.loadMoreData()
+        });
+    };
+
+    loadMoreData() {
+        const data = this.state.orgtableData;
+
+        const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+        this.setState({
+            pageCount: Math.ceil(data.length / this.state.perPage),
+            AllOrder: slice
+        })
 
     }
 
@@ -32,7 +63,7 @@ export class OrderList extends Component {
             let data = await response.json()
             alert("Your Order is Received !")
             console.log(data)
-            this.props.history.push("process-order");   
+            this.props.history.push("process-order");
         } catch (err) {
             console.log(err)
         }
@@ -60,7 +91,13 @@ export class OrderList extends Component {
                 },
             });
             const data = await response.json();
-            this.setState({ AllOrder: data.list });
+            var slice = data.list.slice(this.state.offset, this.state.offset + this.state.perPage)
+            this.setState({
+                pageCount: Math.ceil(data.list.length / this.state.perPage),
+                orgtableData: data.list,
+                loading: false,
+                AllOrder: slice
+            })
             this.searchArray = data
         } catch (err) {
         }
@@ -99,26 +136,26 @@ export class OrderList extends Component {
                                     </div>
                                     <div className="accept-reject" >
                                         <div className="accept-margin">
-                                    <Button
-                                            variant="contained"
-                                            color="primary"
-                                            className="accept-btn"
-                                            onClick={() => this.accept(order1._id)}
-                                        >
-                                            Accept
-                                        </Button>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                className="accept-btn"
+                                                onClick={() => this.accept(order1._id)}
+                                            >
+                                                Accept
+                                            </Button>
                                         </div>
 
                                         <div className="accept-margin">
-                                        <Button
-                                            variant="contained"
-                                            color="secondary"
-                                            className="reject-btn"
-                                            startIcon={<DeleteIcon />}
-                                            onClick={() => this.toggleDeletePopup(order1)}
-                                        >
-                                            Reject
-                                        </Button>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                className="reject-btn"
+                                                startIcon={<DeleteIcon />}
+                                                onClick={() => this.toggleDeletePopup(order1)}
+                                            >
+                                                Reject
+                                            </Button>
                                         </div>
                                         {this.state.showDeletePopup ?
                                             <DeletePopup _id={this.state.activeOrderId}
@@ -132,6 +169,18 @@ export class OrderList extends Component {
                             </div>
                         ))}
                     </div>
+                    <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
                 </div>
             </div>
         )

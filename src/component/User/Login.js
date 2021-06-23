@@ -37,7 +37,7 @@ import "../Login.scss";
     history.push("/manager-home")
  }
  else if(result.role=="waiter"){
-  history.push("/waiter-home")
+  history.push("/ListTable")
 }
 else if(result.role=="cook"){
   history.push("/cook-home")
@@ -70,7 +70,6 @@ else if(result.role=="cook"){
           <button type="button" onClick={login} className="btns">
             Login
           </button>
-          
         </div> 
 
         <Link to='/forgot' className='admin'>

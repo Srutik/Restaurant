@@ -78,6 +78,16 @@ import Product from './component/Product';
 import Cart from './component/User/Cart';
 import Orders from './component/User/Orders';
 
+
+import ListTable from "./component/Waiter/ListTable";
+import WaiterMenu from "./component/Waiter/WaiterMenu";
+import WaiterCart from "./component/Waiter/WaiterCart";
+import WaiterBookTable from "./component/Waiter/BookTable";
+import CreateComplaints from "./component/Waiter/CreateComplaints";
+import waiterpopup from './component/Waiter/popup';
+import Waiterforget from './component/Waiter/forget';
+
+
 import MenuData from './component/User/MenuList';
 
 import { BrowserRouter as Router, Switch , Route} from 'react-router-dom';
@@ -103,7 +113,6 @@ function App() {
         <Route path='/admin-forgot' component={AdminForgot} />
         <Route path='/admin-reset' component={AdminReset} />
 
-
         <Route path='/Admin-home' exact component={AdminDashboard} />
         <Route path='/Category' component={Category} />
         <Route path='/Ingredients' component={Ingredients} />
@@ -120,8 +129,6 @@ function App() {
         <Route path='/Revenue' component={Revenue} />
         <Route path='/RDetails' component={RDetails} />
         <Route path='/Offer' component={Offer} />
-
-
 
         <Route path='/manager-login' component={Manager} />
         <Route path='/manager-forgot' component={ManagerForgot} />
@@ -173,6 +180,13 @@ function App() {
         <Route path='/menudata' component={MenuData} />
         <Route path='/booktable' component={BookTable} />
     
+        <Route path="/ListTable" exact component={ListTable} />
+        <Route path="/WaiterMenu" component={WaiterMenu} />
+        <Route path="/WaiterCart" component={WaiterCart} />
+        <Route path="/BookTable" component={WaiterBookTable} />
+        <Route path="/CreateComplaints" component={CreateComplaints} />
+        <Route path="/popup" component={waiterpopup} />
+        <Route path="/forget" component={Waiterforget} />
       </Switch>
       </Router>
     </div>

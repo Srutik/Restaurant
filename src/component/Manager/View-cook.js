@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './View-cook.css';
+import axios from "axios";
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -17,8 +18,10 @@ class Popup extends React.Component {
       name: this.props.name,
       email: this.props.email,
       phone: this.props.phone,
+     
     };
   }
+
 
   update(e) {
     e.preventDefault();
@@ -124,8 +127,39 @@ class viewCook extends Component {
       name:"",
       email:"",
       phone:"",
+      offset: 0,
+      tableData: [],
+      orgtableData: [],
+      perPage: 5,
+      currentPage: 0
     };
+
     this.togglePopup = this.togglePopup.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
+
+  }
+
+  handlePageClick = (e) => {
+    const selectedPage = e.selected;
+    const offset = selectedPage * this.state.perPage;
+
+    this.setState({
+        currentPage: selectedPage,
+        offset: offset
+    }, () => {
+        this.loadMoreData()
+    });
+};
+
+loadMoreData() {
+  const data = this.state.orgtableData;
+  
+  const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+  this.setState({
+    pageCount: Math.ceil(data.length / this.state.perPage),
+    tableData:slice
+  })
+
   }
 
   togglePopup(cook) {
@@ -150,7 +184,12 @@ class viewCook extends Component {
       },
     });
     const data = await response.json();
-    this.setState({ people: data.list, loading: false });
+    var slice = data.list.slice(this.state.offset, this.state.offset + this.state.perPage)
+    this.setState({ pageCount: Math.ceil(data.list.length / this.state.perPage),
+                    orgtableData :data.list,
+                    loading: false,
+                    tableData:slice
+                })
   }
 
   delete() {
@@ -207,7 +246,7 @@ class viewCook extends Component {
             <td>Action</td>
 
           </table>
-          {this.state.people.map((cook) => (
+          {this.state.tableData.map((cook) => (
             <div key={cook._id}>
               <div>
                 <div>
@@ -246,6 +285,18 @@ class viewCook extends Component {
               </div>
             </div>
           ))}
+           <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
 
         </div>
       </div>
