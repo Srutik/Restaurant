@@ -1,0 +1,107 @@
+.cookprocessorder-title {
+    color: rgb(255, 250, 250);
+    font-weight: bold;
+    padding: 5px;
+    background: black;
+    text-align: center;
+    margin: 5px;
+    font-size: 25px;
+}
+.done-head{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.done-button{
+    margin: 10px;
+    height: 50px;
+    width: 100px;
+    font: bold;
+    font-size: 15px;
+    background: rgb(43, 42, 42);
+    color: white;
+    border-radius: 7px;
+}
+
+.done-button:hover{
+    cursor: pointer;
+    background:darkgray;
+    color: black;
+ }
+
+ .done-btnset{
+     text-align: center;
+     margin-bottom: 20px;
+ }
+
+ .Done-popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.5);
+  }
+
+  .Donepopup_inner {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    height: 40%;
+    width: 30%;
+    margin: auto;
+    background: white;
+    border-radius: 7px;
+  }
+
+  .orderDone-btn{
+      margin: 20px;
+      margin-left: 60px;
+      justify-content: center;
+  }
+
+  label{
+      margin: 10px;
+      font-weight: bold;
+  }
+
+  .done-content{
+      align-items: center;
+  }
+
+  .cookall-donebtn{
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 2px solid;
+    margin-bottom: 40px;
+  }
+
+  .cooksingle-orderDone {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    cursor: pointer;
+    text-align: center;
+    margin: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+
+.cookall-orderDone{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-flow: row wrap; 
+    cursor: pointer;
+    text-align: center;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,107 @@
+
+
+.manager-dashboard {
+    background: url('./manager-dash1.jpg') center center/cover no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+.wave-container > svg {
+  display: block;
+}
+.grid_item1{
+  grid-area: overlap;
+}
+
+.grid_item2{
+  grid-area: overlap;
+}
+
+
+.wave-container {
+  position: relative;
+  color: #FFF;
+  text-align: center;
+  overflow: hidden;
+}
+
+.overlap_items{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "overlap";
+}
+
+
+.dash-title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.dash_icon-title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.dash-icons {
+  margin-top: 20px;
+}
+
+.dash-titles {
+  margin-top: 5px;
+}
+
+body {
+    scroll-behavior: smooth;
+  }
+  
+  .title-managerpage {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    background-position-x: center;
+    padding: 20px;
+    color: rgb(255, 255, 255);
+  }
+  
+  .flex-category1 {
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+  
+  .flex-category1 > .flex-category2 {
+    background-color: #f1f1f1;
+    width: 500px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 20px;
+  }
+  
+  .flex-category3 {
+    flex-wrap: nowrap;
+    justify-content: center;
+  
+  }
+  
+  .flex-category3 > .flex-category4 {
+    background-color: #f1f1f1;
+    width: 500px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 20px;
+  }
+
+  .DashView-Manager{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .link{
+    text-decoration: none;
+    color: black;
+  }

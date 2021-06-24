@@ -1,0 +1,150 @@
+.popup_complaints {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.popup_inner-complaints {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  width: 40%;
+  height: 40%;
+  background-image: linear-gradient(
+    180deg,
+    #ffe1aa 0,
+    #ffd4a7 16.67%,
+    #ffc7a2 33.33%,
+    #f2b99d 50%,
+    #e1ac97 66.67%,
+    #d1a092 83.33%,
+    #c2968d 100%
+  );
+}
+
+.edv {
+  margin-top: 30px;
+  margin-bottom: 5px;
+  color: black;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.edv1 {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edv2 {
+  height: 30px;
+  width: 200px;
+}
+
+.cmpb {
+  display: flex;
+  float: right;
+  margin-top: -213px;
+}
+
+.cmpb1 {
+  height: 25px;
+  width: 30px;
+}
+
+.cmpu {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cmpu1 {
+  height: 35px;
+  width: 80px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.label-discount {
+  display: flex;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+.cpt {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cpt td {
+  padding: 10px;
+  text-align: left;
+  font-size: 25px;
+  min-width: 200px;
+  max-width: 400px;
+  background-color: rgb(221, 223, 226);
+}
+
+.cpt1 {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cpt1 td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.cpt1 tr:hover {
+  background-color: #f5f5f5;
+}
+
+.cmb {
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 1px 5px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.cmb1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+
+.cmb1:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.lc{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pc{
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}

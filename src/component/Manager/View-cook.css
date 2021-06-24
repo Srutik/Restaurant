@@ -1,0 +1,218 @@
+.wt {
+    width: 100%;
+  }
+  
+  .wt td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .wt tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .wt1 {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .wt1 td {
+    padding: 25px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(120, 187, 187);
+  }
+  
+  .label-cook {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+  }
+  
+  .title-cook {
+    margin-top: 30px;
+    margin-bottom: 5px;
+    color: black;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .text1-cook {
+      margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text2-cook {
+    height: 30px;
+    width: 200px;
+  }
+  
+  .email-cook {
+    margin-bottom: 5px;
+    color: black;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .email1-cook {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .email2-cook {
+    height: 30px;
+    width: 200px;
+  }
+  
+  .phone-cook {
+    margin-bottom: 5px;
+    color: black;
+    font-size: 20px;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .phone1-cook {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .phone2-cook {
+    height: 30px;
+    width: 200px;
+  }
+  
+  .popbtn-cook {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .view-Data{
+    color: rgb(0, 0, 0);
+    margin: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+  .popbtn1-cook {
+    height: 35px;
+    width: 80px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .pop-cook{
+      height: 30px;
+      width: 50px;
+      font-weight: bold;
+  }
+  
+  .popbtn2-cook {
+    display: flex;
+    float: right;
+    margin-top: -490px;
+  }
+  
+  .popbtn3-cook {
+    height: 25px;
+    width: 30px;
+  }
+  
+  .popupcook {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0,0,0, 0.5);
+  }
+
+  .popupcook_inner {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 25%;
+    bottom: 25%;
+    margin: auto;
+    height: 70%;
+    background-image: linear-gradient(
+      180deg,
+      #ffe1aa 0,
+      #ffd4a7 16.67%,
+      #ffc7a2 33.33%,
+      #f2b99d 50%,
+      #e1ac97 66.67%,
+      #d1a092 83.33%,
+      #c2968d 100%
+    );
+  }
+  
+  .sb {
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .sb1 {
+    background-color: white;
+    color: black;
+    border: 2px solid #e7e7e7;
+  }
+  
+  .sb1:hover {
+    background-color: #555555;
+    color: white;
+  }
+
+.pagination {
+  margin: 15px auto;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  outline: none;
+}
+.pagination > .active > a{
+  background-color: #47ccde ;
+  border-color: #47ccde ;
+  color: #fff;
+}
+.pagination > li > a{
+  border: 1px solid #47ccde ;
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+  background-color: #47ccde ;
+  border-color: #47ccde;
+  outline: none ;
+}
+.pagination > li > a, .pagination > li > span{
+  color: #47ccde
+}
+.pagination > li:first-child > a, .pagination > li:first-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span{
+  border-radius: unset
+}

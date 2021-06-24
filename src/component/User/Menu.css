@@ -1,0 +1,414 @@
+img {
+   
+    justify-content: center;   
+    }
+    
+    .image {
+        height: 200px;
+        width: 200px;
+    }
+    
+    .Allpage {
+       height: 100%;
+        width: 100%;
+        display: flex;
+        margin: 2px;
+        /* background:#DDAF94; */
+        justify-content: space-between;
+    }
+    
+    /* .items2 {
+        grid-area: overlap;
+    }
+    */
+    .wrapper-nav {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "overlap";
+    }
+    
+    .counter {
+        background: rgb(0, 0, 0);
+        margin: auto;
+        border-radius: 3px;
+        color: white;
+        height: 20px;
+        width: 20px;
+    }
+
+    .items1 {
+        background:#DDAF94;
+     }
+
+     .Order-Note {
+         margin-top: 10px;
+         font-size: 15px;
+         font-weight: bold;
+         margin-bottom: 5px;
+     }
+    
+    .flex1 {
+        width: 340px;
+        margin: 5px;
+        background-color: whitesmoke;
+        height: 100vh;
+        /* position: fixed;
+        top: 20;
+        z-index: 999; */
+    }
+    
+    .flex2 {
+        width: 820px;
+        margin: 5px;
+        background-color: whitesmoke;
+        /* margin-left: 350px;
+        margin-right: 350px; */
+    }
+
+    .flex3 {
+        width: 340px;
+        margin:5px;
+        /* position: fixed;
+        top: 20;
+        z-index: 999;
+        right: 0%; */
+    }
+    
+    .category-cards {
+        display: inline-block;
+        padding: 50px;
+        flex-direction: column;
+        flex-wrap:wrap;
+        flex-flow: row wrap;
+        justify-content: space-between;  
+        margin-top: -10px;
+        margin-bottom: 20px;  
+    }
+    
+    .category-cards .cardItems1 {
+        box-sizing: border-box;
+        border-radius: 5px;
+        height: 50px;
+        align-items: center;
+        width: 200px;
+        cursor: pointer;
+        border: 2px solid;
+        margin-left: 40px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background:white;
+
+    }
+    
+    .cardItems1:hover {
+        background-color: rgb(185, 185, 185);
+    }
+    
+    .card-menues {
+        display: flexbox;
+        padding: 10px;
+        flex-direction: column;
+        flex-wrap:wrap;
+        flex-flow: row wrap;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    } 
+    
+    .card-menues .cardItem-menues {
+        display: flex;
+        box-sizing: border-box;
+        box-sizing: initial;
+        border-radius: 5px;
+        border: 2px solid;
+        margin: 15px;
+        margin-bottom: 20px;
+        background: white;
+        box-shadow: 0 0 25px 10px rgba(25, 25, 25, .1);
+    }
+
+    .flex-second{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .category-content {
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        font-style: oblique;
+        font-size: 20px;
+        font-family: monospace;
+    }
+    
+    .state {
+        padding: 20px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    
+    .priority {
+        height: 30px;
+        width: 70px;
+        margin-top: 20px;
+        margin: 10px;
+    }
+    
+    .addCart1 {
+        height: 30px;
+        width: 130px;
+    }
+    
+    
+    .Font1 {
+        color: rgb(255, 255, 255);
+    }
+    
+    .logo {
+        text-align: center;
+        background: transparent;
+    }
+    
+    .content-data {
+        text-align: center;
+        font-style: normal;
+        color: black;
+        font-weight: 100;
+        margin-top: 10px; 
+    }
+    
+    .menu-data{
+        font-weight: bold;
+        font-size: 20px;
+        margin: 10px;
+    }
+
+    .menu-price{
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin: 10px;
+    }
+
+    .menu-description{
+        color: rgb(0, 0, 0);
+        margin: 10px;
+        font-size: 15px;
+    }
+    
+    .titles {
+        color: rgb(255, 255, 255);
+        font-weight: bold;
+        padding: 5px;
+    }
+    .category_titles{
+        color: black;
+        font-weight: bold;
+        padding: 10px;
+        margin-left: 20px;
+    }
+    .Lists {
+        width: 100%;
+        background: rgb(44, 42, 42);
+        height: 50px;
+        text-align: center;
+    
+    }
+    .category_head_set{
+        margin-top: 10px;
+        width: 100%;
+        background: #d8d7d7;
+        height: 50px;
+    }
+
+    .addCart1 {
+        height: 35px;
+        width: 120px;
+        margin: 20px;
+        color: rgb(0, 0, 0);
+        font-weight: bold;
+        background-color: whitesmoke;
+
+    
+    }
+    
+    .addCart1:hover{
+        background-color: rgb(185, 185, 185);
+        cursor: pointer;
+    }
+    
+    
+    .priority-set{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: auto;
+        justify-content: center;
+    }
+    
+    .priority-btn11{
+        height: 25px;
+        width: 25px;
+        color: rgb(34, 0, 0);
+        background-color: whitesmoke;
+        font-weight: bold;
+    }
+
+    .priority-btn11:hover{
+        background-color: rgb(185, 185, 185);
+        cursor: pointer;
+    }
+    
+    .p-data {
+        color: rgb(34, 0, 0);
+        font-size: 16px;
+    }
+    
+    .q-data {
+        color: rgb(34, 0, 0);
+        font-size: 16px;
+    }
+    
+    .Quantity-set {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: auto;
+        justify-content: center;
+    }
+    
+    .Quantity-btn11 {
+        height: 25px;
+        width: 25px;
+        color: rgb(34, 0, 0);
+        background-color: whitesmoke;
+        font-weight: bold;
+    }
+    
+    .Quantity-btn11:hover {
+        background-color: rgb(185, 185, 185);
+        cursor: pointer;
+    }
+        
+        .Allpage-menu {
+            display: flex;
+            margin: 5px;
+            
+        }
+    
+        .All-menu{
+            background:#DDAF94;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+        }
+
+        .add-cartBtn_set{
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            margin-left: 40px;
+            justify-content: center;
+        }
+
+    .cartItemAdd{
+        display: flex;
+        margin: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    /* .cart-Images{
+        display: flex;
+        flex-direction: row;
+    } */
+
+
+    .Side-cart{
+        margin: 5px;
+        margin-top: 10px;
+        border: 2px dotted black;
+        background-color: whitesmoke;
+    }
+
+    .checkout_btn{
+        height: 40px;
+        width: 150px;
+        font-weight: bold;
+        font-size: 15px;
+        background-color: whitesmoke;
+    }
+
+    .checkout_btn:hover {
+        background-color: rgb(185, 185, 185);
+        cursor: pointer;
+    }
+
+
+    .popup-ingredient {
+        position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      background-color: rgba(0,0,0, 0.3);
+      }
+    
+      .popup-ingredient_inner {
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        top: 25%;
+        bottom: 25%;
+        margin: auto;
+        height: 70%;
+       background-color: white;
+      }
+
+      .Title-ingeredients{
+          color: black;
+          margin: 10px;
+      }
+
+      .checkbox-size{
+          height: 20px;
+          width: 20px;
+          margin: 10px;
+      }
+
+      .checkbox-menu{
+          display: flex;
+          justify-content: space-between;
+         text-align: start;
+      }
+
+      .price-ingredient{
+          font-weight: bold;
+          margin: 20px;
+      }
+
+      .close_btn{
+        position: absolute;
+        bottom: 20;
+      }
+
+      .close-popup_ingredient{
+          height: 30px;
+          width: 100px;
+          color: black;
+          background-color:darkgrey;
+          font-weight: bold;
+          border-radius: 50px;
+      }
+
+      .Ingredient_btn-set{
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+      }

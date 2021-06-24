@@ -1,0 +1,367 @@
+import React, { Component } from "react";
+import './Complaints.css';
+import Sidesection from './Sidesection';
+
+class PopupDiscount extends React.Component {
+
+  constructor(props) {
+
+    super(props);
+    this.state = {
+
+      discount: "",
+
+    };
+  }
+
+  updateOrder(e) {
+    e.preventDefault();
+
+    fetch("http://localhost:8020/order/setdiscount/" + this.props._id, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify({
+        discount: this.state.discount,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  handleDiscount(e) {
+    let discount = e.target.value;
+    this.setState({ discount: discount });
+  }
+
+  render() {
+    return (
+      <div className="popup_complaints1">
+
+        <div className="popup_inner-complaints1">
+
+          <label className="label-discount">Set Discount</label>
+
+          <div className="dtl">
+            <div className="title-cook">Enter Discount Value</div>
+            <div className="text1-cook">
+              <input
+                className="text2-cook"
+                type="text"
+                name="name"
+                onChange={(e) => this.handleDiscount(e)}
+              />
+            </div>
+
+            <div className="popbtn-update">
+              <button className="popbtn1-update" onClick={(e) => this.updateOrder(e)}>
+                Update
+              </button>
+            </div>
+
+            <div className="popbtn2-complaints">
+              <button className="pop-complaint" onClick={this.props.closePopup}>X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+class PopupReply extends React.Component {
+
+  constructor(props) {
+
+    super(props);
+    this.state = {
+
+      message: "",
+
+    };
+  }
+
+  updateReply(e) {
+    e.preventDefault();
+
+    fetch("http://localhost:8020/reply/reply/" + this.props._id1, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify({
+        message: this.state.message,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  handleReply(e) {
+    let message = e.target.value;
+    this.setState({ message: message });
+  }
+
+  render() {
+    return (
+      <div className="popup_reply">
+
+        <div className="popup_inner-reply">
+
+          <label className="label-discount">Reply to Complaints</label>
+
+          <div className="dtl">
+            <div className="title-cook">Enter Message</div>
+            <div className="text1-cook">
+              <input
+                className="text2-cook"
+                type="text"
+                name="name"
+                onChange={(e) => this.handleReply(e)}
+              />
+            </div>
+
+            <div className="popbtn-update">
+              <button className="popbtn1-update" onClick={(e) => this.updateReply(e)}>
+                Send
+              </button>
+            </div>
+
+            <div className="popbtn2-complaints">
+              <button className="pop-complaint" onClick={this.props.closePopup1}>X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+class complaints extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      complaints: [],
+      showPopup: false,
+      showPopup1: false,
+      id:"",
+      id1:""
+
+    };
+    this.togglePopup = this.togglePopup.bind(this);
+    this.togglePopup1 = this.togglePopup1.bind(this);
+
+  }
+
+  togglePopup(complaint) {
+    this.setState({
+      showPopup: !this.state.showPopup,
+      id: complaint.orderId._id,
+    });
+  }
+
+  togglePopup1(complaint) {
+    this.setState({
+      showPopup1: !this.state.showPopup1,
+      id1: complaint._id,
+    });
+  }
+
+  async componentDidMount() {
+    const url = "http://localhost:8020/complaint/complaints";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ complaints: data.complaints, loading: false });
+  }
+
+  render() {
+    const url = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
+
+    if (this.state.loading) {
+      return (
+        <div>
+          <div className="logo">
+            <img height="100px" width="100px" src={url} />
+          </div>
+          <div className="state">loading...</div>
+        </div>
+      );
+    }
+
+    if (!this.state.complaints.length) {
+      return <div className="state">You not have any Complaints</div>;
+    }
+
+    return (
+      <div>
+        <Sidesection />
+        <div className="view-Data">All Complaints</div>
+        <div>
+          <table className="complaint-tables">
+
+            <td>Title</td>
+            <td>Complaint</td>
+            <td>Date</td>
+            <td>Action</td>
+
+          </table>
+          {this.state.complaints.map((complaint) => (
+            <div key={complaint._id}>
+              <div>
+                <div>
+                  <table className="complaint-table">
+                    <tr>
+                      <td> {complaint.title}</td>
+                      <td> {complaint.message}</td>
+                      <td>{complaint.userId.created_At}</td>
+                      <td>
+                        <div className="complaint_actions">
+                          <div className='complaint-table_btn'>
+                            <button className="sb sb1" onClick={() => this.togglePopup(complaint)}>
+                              Discount
+                        </button>
+                          </div>
+
+                          <div className='complaint-table_btn'>
+                            <button className="sb sb1" onClick={() => this.togglePopup1(complaint)}>
+                              Reply
+                        </button>
+                          </div>
+                        </div>
+
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                {this.state.showPopup ? (
+                  <PopupDiscount
+                    _id={this.state.id}
+                    closePopup={() => this.togglePopup(complaint)}
+                  />
+                ) : null}
+
+                {this.state.showPopup1 ? (
+                  <PopupReply
+                    _id1={this.state.id1}
+                    closePopup1={() => this.togglePopup1(complaint)}
+                  />
+                ) : null}
+
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </div>
+    );
+  }
+}
+export default complaints;
+
+
+
+
+
+
+/*
+import React, { Component } from 'react'
+import Sidesection from './Sidesection';
+import './Complaints.css';
+
+
+export class Complaints extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          loading: true,
+          complaint: [],
+        };
+      }
+
+      setOffer() {
+        alert("ok");
+      }
+
+
+
+    async componentDidMount() {
+        const url = "http://localhost:8020/complaint/complaints";
+        const response = await fetch(url);
+        const data = await response.json();
+        this.setState({ complaint: data.complaints, loading: false });
+      }
+    render() {
+        const url = 'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif';
+
+    if (this.state.loading) {
+      return <div>
+        <div className="logo">
+          <img height="100px" width="100px" src={url} />
+        </div>
+        <div className="state">loading...</div>
+      </div>
+    }
+
+    if (!this.state.complaint.length) {
+      return <div className="state">didn't get Menu</div>;
+    }
+        return (
+            <div>
+                <Sidesection />
+                <h1 className="complain-label">Complaints</h1>
+
+                <div className="complaint-data">
+                {this.state.complaint.map(key => (
+                <div key={key._id}>
+                  <div >
+                    <div className="Single-complaint">
+                      <div className="complaint">UserId :- {key._id}</div>
+                      <div className="complaint">Date :- {key.created_At}</div>
+                      <div className="complaint">Title :- {key.title}</div>
+                      <div className="main-complaint">Complaint :- {key.message}</div>
+                      <div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+                </div>
+            </div>
+        )
+    }
+}
+
+export default Complaints; */
+
+
+/*
+
+<div className="complaint">Name :- {key.orderId.name}</div>
+
+{key.orderId.items.map((suborder) =>
+  <div key={suborder._id}>
+      <div className="cooksingle-orderDone">
+          <div classname="cookcart-images">
+              <img height="100px" width="100px" src={suborder.productId.imageUrl} />
+          </div>
+          <div className="cookorder-data">Quantity:{suborder.qty}</div>
+          <div className="cookorder-data">Priority:{suborder.priority}</div>
+          <div className="cookorder-data">Price:{suborder.productPrice} ₹ </div>
+          <div className="cookorder-total">Grand Total:{suborder.total} ₹ </div>
+      </div>
+  </div>)} */

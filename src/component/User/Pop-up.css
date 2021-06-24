@@ -1,0 +1,42 @@
+
+.select {
+  width: 300px;
+  height: 40px;
+  font-size: 18px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+
+button {
+  margin: 10px;
+}
+
+
+.picker{
+  height: 30px;
+  width: 200px;
+  border-radius: 5px;
+justify-items: center;
+size: 20px;
+margin-left: 10px;}
+
+.text-center {
+  margin-top: 10px;
+}
+
+.input {
+  margin-top: 20px;
+  height: 35px;
+  width: 300px;
+  border-radius: 5px;
+}
+
+.Date {
+  height: 30px;
+  width: 100px;
+  color: white;
+  margin-top: 20px;
+  background: radial-gradient(circle, rgba(31,30,51,1) 0%, rgba(66,116,133,1) 100%);
+}
+
